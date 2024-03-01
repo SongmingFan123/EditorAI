@@ -5,7 +5,8 @@ function App() {
   return (
     <main>
       <Link href={"/homepage"}>Go to Homepage</Link>
-      <Link href={"/homepage"}>Go to Text Editor</Link>
+      <br />
+      <Link href={"/texteditor"}>Go to Text Editor</Link>
     </main>
 
   );
