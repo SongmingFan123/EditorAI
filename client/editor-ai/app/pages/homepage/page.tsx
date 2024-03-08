@@ -14,11 +14,10 @@ const homepage = () => {
     
     <div className = "p-0"> 
 
-        <Header />
 
         <SearchBar />
         <div className="flex">
-          <ActionButton text="Create Document" href='./texteditor'/>
+          <ActionButton text="Create Document" />
           <ActionButton text="Upload Document" />
 
         </div>

@@ -5,7 +5,7 @@ import './styles/globals.css'
 function App() {
   return (
     <main>
-      <Header/>
+      <h1>Starting Page</h1>
     </main>
   );
 }

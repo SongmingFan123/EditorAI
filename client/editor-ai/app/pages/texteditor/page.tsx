@@ -9,7 +9,6 @@ const homepage = () => {
   return (
     
     <div className = "homepage"> 
-        <Header />
         <TextEditor />
         
     </div>

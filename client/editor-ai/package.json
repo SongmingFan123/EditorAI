@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "again": "^0.0.1",
+    "firebase": "^10.8.1",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-quill": "2.0.0"
+    "react-quill": "2.0.0",
+    "reactstrap": "^9.2.2"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -4,7 +4,6 @@ import LoginPage from "./LoginPage";
 function App() {
   return (
     <main>
-      <Header />
       <LoginPage />
     </main>
 
