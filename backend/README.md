@@ -8,5 +8,17 @@ First, create virtual environment.
 # Check requirements.txt for dependencies 
 
 # To Run
+1. Initiate googleCLI, put your service key in your secrets folder
+1. Run directly __main__.py
 
-1. flask `--app app run`
+
+# Files
+
+1. routes
+    Contains all the route info for the API
+
+1. services
+    Takes care of all the backend services (external API, firestore database, authentication)
+
+1. utils
+    Utility functions/classes that act as helper functions
