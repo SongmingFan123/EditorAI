@@ -1,5 +1,4 @@
-import Link from "next/link";
-import Header from '../Header';
+import Header from '../../components/Header';
 import LoginPage from "./LoginPage";
 
 function App() {

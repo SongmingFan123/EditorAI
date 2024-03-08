@@ -1,6 +1,6 @@
 import React from 'react';
 import TextEditor from './TextEditor';
-import Header from '../Header';
+import Header from '../../components/Header';
 
 const homepage = () => {
   const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];

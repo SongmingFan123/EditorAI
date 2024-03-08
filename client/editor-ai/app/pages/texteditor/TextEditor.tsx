@@ -1,10 +1,15 @@
 'use client'
 
 import React from "react";
+import dynamic from 'next/dynamic';
 import 'quill/dist/quill.snow.css'
-import ReactQuill from 'react-quill'
-import '../styles/TextEditor.css'
 import SuggestionBox from './SuggestionBox'
+import Link from 'next/link';
+
+const ReactQuillNoSSR = dynamic(
+  () => import('react-quill'), 
+  { ssr: false }
+);
 
 
 
@@ -41,27 +46,31 @@ const TextEditor = () => {
 
     return (
         <div>
-            <h1>Text Editor</h1>
-            <div className='main-interface'>
-                <div className='text-editor-container'>
-                    <ReactQuill
+            <h1 className="text-center">Text Editor</h1>
+            <Link href="./homepage">Back</Link>
+            <div className='flex justify-between p-5 h-full'>
+                <div className='flex-1 mr-5'>
+                    <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
                         placeholder="write your content ...."
                         onChange={handleProcedureContentChange}
-                        className='react-quill-editor'
-                    >
-                    </ReactQuill>
+                        className='h-[50vh] border border-gray-300 rounded-lg'
+                    />
                 </div>
-                <div className="sidebar">
-                    <div className="suggestions-container">
+                <div className="w-[20vw]">
+                    <div className="bg-gray-200 p-4 mb-5 rounded-lg">
                         <h2>Suggested Edits</h2>
-                        <ul className='suggestions-list'>
-                            <SuggestionBox header="Suggestion 1" content="This is a suggestion" />
-                            <SuggestionBox header="Suggestion 2" content="This is another suggestion" />
+                        <ul className='list-none p-0'>
+                            <li className='mb-2.5'>
+                                <SuggestionBox header="Suggestion 1" content="This is a suggestion" />
+                            </li>
+                            <li className='mb-2.5'>
+                                <SuggestionBox header="Suggestion 2" content="This is another suggestion" />
+                            </li>
                         </ul>
                     </div>
-                    <div className='ask-ai-container'>
+                    <div className='bg-gray-200 p-4 rounded-lg'>
                         <h2>Ask AI</h2>
                     </div>
                 </div>

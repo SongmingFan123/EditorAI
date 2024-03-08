@@ -2,7 +2,6 @@
 
 
 import React, { useState } from 'react';
-import '../styles/SuggestionBox.css';
 
 interface SuggestionBoxProps {
   header: string;
@@ -25,7 +24,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content }) => {
   };
   
   return (
-    <div className="suggestion-box" onClick={handleClick}>
+    <div onClick={handleClick}>
       <div className="suggestion-header">
         <span>{header}</span>
         <button className="close-button" onClick={handleClose}>×</button>
