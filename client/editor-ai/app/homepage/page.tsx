@@ -1,5 +1,11 @@
-import React from 'react';
+"use client"
 
+import React from 'react';
+import ProjectSection from './projectsection';
+import SearchBar from './searchbar';
+
+import Header from '../Header';
+import ActionButton from './ActionButton';
 
 const homepage = () => {
   const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];
@@ -8,7 +14,12 @@ const homepage = () => {
   return (
     
     <div className = "homepage"> 
-        this is homepage
+
+        <Header />
+        <ProjectSection title={"Editor AI"}/>
+        <SearchBar />
+        <ActionButton text="Create New Project" onClick={() => console.log("hi")}/>
+        {/* <ActionButton text="text" onClick={() => console.log("hi")}/> */}
     </div>
     
   );

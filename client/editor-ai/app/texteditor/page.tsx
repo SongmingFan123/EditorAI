@@ -1,5 +1,6 @@
 import React from 'react';
-
+import TextEditor from './TextEditor';
+import Header from '../Header';
 
 const homepage = () => {
   const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];
@@ -8,7 +9,9 @@ const homepage = () => {
   return (
     
     <div className = "homepage"> 
-        this is Text Editor page
+        <Header />
+        <TextEditor />
+        
     </div>
     
   );

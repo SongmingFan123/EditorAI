@@ -1,20 +1,29 @@
+'use client'
+
+
 import React, { useState } from 'react';
 import '../styles/SuggestionBox.css';
 
-const SuggestionBox = ({ header, content }) => {
+interface SuggestionBoxProps {
+  header: string;
+  content: string;
+}
+
+const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content }) => {
+
+  'use client'
+
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
     setIsClicked(true);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation(); 
     setIsClicked(false);
   };
   
-
-
   return (
     <div className="suggestion-box" onClick={handleClick}>
       <div className="suggestion-header">

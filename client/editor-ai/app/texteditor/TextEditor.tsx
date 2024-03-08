@@ -1,10 +1,16 @@
+'use client'
+
 import React from "react";
 import 'quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
 import '../styles/TextEditor.css'
 import SuggestionBox from './SuggestionBox'
 
+
+
 const TextEditor = () => {
+
+
     var modules = {
         toolbar: [
             [{ size: ["small", false, "large", "huge"] }],
