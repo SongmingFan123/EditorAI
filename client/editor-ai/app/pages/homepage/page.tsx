@@ -1,10 +1,7 @@
 "use client"
 
 import React from 'react';
-import ProjectSection from './ProjectSection';
-import SearchBar from './SearchBar';
-import Header from '../../components/Header';
-import ActionButton from './ActionButton';
+import HomePage from './HomePage';
 
 const homepage = () => {
   const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];
@@ -12,18 +9,7 @@ const homepage = () => {
 
   return (
     
-    <div className = "p-0"> 
-
-
-        <SearchBar />
-        <div className="flex">
-          <ActionButton text="Create Document" />
-          <ActionButton text="Upload Document" />
-
-        </div>
-        <ProjectSection title={"Priority Projects"}/>
-        <ProjectSection title={"Recent Projects"}/>
-    </div>
+    <HomePage/>
     
   );
 };
