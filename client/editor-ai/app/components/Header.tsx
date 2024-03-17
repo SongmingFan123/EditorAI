@@ -18,7 +18,7 @@ const Header = () => {
         <div className="flex-row flex items-center justify-between ">
           <h1 className="text-4xl font-bold">Editor</h1>
           <Image src="/logo.png" alt="Editor AI Logo" width={50} height={50} className="object-cover" />
-          <h1 className="text-4xl font-bold custom-newsreader-font">I</h1>
+          <h1 className="text-4xl font-bold header-custom">I</h1>
         </div>
         <div className="flex flex-row">
 
