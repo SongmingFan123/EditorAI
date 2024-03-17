@@ -3,3 +3,9 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.header-custom {
+  @apply font-semibold;
+  font-famiolu: 'Newsreader', serif;
+  color: #801212;
+}
