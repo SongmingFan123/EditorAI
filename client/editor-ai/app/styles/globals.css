@@ -16,13 +16,17 @@
   }
 }
 
-/* body {
-  color: black; /*rgb(var(--foreground-rgb)); 
+body {
+  color: black; 
   padding: 1rem;
-} */
+}
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+Header {
+  color:red;
 }

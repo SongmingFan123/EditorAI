@@ -1,6 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
-import ProjectSection from '../components/ProjectSection';
+import HomePage from './HomePage';
 
 // Assuming ProjectSection accepts a prop structure like this:
 interface Project {
@@ -17,13 +16,9 @@ const Homepage: React.FC = () => {
   const recentProjects: Project[] = [{ name: 'Project 3' }, { name: 'Project 4' }];
 
   return (
-    <div>
-      <div>
-        <Header />
-      </div>
-      <ProjectSection projects={priorityProjects} title="Priority Projects" />
-      <ProjectSection projects={recentProjects} title="Recent Projects" />
-    </div>
+    
+    <HomePage/>
+    
   );
 };
 

@@ -1,14 +1,11 @@
-import Link from "next/link";
-
+import Header from "./components/Header";
+import './styles/globals.css'
 
 function App() {
   return (
     <main>
-      <Link href={"/homepage"}>Go to Homepage</Link>
-      <br />
-      <Link href={"/texteditor"}>Go to Text Editor</Link>
+      <h1>Starting page</h1>
     </main>
-
   );
 }
 
