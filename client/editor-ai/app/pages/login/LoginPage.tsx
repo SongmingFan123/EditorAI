@@ -3,25 +3,25 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { UserAuth } from '../../context/AuthContext'; // Replace '../path/to/AuthContext' with the actual path to AuthContext
+//import { UserAuth } from '../../context/AuthContext'; // Replace '../path/to/AuthContext' with the actual path to AuthContext
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { emailSignIn } = UserAuth(); // Add this line to get the emailSignIn function from the AuthContext
+  // const { emailSignIn } = UserAuth(); // Add this line to get the emailSignIn function from the AuthContext
 
-  const handleLogin = async () => {
-    // Implement your authentication logic here
-    console.log('Logging in with:', email, password);
-    try {
-      const user = await emailSignIn(email, password);
-      alert('Logged in ');
-    }
-    catch (error) {
-      alert('Error logging in:'+ error);
-    }
-    // For a real application, you would make a request to a server for authentication
-  };
+  // const handleLogin = async () => {
+  //   // Implement your authentication logic here
+  //   console.log('Logging in with:', email, password);
+  //   try {
+  //     const user = await emailSignIn(email, password);
+  //     alert('Logged in ');
+  //   }
+  //   catch (error) {
+  //     alert('Error logging in:'+ error);
+  //   }
+  //   // For a real application, you would make a request to a server for authentication
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center flex-col">
@@ -50,7 +50,7 @@ const LoginPage = () => {
           <button
             className="bg-brand-red text-white px-4 py-2 rounded hover:bg-blue-600"
             type="button"
-            onClick={handleLogin}
+            //onClick={handleLogin}
           >
             Login
           </button>
