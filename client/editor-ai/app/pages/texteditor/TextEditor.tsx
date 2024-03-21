@@ -46,9 +46,10 @@ const TextEditor = () => {
 
     return (
         <div>
+
             <h1 className="text-center">Text Editor</h1>
             <Link href="./homepage">Back</Link>
-            <div className='flex justify-between p-5 h-full'>
+            <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
                         modules={modules}

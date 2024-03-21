@@ -8,14 +8,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      backgroundSize: {
+        '1/6': '16.666667%',
+      },
+      backgroundPosition: {
+        '1/6': '0% 0%',
+      },
       colors: {
         'brand-red': '#9F4949',
-        'brand-tan': '#F5F0EF'
+        'brand-tan': '#F5F0EF',
+        'main-color': '#801212',
+        'login-text': '#31302F',
+
 
       }
     },

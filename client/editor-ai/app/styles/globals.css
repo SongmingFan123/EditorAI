@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -27,7 +28,35 @@ body {
   }
 }
 
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+.font-newsreader {
+  font-family: "Newsreader", serif;
+  font-weight: 400;
+}
+
 Header {
   color: #801212;
-;
 }
+
+
+.custom-border-color {
+  border-color: #801212
+}
+
+.custom-border-opacity {
+  background-color: rgba(128, 18, 18, 0.06); 
+}
+
+.large-font {
+    font-size: 55px;
+  }
+
+.rounded-search-bar {
+  border-radius: 13px;
+  padding: 5px;
+}
+  
