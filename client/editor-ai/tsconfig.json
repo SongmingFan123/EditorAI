@@ -5,6 +5,7 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -15,12 +16,15 @@
     "plugins": [
       {
         "name": "next"
-      }
+      },
+    
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["app/*"],
+      "@components/*": ["app/components/*"],
+      "@firebase/*": ["app/firebase/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/admin/page.jsx", "app/context/AuthContext.js", "app/components/Header.jsx","app/context/AuthContext.js"], 
   "exclude": ["node_modules"]
 }

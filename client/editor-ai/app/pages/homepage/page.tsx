@@ -1,25 +1,26 @@
-import React from 'react';
-import HomePage from './HomePage';
-
+"use client"
 // Assuming ProjectSection accepts a prop structure like this:
-interface Project {
-  name: string;
-}
+import React, { useEffect } from 'react';
+import HomePage from './HomePage';
+import { useRouter } from 'next/navigation';
+import { useAuthContext } from '@/context/AuthContext';
 
-interface ProjectSectionProps {
-  projects: Project[];
-  title: string;
-}
+const Home: React.FC = () => {
+  const { user } = useAuthContext();
+  const router = useRouter();
 
-const Homepage: React.FC = () => {
-  const priorityProjects: Project[] = [{ name: 'Project 1' }, { name: 'Project 2' }];
-  const recentProjects: Project[] = [{ name: 'Project 3' }, { name: 'Project 4' }];
+  useEffect(() => {
+    if (user == null) {
+      router.push("/pages/login"); // Redirect to login page if user is not authenticated
+    }
+  }, [user, router]);
 
   return (
-    
-    <HomePage/>
-    
+    <div className="homepage"> 
+      <HomePage />
+    </div>
   );
 };
 
-export default Homepage;
+export default Home;
+
