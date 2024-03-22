@@ -33,10 +33,10 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content }) => {
         <p>{content}</p>
       </div>
       {isClicked && (
-        <div className="suggestion-actions">
-          <button className="action-button">Apply</button>
-          <button className="action-button">Ignore</button>
-          <button className="action-button">Ask AI</button>
+        <div className="suggestion-actions" style={{color: '#801212'}}>
+          <button style={{ width: '115.43px', borderRadius: '4px 0px 0px 0px', height: '31px' , backgroundColor: ' #F5F0EF',border : '1px solid #F5F0EF'}} className="action-button">Apply</button>
+          <button style={{ width: '115.43px', borderRadius: '4px 0px 0px 0px', height: '31px' , backgroundColor: ' #F5F0EF',border : '1px solid #F5F0EF'}}  className="action-button">Ignore</button>
+          <button style={{ width: '270px', height: '161px', backgroundColor:' #F5F0EF' }}  className="action-button">Ask AI</button>
         </div>
       )}
     </div>

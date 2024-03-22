@@ -13,6 +13,6 @@ const SearchBar = () => (
     </div>
 </div>
 );
-
+//add function for handling search bar 
 export default SearchBar 
 

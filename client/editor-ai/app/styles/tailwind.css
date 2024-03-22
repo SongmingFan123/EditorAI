@@ -4,11 +4,3 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-.main-color {
-  color: #801212;
-}
-
-.font-poppins {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-}
