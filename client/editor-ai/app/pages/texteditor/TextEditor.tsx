@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic';
 import 'quill/dist/quill.snow.css'
 import SuggestionBox from './SuggestionBox'
 import Link from 'next/link';
+import Image from 'next/image';
+
 
 const ReactQuillNoSSR = dynamic(
   () => import('react-quill'), 
@@ -47,8 +49,13 @@ const TextEditor = () => {
     return (
         <div>
 
-            <h1 className="text-center">Text Editor</h1>
-            <Link href="./homepage">Back</Link>
+            <h1 className="text-center"></h1>
+            <Link href="./homepage" legacyBehavior> 
+                <a className="text-main-color font-bold font-newsreader flex items-center">
+                    <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
+                    <span>Back</span> </a>
+
+              </Link>
             <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
@@ -60,19 +67,20 @@ const TextEditor = () => {
                     />
                 </div>
                 <div className="w-[20vw]">
-                    <div className="bg-gray-200 p-4 mb-5 rounded-lg">
+                    <div className="bg-white p-4 mb-5 rounded-lg">
                         <h2>Suggested Edits</h2>
                         <ul className='list-none p-0'>
-                            <li className='mb-2.5'>
+                            <li className='mb-2.5 bg-main-color rounded-lg text-white'>
                                 <SuggestionBox header="Suggestion 1" content="This is a suggestion" />
                             </li>
-                            <li className='mb-2.5'>
+                            <li className='mb-2.5 bg-main-color rounded-lg text-white'>
                                 <SuggestionBox header="Suggestion 2" content="This is another suggestion" />
                             </li>
                         </ul>
                     </div>
-                    <div className='bg-gray-200 p-4 rounded-lg'>
-                        <h2>Ask AI</h2>
+                    <div className='bg-white p-4 rounded-lg font-newsreader'>
+                        <h2>Ask EditorAI</h2>
+                        
                     </div>
                 </div>
             </div>

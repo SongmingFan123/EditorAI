@@ -27,7 +27,7 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center flex-col">
       <div className="bg-brand-tan p-8 rounded shadow-md flex flex-col items-center">
         <div className="flex justify-center w-full">
-        <Image src="/logo.png" alt="Logo" width={100} height={100} 
+        <Image src="/Ellipse 2.png" alt="Logo" width={90} height={90} 
         //style={{top: '135px', left: '595px', position: 'absolute'}} 
         />
         </div>
@@ -35,12 +35,13 @@ const LoginPage = () => {
 
         <h1 className="text-2xl text-center mb-6 font-newsreader font-bold"  style={{
           //position: 'absolute', 
-          top: '283px', left: '540px', width: '210px', fontSize: '48px', lineHeight: '48px', color: '#31302F', fontWeight: '700'}}>
+          top: '283px', left: '540px', width: '210px', fontSize: '48px', lineHeight: '48px', color: '#31302F', fontWeight: '700', border: '0.69x solid #31302F'}}>
           Editor AI</h1>
         <form className="w-full flex flex-col items-center">
-          <div className="mb-4 items-center">
+          <div className="mb-4">
+          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%' }}></div>
             <input
-              className="w-full border p-2 custom-border-opacity" style={{ 
+              className="w-full border p-2 custom-border-opacity font-poppins" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '347px',
@@ -48,18 +49,20 @@ const LoginPage = () => {
                 borderRadius: '10px',
                 fontFamily: 'Poppins',               
                 fontSize: '20px',
-                lineHeight: '30px'
+                lineHeight: '30px',
                 //position: 'absolute'
                 }}
               type="email"
               value={email}
               placeholder="Email"
+              className='pl-3 placeholder-color custom-border-opacity'
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-4">
+          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%' }}></div>
             <input
-              className="w-full border login-text p-2 custom-border-opacity" style={{ 
+              className="w-full border p-2 custom-border-opacity" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '413px',
@@ -72,8 +75,10 @@ const LoginPage = () => {
                 //position: 'absolute', 
                 
                 }}
+              classBane=''
               type="password"
               placeholder='Password'
+              className='pl-3 font-poppins placeholder-color custom-border-opacity' 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

@@ -7,12 +7,11 @@ const homepage = () => {
   const recentProjects = [{ name: 'Project 3' }, { name: 'Project 4' }];
 
   return (
-    
-    <div className = "homepage"> 
+    <div style={{ backgroundColor: '#F5F0EF', width: '100%', minHeight: '100vh', padding: '15px' }}>
+      <div className="homepage"> 
         <TextEditor />
-        
+      </div>
     </div>
-    
   );
 };
 

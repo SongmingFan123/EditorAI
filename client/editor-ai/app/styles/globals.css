@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400');
 
 
 :root {
@@ -20,6 +21,7 @@
 body {
   color: black; 
   padding: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 @layer utilities {
@@ -38,10 +40,14 @@ body {
   font-weight: 400;
 }
 
-Header {
-  color: #801212;
+
+.placeholder-color::placeholder {
+  color: #31302F;
 }
 
+.placeholder-text::placeholder {
+  font-family: 'Poppins';
+}
 
 .custom-border-color {
   border-color: #801212

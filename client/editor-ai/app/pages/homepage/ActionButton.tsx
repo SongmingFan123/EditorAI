@@ -23,6 +23,7 @@ const ActionButton = ({ text, onClick}: ActionButtonProps) => {
       <input
         type="file"
         ref={fileInputRef}
+        
         style={{ display: 'none' }}
 
       />

@@ -15,7 +15,7 @@ const homepage = () => {
     <>
     <Head>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous' />
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet" />
     </Head>
 
@@ -23,7 +23,7 @@ const homepage = () => {
 
   
         <SearchBar />
-        <div className="flex font-poppins">
+        <div className="flex font-poppins" style = {{height: '202px', width: '149px'}} >
         <ActionButton text="Create Document" />
         <ActionButton text="Upload Document" />
 
