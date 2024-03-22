@@ -70,7 +70,7 @@ const TextEditor = () => {
                     <div className="bg-white p-4 mb-5 rounded-lg">
                         <h2>Suggested Edits</h2>
                         <ul className='list-none p-0'>
-                            <li className='mb-2.5 bg-main-color rounded-lg text-white'>
+                            <li className='mb-2.5 bg-main-color rounded-lg text-white'style={{fontWeight: '25'}}>
                                 <SuggestionBox header="Suggestion 1" content="This is a suggestion" />
                             </li>
                             <li className='mb-2.5 bg-main-color rounded-lg text-white'>

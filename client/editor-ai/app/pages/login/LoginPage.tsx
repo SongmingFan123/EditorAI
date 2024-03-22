@@ -4,7 +4,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { UserAuth } from '../../context/AuthContext'; // Replace '../path/to/AuthContext' with the actual path to AuthContext
+import { Poppins } from 'next/font/google'
 
+const poppins = Poppins({ weight: '400', subsets: ['latin']})
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,9 +41,9 @@ const LoginPage = () => {
           Editor AI</h1>
         <form className="w-full flex flex-col items-center">
           <div className="mb-4">
-          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%' }}></div>
+          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px'}}></div>
             <input
-              className="w-full border p-2 custom-border-opacity font-poppins" style={{ 
+              className="w-full border p-2" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '347px',
@@ -55,14 +57,14 @@ const LoginPage = () => {
               type="email"
               value={email}
               placeholder="Email"
-              className='pl-3 placeholder-color custom-border-opacity'
+              className='font-poppins pl-3 placeholder-color custom-border-opacity'
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-4">
-          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%' }}></div>
+          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>
             <input
-              className="w-full border p-2 custom-border-opacity" style={{ 
+              className="w-full border p-2" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '413px',
@@ -75,7 +77,6 @@ const LoginPage = () => {
                 //position: 'absolute', 
                 
                 }}
-              classBane=''
               type="password"
               placeholder='Password'
               className='pl-3 font-poppins placeholder-color custom-border-opacity' 
@@ -90,7 +91,7 @@ const LoginPage = () => {
               width: '252px',
               height: '54px',
               fontFamily: 'poppins', // Corrected from 'font'
-              fontWeight: '500',
+              fontWeight: 'bold',
               fontSize: '22px',
               //lineHeight: '33px',
               background: 'radial-gradient(50% 50% at 50% 50%, #9F4949 0%, #801212 100%)',
@@ -105,7 +106,7 @@ const LoginPage = () => {
           </button>
         </form>
         <h1  
-        className="text-center mt-4"
+        className="text-center mt-4" style={{fontFamily:'poppins'}}
       >
          Don't have an account? <a href="/signup" className="text-main-color font-bold underline">Sign up</a></h1>
       </div>

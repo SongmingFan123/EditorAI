@@ -30,11 +30,11 @@ const Header = () => {
 
         <div className="flex items-end">
           <h1 className="text-4xl large-font font-bold">Editor</h1>
-          <Image src="/logo.png" alt="Editor AI Logo" width={50} height={50} className="object-cover" />
+          <Image src="/logo.png" alt="Editor AI Logo" width={40} height={40} className="object-none"/>
           <h1 className="text-4xl large-font font-bold">I</h1>
         </div>
         <div className="flex flex-row">
-          <div className={isMenuOpen ? "" : "hidden"}>
+          <div className={isMenuOpen ? "" : "hidden"} style={{fontFamily: 'poppins'}}>
             <ul>
               <li>
                 <Link href={"/pages/homepage"}>Go to Homepage</Link>
@@ -47,7 +47,7 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <button onClick={toggleMenu} className="menu-toggle">
+          <button onClick={toggleMenu} className="menu-toggle" style={{fontSize: '60px', position: 'relative', top: '23px'}}>
             ☰
           </button>
         </div>

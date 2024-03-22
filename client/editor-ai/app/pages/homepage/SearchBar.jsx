@@ -6,7 +6,7 @@ const SearchBar = () => (
       <input
         type="text" 
         placeholder="       Search Documents and Files" 
-        className="w-full p-2 border-4 custom-border-color rounded-search-bar placeholder-brand-red bg-brand-tan font-poppins"
+        className="w-full p-2 border-4 custom-border-color rounded-search-bar placeholder-brand-red bg-brand-tan" style={{fontFamily: 'Poppins'}}
     />
     <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
       <Image src="/Vector (1).png" alt="Search Icon" width={15.99} height={15.99} />

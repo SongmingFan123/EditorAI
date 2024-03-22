@@ -23,11 +23,13 @@ const homepage = () => {
 
   
         <SearchBar />
-        <div className="flex font-poppins" style = {{height: '202px', width: '149px'}} >
+        <div className="flex" style = {{height: '202px', width: '149px', fontFamily: 'poppins'}} >
         <ActionButton text="Create Document" />
         <ActionButton text="Upload Document" />
 
         </div>
+        
+        <div className= 'mb4' style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', width: '100%', position: 'relative', top: '-10px', font: 'Bold'}}></div>
         <div className="flex font-newsreader">
         <ProjectSection title={"Priority Projects"}/>
         <ProjectSection title={"Recent Projects"}/>
