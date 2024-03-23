@@ -18,8 +18,9 @@ const HomePage = () => {
   const userId = user.uid;
 
   const handleCreateDocument = async () => {
+    console.log("creating document")
     try {
-      const response = await fetch('https://virtserver.swaggerhub.com/JunsunYoon/Editor-AI/1.0.0/create', {
+      const response = await fetch('http://127.0.0.1:4000/documents/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,6 +43,8 @@ const HomePage = () => {
       // Handle errors (e.g., show an error message)
       console.error('Error creating document:', error);
     }
+
+    console.log("document created")
 
     
 
