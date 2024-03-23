@@ -1,5 +1,5 @@
 from flask import Flask
-from firebase_admin import credentials, firestore, initialize_app
+from firebase_admin import credentials
 import firebase_admin
 from .routes import *
 
