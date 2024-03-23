@@ -1,10 +1,11 @@
-import Header from "./components/Header";
 import './styles/globals.css'
+import SignupPage from './pages/signup/SignupPage';
+import { Sign } from 'crypto';
 
 function App() {
   return (
     <main>
-      <h1>Starting page</h1>
+      <SignupPage />
     </main>
   );
 }
