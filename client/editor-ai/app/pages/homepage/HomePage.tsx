@@ -13,13 +13,12 @@ const HomePage = () => {
   const [documentName, setDocumentName] = useState('');
   const [documentContent, setDocumentContent] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-
   const { user } = useAuthContext();
   const userId = user.uid;
 
   const handleCreateDocument = async () => {
     try {
-      const response = await fetch('https://virtserver.swaggerhub.com/JunsunYoon/Editor-AI/1.0.0/create', {
+      const response = await fetch('http://127.0.0.1:4000/document/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,6 +37,7 @@ const HomePage = () => {
       // Document created successfully, handle accordingly (e.g., show a success message)
       console.log('Document created successfully');
       console.log(response);
+      
     } catch (error) {
       // Handle errors (e.g., show an error message)
       console.error('Error creating document:', error);

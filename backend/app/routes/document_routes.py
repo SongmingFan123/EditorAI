@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from ..services import *
 from ..utils import *
+from flask_cors import cross_origin
 
 
 bp = Blueprint('document', __name__)
@@ -8,6 +9,7 @@ docsOrCollection = {"d": "docs", "c": "collection"}
 
 
 @bp.route('/create', methods=['POST'])
+@cross_origin()
 def create_document():
     """
         Creates document.
@@ -38,6 +40,7 @@ def create_document():
 
 
 @bp.route('/read/<userID>/<documentID>', methods=["GET"])
+@cross_origin()
 def get_document(userID, documentID):
     """
         Reads document with the given userID and documentID
@@ -62,6 +65,7 @@ def get_document(userID, documentID):
  
 
 @bp.route('/update', methods=['PUT'])
+@cross_origin()
 def update_document():
     """
         Updates document.
@@ -96,6 +100,7 @@ def update_document():
 
 
 @bp.route('/delete/<userID>/<documentID>', methods=["DELETE"])
+@cross_origin()
 def delete_document(userID, documentID):
     """ Deletes document with given userID and documentID"""
     try:
@@ -117,6 +122,7 @@ def delete_document(userID, documentID):
 
 
 @bp.route('/getall/<userID>', methods=["GET"])
+@cross_origin()
 def get_all_documents(userID):
     try:
         fireconfig = firestore_service()
