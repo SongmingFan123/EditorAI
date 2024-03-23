@@ -5,7 +5,6 @@ import Image from 'next/image';
 import React from "react";
 import signUp from "@/firebase/auth/signup";
 import { useRouter } from 'next/navigation'
-import { Sign } from 'crypto';
 
 const SignupPage = () => {
   const [email, setEmail] = React.useState('')
@@ -16,7 +15,7 @@ const SignupPage = () => {
   const handleForm = async (event: FormEvent) => {
     event.preventDefault()
 
-    const { result, error } = await signUp(email, password);
+    const { result, error } = await signUp(email, password,fullName);
 
     if (error) {
       return console.log(error)
@@ -68,7 +67,7 @@ const SignupPage = () => {
             Sign up
           </button>
         </form>
-        <h1 className="text-center mt-4">Already have an account? <a href="/signup" className="text-brand-red">Login</a></h1>
+        <h1 className="text-center mt-4">Already have an account? <a href="/pages/login" className="text-brand-red">Login</a></h1>
       </div>
     </div>
   );

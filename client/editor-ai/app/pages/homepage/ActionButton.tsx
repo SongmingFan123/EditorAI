@@ -28,7 +28,7 @@ const ActionButton = ({ text, onClick}: ActionButtonProps) => {
       />
 
 
-        <button onClick={handleButtonClick} className={buttonClasses}>
+        <button onClick={onClick} className={buttonClasses}>
           {text}
         </button>
 

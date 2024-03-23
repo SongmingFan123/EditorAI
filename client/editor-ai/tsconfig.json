@@ -22,9 +22,10 @@
     "paths": {
       "@/*": ["app/*"],
       "@components/*": ["app/components/*"],
-      "@firebase/*": ["app/firebase/*"]
+      "@firebase/*": ["app/firebase/*"],
+      "@backend/*": ["../../backend/app/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/admin/page.jsx", "app/context/AuthContext.js", "app/components/Header.jsx","app/context/AuthContext.js"], 
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/admin/page.jsx", "app/context/AuthContext.js", "app/components/Header.tsx","app/context/AuthContext.js", "app/pages/texteditor/page.jsx"], 
   "exclude": ["node_modules"]
 }

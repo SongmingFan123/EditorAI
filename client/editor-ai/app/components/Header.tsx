@@ -23,7 +23,8 @@ const Header = () => {
         router.push("/pages/login");
         setIsMenuOpen(false);
       }).catch((error) => {
-        // An error happened.
+        // An error happened
+        console.log(error);
       });
 
   };
@@ -40,39 +41,42 @@ const Header = () => {
 
 
       <div className="flex flex-row">
-        <div className={isMenuOpen ? "" : "hidden"}>
-          <div className="flex flex-row">
-   
-              {user && (
-              <div className="flex items-center">
+        <div className={isMenuOpen ? "" : "hidden flex flex-row space-between"}>
+          <div >
+
+            {/* user is logged in  */}
+            {user && (
+            <div className="flex items-center">
+              {/* welcome + name */}
               <div className="flex flex-column">
                 <span className="mr-2">Welcome, {user.email}</span>
                 <button onClick={handleSignOut} className="text-white bg-red-500 px-2 py-2 rounded-md">Sign Out</button>
               </div>
- 
-                <ul>
-                  <li>
-                    <Link href={"/pages/homepage"}>Go to Homepage</Link>
-                  </li>
-                  <li>
-                    <Link href={"/pages/texteditor"}>Go to Text Editor</Link>
-                  </li>
-                </ul>
+              {/* allowed pages */}
+              <ul>
+                <li>
+                  <Link href={"/pages/homepage"}>Go to Homepage</Link>
+                </li>
+                <li>
+                  <Link href={"/pages/texteditor"}>Go to Text Editor</Link>
+                </li>
+              </ul>
+            </div>
+            )}
 
-                </div>
-              )}
-              {!user && (
-                <ul>
-                  <li>
-                    <Link href={"/pages/login"}>Go to Login</Link>
-                  </li>
-                  <li>
-                    <Link href={"/pages/signup"}>Go to Signup</Link>
-                  </li>
-                </ul>
-              )}
+            {/* user is not logged in */}
+            {!user && (
+              <ul>
+                <li>
+                  <Link href={"/pages/login"}>Go to Login</Link>
+                </li>
+                <li>
+                  <Link href={"/pages/signup"}>Go to Signup</Link>
+                </li>
+              </ul>
+            )}
           </div>
-          
+
         </div>
         <button onClick={toggleMenu} className="menu-toggle">
           ☰
