@@ -113,3 +113,22 @@ def delete_document(userID, documentID):
 
     except Exception as e:
         return handle_server_error(e)
+
+
+
+@bp.route('/getall/<userID>', methods=["GET"])
+def get_all_documents(userID):
+    try:
+        fireconfig = firestore_service()
+        collection_route = [(docsOrCollection['c'], "documents"), \
+                                        (docsOrCollection['d'], userID), \
+                                            (docsOrCollection['c'], "docs") \
+                                    ]    
+        res = fireconfig.get_all_documents(collection_route)
+        if not res:
+            return handle_not_found()
+        return handle_success(res)
+
+    except Exception as e:
+        return handle_server_error(e)
+    
