@@ -1,28 +1,32 @@
-// pages/LoginPage.js
 "use client"
 
-import { useState } from 'react';
+import { FormEvent } from 'react'
 import Image from 'next/image';
-import { UserAuth } from '../../context/AuthContext'; // Replace '../path/to/AuthContext' with the actual path to AuthContext
+import React from "react";
+import signIn from "@/firebase/auth/signin";
+import { useRouter } from 'next/navigation'
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({ weight: '400', subsets: ['latin']})
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { emailSignIn } = UserAuth(); // Add this line to get the emailSignIn function from the AuthContext
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [loginError, setLoginError] = React.useState('')
+  const router = useRouter()
 
-  const handleLogin = async () => {
-    // Implement your authentication logic here
-    console.log('Logging in with:', email, password);
-    try {
-      const user = await emailSignIn(email, password);
-      alert('Logged in ');
+  const handleForm = async (event: FormEvent) => {
+    event.preventDefault();
+
+    const { result, error } = await signIn(email, password);
+
+    if (error) {
+      setLoginError('Login failed. Please check your credentials.');
+      return;
     }
-    catch (error) {
-      alert('Error logging in:'+ error);
-    }
-    // For a real application, you would make a request to a server for authentication
+
+    // else successful
+    console.log(result);
+    return router.push("/admin");
   };
 
   return (
@@ -39,7 +43,8 @@ const LoginPage = () => {
           //position: 'absolute', 
           top: '283px', left: '540px', width: '210px', fontSize: '48px', lineHeight: '48px', color: '#31302F', fontWeight: '700', border: '0.69x solid #31302F'}}>
           Editor AI</h1>
-        <form className="w-full flex flex-col items-center">
+        {loginError && <p className="text-red-500 mb-4">{loginError}</p>}
+        <form onSubmit={handleForm} className="w-full flex flex-col items-center">
           <div className="mb-4">
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px'}}></div>
             <input
@@ -86,21 +91,8 @@ const LoginPage = () => {
 
           </div> 
           <button
-          
-            className="bg-main-color text-white px-4 py-2 hover:bg-blue-600 items-center"   style={{
-              width: '252px',
-              height: '54px',
-              fontFamily: 'poppins', // Corrected from 'font'
-              fontWeight: 'bold',
-              fontSize: '22px',
-              //lineHeight: '33px',
-              background: 'radial-gradient(50% 50% at 50% 50%, #9F4949 0%, #801212 100%)',
-              borderRadius: '12px',
-              //position: 'relative', // Added for 'top' and 'left' to work
-              //top: '493px',
-              //left: '514px'
-            }}
-            onClick={handleLogin}
+            className="bg-brand-red text-white px-4 py-2 rounded hover:bg-blue-600"
+            type="submit"
           >
             log in
           </button>

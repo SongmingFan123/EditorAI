@@ -1,17 +1,25 @@
 "use client"
-
-import React from 'react';
+// Assuming ProjectSection accepts a prop structure like this:
+import React, { useEffect } from 'react';
 import HomePage from './HomePage';
+import { useRouter } from 'next/navigation';
+import { useAuthContext } from '@/context/AuthContext';
 
-const homepage = () => {
-  const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];
-  const recentProjects = [{ name: 'Project 3' }, { name: 'Project 4' }];
+const Home: React.FC = () => {
+  const { user } = useAuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user == null) {
+      router.push("/admin"); // Redirect to login page if user is not authenticated
+    }
+  }, [user, router]);
 
   return (
-    
-    <HomePage/>
-    
+    <div className="homepage"> 
+      {user && <HomePage />} {/* Render HomePage only if user is signed in */}
+    </div>
   );
 };
 
-export default homepage;
+export default Home;
