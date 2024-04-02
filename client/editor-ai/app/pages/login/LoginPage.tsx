@@ -7,7 +7,7 @@ import signIn from "@/firebase/auth/signin";
 import { useRouter } from 'next/navigation'
 import { Poppins } from 'next/font/google'
 
-const poppins = Poppins({ weight: '400', subsets: ['latin']})
+//const poppins = Poppins({ weight: '400', subsets: ['latin']})
 const LoginPage = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -31,7 +31,8 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center flex-col">
-      <div className="bg-brand-tan p-8 rounded shadow-md flex flex-col items-center">
+      <div className="bg-brand-tan p-8 rounded-lg shadow-md flex flex-col items-center" style={{ width: '532px', 
+       height: '640px',borderRadius: '9px 0px 0px 0px'}}>
         <div className="flex justify-center w-full">
         <Image src="/Ellipse 2.png" alt="Logo" width={90} height={90} 
         //style={{top: '135px', left: '595px', position: 'absolute'}} 
@@ -91,16 +92,23 @@ const LoginPage = () => {
 
           </div> 
           <button
-            className="bg-brand-red text-white px-4 py-2 rounded hover:bg-blue-600"
+             className="bg-main-color text-white px-4 py-2 hover:bg-blue-600 items-center"   style={{
+              width: '252px',
+              height: '54px',
+              fontFamily: 'poppins', // Corrected from 'font'
+              fontSize: '22px',
+              //lineHeight: '33px',
+              background: 'radial-gradient(50% 50% at 50% 50%, #9F4949 0%, #801212 100%)',
+              borderRadius: '12px'}}
             type="submit"
           >
             log in
           </button>
         </form>
         <h1  
-        className="text-center mt-4" style={{fontFamily:'poppins'}}
+        className="text-center mt-4 normal-font" style={{fontFamily:'poppins', fontWeight: 'light'}}
       >
-         Don't have an account? <a href="/signup" className="text-main-color font-bold underline">Sign up</a></h1>
+         Don't have an account? <a href="/signup" className="text-main-color bold-weight underline" style={{fontWeight: 'bold'}}>Sign up</a></h1>
       </div>
     </div>
   );

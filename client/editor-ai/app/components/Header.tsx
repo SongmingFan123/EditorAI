@@ -40,15 +40,15 @@ const Header = () => {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous'/>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
       </Head>
 
       <div className="flex flex-row justify-between bg-brand-white p-4 font-newsreader" style={{ color: '#801212' }}>
-
-      <div className="flex-row flex items-center justify-between ">
-        <h1 className="text-4xl font-bold">Editor</h1>
-        <Image src="/logo.png" alt="Editor AI Logo" width={50} height={50} className="object-cover" />
-        <h1 className="text-4xl font-bold">I</h1>
+    
+      <div className="flex items-end ">
+        <h1 className="text-4xl large-font font-bold">Editor</h1>
+        <Image src="/logo.png" alt="Editor AI Logo" width={40} height={40} className="object-none"/>
+        <h1 className="text-4xl large-font font-bold">I</h1>
       </div>
 
 
