@@ -29,6 +29,9 @@ def summarizeArticleModel(article):
   outputs = model.generate(input_ids, max_length = 100)
   summary = tokenizer.decode(outputs[0])
   return summary
+
+#def styleArticleModel (normal, formal and professional, data driven and analysical,conversational and engaging,enthusiastic and passionate)
+
 #Get and process users respone
 def user_input(prompt):
     return input(prompt)
@@ -68,4 +71,4 @@ def chatbot_main():
     print(result)
 
 if __name__ == "__main__":
-    chatbot_main()
+    chatbot_main() 
