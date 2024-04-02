@@ -20,8 +20,10 @@ const texteditpage = () => {
   const recentProjects = [{ name: 'Project 3' }, { name: 'Project 4' }];
 
   return (
-    <div className = "homepage"> 
+    <div classname = "h-screen w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', minHeight: '100vh', padding: '15px' }}>
+      <div className="homepage"> 
         <TextEditor />
+      </div>
     </div>
   );
 };
