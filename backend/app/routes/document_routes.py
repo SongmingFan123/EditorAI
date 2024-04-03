@@ -30,8 +30,10 @@ def create_document():
                 return handle_bad_request("Name already exists, please try again")
             
         res = fireconfig.add_document(collection_route, dateHandler.last_modified({"Title": data["document_name"], "Content": data["document"]}))
+
         if not res:
             return handle_server_error("Unknown error occured")
+        
         return handle_success("Successfully posted!")
 
     except Exception as e:
