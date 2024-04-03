@@ -40,7 +40,7 @@ class firestore_service:
             if document.exists:
                 document_data = document.to_dict() 
                 document_data['id'] = document_id  
-                return document_data
+                return (document_data, document_id)
             else:
                 return None
         except Exception as e:

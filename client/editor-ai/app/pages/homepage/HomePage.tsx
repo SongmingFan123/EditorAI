@@ -14,13 +14,13 @@ const HomePage = () => {
   const [documentName, setDocumentName] = useState('');
   const [documentContent, setDocumentContent] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-
   const { user } = useAuthContext();
   const userId = user.uid;
 
   const handleCreateDocument = async () => {
     console.log("creating document")
     try {
+
       const response = await fetch('http://127.0.0.1:4000/documents/create', {
         method: 'POST',
         headers: {
@@ -40,6 +40,7 @@ const HomePage = () => {
       // Document created successfully, handle accordingly (e.g., show a success message)
       console.log('Document created successfully');
       console.log(response);
+      
     } catch (error) {
       // Handle errors (e.g., show an error message)
       console.error('Error creating document:', error);
