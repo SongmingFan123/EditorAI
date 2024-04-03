@@ -1,5 +1,6 @@
 "use client"
 
+import Head from 'next/head'
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from 'react';
@@ -30,12 +31,24 @@ const Header = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between bg-brand-red text-white p-4">
+    <>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous'/>
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400&display=swap" rel="stylesheet"/>
+      </Head>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous'/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+      </Head>
 
-      <div className="flex-row flex items-center justify-between ">
-        <h1 className="text-4xl font-bold">Editor</h1>
-        <Image src="/logo.png" alt="Editor AI Logo" width={50} height={50} className="object-cover" />
-        <h1 className="text-4xl font-bold">I</h1>
+      <div className="flex flex-row justify-between bg-brand-white p-4 font-newsreader" style={{ color: '#801212' }}>
+    
+      <div className="flex items-end ">
+        <h1 className="text-4xl large-font font-bold">Editor</h1>
+        <Image src="/logo.png" alt="Editor AI Logo" width={40} height={40} className="object-none"/>
+        <h1 className="text-4xl large-font font-bold">I</h1>
       </div>
 
 
@@ -83,6 +96,7 @@ const Header = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 

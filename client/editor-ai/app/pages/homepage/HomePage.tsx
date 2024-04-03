@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useAuthContext } from '@/context/AuthContext';
+import Head from 'next/head';
 import ProjectSection from './ProjectSection';
 import SearchBar from './SearchBar';
 import ActionButton from './ActionButton';
@@ -17,8 +18,10 @@ const HomePage = () => {
   const userId = user.uid;
 
   const handleCreateDocument = async () => {
+    console.log("creating document")
     try {
-      const response = await fetch('http://127.0.0.1:4000/document/create', {
+
+      const response = await fetch('http://127.0.0.1:4000/documents/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,6 +45,8 @@ const HomePage = () => {
       // Handle errors (e.g., show an error message)
       console.error('Error creating document:', error);
     }
+
+    console.log("document created")
 
     
 
@@ -88,14 +93,14 @@ const HomePage = () => {
                 Cancel
               </button>
             </div>
-
           </div>
         </div>
-      )}
-      <ProjectSection title={"Priority Projects"} />
-      <ProjectSection title={"Recent Projects"} />
-
-      
+        )}
+        <div className= 'mb4' style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', width: '100%', position: 'relative', top: '-10px', font: 'Bold'}}></div>
+        <div className="flex font-newsreader">
+        <ProjectSection title={"Priority Projects"}/>
+        <ProjectSection title={"Recent Projects"}/>
+      </div>
     </div>
   );
 };
