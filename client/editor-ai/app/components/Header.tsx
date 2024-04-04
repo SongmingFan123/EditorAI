@@ -91,9 +91,11 @@ const Header = () => {
           </div>
 
         </div>
-        <button onClick={toggleMenu} className="menu-toggle">
+        <div className="flex items-end">
+        <button onClick={toggleMenu} className="menu-toggle text-4xl large-font" >
           ☰
         </button>
+      </div>
       </div>
     </div>
     </>
