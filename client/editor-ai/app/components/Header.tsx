@@ -45,7 +45,7 @@ const Header = () => {
 
       <div className="flex flex-row justify-between bg-brand-white p-4 font-newsreader" style={{ color: '#801212' }}>
     
-      <div className="flex items-end ">
+      <div className="flex items-end ml-2">
         <h1 className="text-4xl large-font font-bold">Editor</h1>
         <Image src="/logo.png" alt="Editor AI Logo" width={40} height={40} className="object-none"/>
         <h1 className="text-4xl large-font font-bold">I</h1>
