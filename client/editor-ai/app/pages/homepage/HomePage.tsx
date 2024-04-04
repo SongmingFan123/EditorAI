@@ -1,4 +1,5 @@
 "use client"
+//import url=("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 import React, { useState } from 'react';
 import { useAuthContext } from '@/context/AuthContext';
@@ -66,8 +67,8 @@ const HomePage = () => {
     <div className="p-0">
       <SearchBar />
       <div className="flex">
-        <ActionButton text="Create Document" onClick={() => setShowPopup(true)} />
-        <ActionButton text="Upload Document" />
+        <ActionButton text="Create Document" onClick={() => setShowPopup(true)} icon1="/+.png"/>
+        <ActionButton text="Upload Document" onClick={() => setShowPopup(true)} icon2="/Vector.png" />
       </div>
       {showPopup && (
         <div className="bg-slate-200">
