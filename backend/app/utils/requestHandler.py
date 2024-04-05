@@ -3,9 +3,11 @@ from flask import jsonify
 # Handles API requests/returns
 
 
-def handle_success(data):
+def handle_success(data, addition = ""):
     """handle success requests"""
-    return jsonify(data), 200
+    if(addition != ""):
+        return jsonify({'message': data, 'data': addition}), 200
+    return jsonify({'message': data}), 200
 
 
 def handle_bad_request(message):
