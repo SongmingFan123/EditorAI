@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { useAuthContext } from '@/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 import Head from 'next/head';
 import ProjectSection from './ProjectSection';
 import SearchBar from './SearchBar';
@@ -14,14 +14,14 @@ const HomePage = () => {
   const [documentName, setDocumentName] = useState('');
   const [documentContent, setDocumentContent] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  const { user } = useAuthContext();
-  const userId = user.uid;
+  // @ts-ignore
+  const { user } = useAuth();
+  const userId = user?.uid;
 
   const handleCreateDocument = async () => {
-    console.log("creating document")
+    console.log("creating document");
     try {
-
-      const response = await fetch('http://127.0.0.1:4000/documents/create', {
+      const response = await fetch('http://127.0.0.1:5000/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,24 +32,19 @@ const HomePage = () => {
           document: documentContent,
         }),
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to create document');
       }
-
-      // Document created successfully, handle accordingly (e.g., show a success message)
+  
+      const data = await response.json();
       console.log('Document created successfully');
-      console.log(response);
-      
+      console.log(data);
     } catch (error) {
-      // Handle errors (e.g., show an error message)
       console.error('Error creating document:', error);
     }
-
-    console.log("document created")
-
-    
-
+  
+    console.log("document created");
   };
 
   const handlePopupClose = () => {

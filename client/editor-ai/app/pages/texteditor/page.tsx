@@ -2,12 +2,12 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 import TextEditor from './TextEditor';
 
 
-const texteditpage = () => {
-  const { user } = useAuthContext();
+const App = () => {
+  const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const texteditpage = () => {
   const recentProjects = [{ name: 'Project 3' }, { name: 'Project 4' }];
 
   return (
-    <div classname = "h-screen w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', minHeight: '100vh', padding: '15px' }}>
+    <div className="h-screen w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', minHeight: '100vh', padding: '15px' }}>
       <div className="homepage"> 
         <TextEditor />
       </div>
@@ -28,4 +28,4 @@ const texteditpage = () => {
   );
 };
 
-export default texteditpage;
+export default App;
