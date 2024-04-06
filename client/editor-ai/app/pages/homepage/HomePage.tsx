@@ -97,8 +97,8 @@ const HomePage = () => {
           </div>
         </div>
         )}
-        <div className= 'mb4' style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', width: '100%', position: 'relative', top: '-10px', font: 'Bold'}}></div>
-        <div className="flex font-newsreader">
+        <div className= 'mb4 max-w-full m-4 mx-auto' style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', width: '96%', position: 'relative', top: '10px', font: 'Bold'}}></div>
+        <div className="flex font-newsreader font-bold">
         <ProjectSection title={"Priority Projects"}/>
         <ProjectSection title={"Recent Projects"}/>
       </div>

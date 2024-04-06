@@ -6,6 +6,8 @@ import 'quill/dist/quill.snow.css'
 import SuggestionBox from './SuggestionBox'
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from "react";
+
 
 
 const ReactQuillNoSSR = dynamic(
@@ -44,6 +46,7 @@ const TextEditor = () => {
     
     const handleProcedureContentChange = (content: string) => {
         console.log("content---->", content);
+
     };
 
     return (
@@ -80,7 +83,6 @@ const TextEditor = () => {
                     </div>
                     <div className='bg-white p-4 rounded-lg font-newsreader'>
                         <h2>Ask EditorAI</h2>
-                        
                     </div>
                 </div>
             </div>

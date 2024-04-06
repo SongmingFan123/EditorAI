@@ -23,6 +23,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content }) => {
     setIsClicked(false);
   };
   
+
   return (
     <div onClick={handleClick}>
       <div className="suggestion-header">
@@ -36,7 +37,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content }) => {
         <div className="suggestion-actions" style={{color: '#801212', fontFamily: 'poppins'}}>
           <button style={{ width: '115.43px', borderRadius: '4px 4px 4px 4px', height: '31px' , backgroundColor: ' #F5F0EF',border : '1px solid #F5F0EF',margin:'5px'}} className="action-button">Apply</button>
           <button style={{ width: '115.43px', borderRadius: '4px 4px 4px 4px', height: '31px' , backgroundColor: ' #F5F0EF',border : '1px solid #F5F0EF',margin:'5px'}}  className="action-button">Ignore</button>
-          <button style={{ width: '257px', borderRadius: '6px 6px 6px 6px', height: '70px', backgroundColor:'#F5F0EF' , border: '2px solid #F5F0EF'}}  className="action-button">Ask AI</button>
+          <button style={{ width: '115.43px', borderRadius: '4px 4px 4px 4px', height: '31px' , backgroundColor: ' #F5F0EF',border : '1px solid #F5F0EF',margin:'5px'}}  className="action-button">Ask AI</button>
         </div>
       )}
     </div>
