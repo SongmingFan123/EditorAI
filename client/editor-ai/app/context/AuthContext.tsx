@@ -36,7 +36,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Handle sign up error
         console.error("Sign up error:", error);
         throw error;
+        
     }
+    
 };
 
 const signIn = async (email: string, password: string) => {

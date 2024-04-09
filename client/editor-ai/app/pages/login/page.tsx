@@ -1,4 +1,3 @@
-import Header from '../../components/Header';
 import LoginPage from "./LoginPage";
 import Head from 'next/head';
 

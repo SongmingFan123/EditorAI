@@ -2,12 +2,10 @@
   "name": "editor-ai",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:4000",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "@react-firebase/auth": "^0.2.10",

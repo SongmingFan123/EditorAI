@@ -1,8 +1,10 @@
-import { FormEvent, useState } from 'react';
+"use client"
+
 import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import { FormEvent, useState } from 'react';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');

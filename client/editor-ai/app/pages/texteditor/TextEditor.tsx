@@ -6,6 +6,10 @@ import 'quill/dist/quill.snow.css'
 import SuggestionBox from './SuggestionBox'
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
+import { GetServerSideProps } from 'next';
+import {updateDocument,getDocument} from '../../api/document_functions';
 
 
 const ReactQuillNoSSR = dynamic(
@@ -13,10 +17,14 @@ const ReactQuillNoSSR = dynamic(
   { ssr: false }
 );
 
-
-
 const TextEditor = () => {
 
+    const router = useRouter();
+    const { user } = useAuth();
+    const userId = user?.uid as string;
+    const documentId = ""
+
+    const documentName = "documentName";
 
     var modules = {
         toolbar: [
@@ -44,6 +52,8 @@ const TextEditor = () => {
     
     const handleProcedureContentChange = (content: string) => {
         console.log("content---->", content);
+        updateDocument(userId,documentName,documentId, content);
+
     };
 
     return (
@@ -88,5 +98,17 @@ const TextEditor = () => {
     );
 };
 
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//     let documentId = '';
+//     if (context.params) {
+//         documentId = context.params.documentId as string;
+//     }
+
+//     return {
+//         props: {
+//             documentId,
+//         },
+//     };
+// };
+
 export default TextEditor;
-  

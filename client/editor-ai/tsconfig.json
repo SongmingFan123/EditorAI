@@ -23,7 +23,8 @@
       "@/*": ["app/*"],
       "@components/*": ["app/components/*"],
       "@firebase/*": ["app/firebase/*"],
-      "@backend/*": ["../../backend/app/*"]
+      "@backend/*": ["../../backend/app/*"],
+      "@api":["./api/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/admin/page.jsx", "app/context/AuthContext.ts", "app/components/Header.tsx","app/context/AuthContext.ts", "app/pages/texteditor/page.jsx"], 
