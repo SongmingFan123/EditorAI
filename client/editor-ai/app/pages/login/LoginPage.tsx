@@ -108,7 +108,7 @@ const LoginPage = () => {
         <h1  
         className="text-center mt-4 normal-font" style={{fontFamily:'poppins', fontWeight: 'light'}}
       >
-         Don't have an account? <a href="/signup" className="text-main-color bold-weight underline" style={{fontWeight: 'bold'}}>Sign up</a></h1>
+         Don't have an account? <a href="./signup" className="text-main-color bold-weight underline" style={{fontWeight: 'bold'}}>Sign up</a></h1>
       </div>
     </div>
   );

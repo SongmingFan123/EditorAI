@@ -1,11 +1,13 @@
 'use client'
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from 'next/dynamic';
-import 'quill/dist/quill.snow.css'
-import SuggestionBox from './SuggestionBox'
+import 'quill/dist/quill.snow.css';
+import SuggestionBox from './SuggestionBox';
 import Link from 'next/link';
 import Image from 'next/image';
+import axios from "axios";
+import { TextEditorProps } from "./page";
 
 
 const ReactQuillNoSSR = dynamic(
@@ -13,9 +15,62 @@ const ReactQuillNoSSR = dynamic(
   { ssr: false }
 );
 
+const TextEditor: React.FC<TextEditorProps>  = ( {documentID, userID, newDoc, docName} ) => {
 
+    const [myContent, setMyContent] = useState("");
+    const [myTitle, setMyTitle] = useState("");
 
-const TextEditor = () => {
+    // API calls
+    const getMyDocuments = async () => { // get document
+        try{
+            const response = await axios.get(`http://127.0.0.1:5000/document/read/${userID}/${documentID}`); // change to deployment uri
+            const message = response.data.message[0];
+            console.log("hello world", response.data.message[0].Content);
+            setMyContent(message.Content);
+            setMyTitle(message.Title);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    const saveMyDocuments = async () => { // save document
+        try{
+            const payload = {
+                user_id: userID,
+                document_name: myTitle,
+                document_id: documentID,
+                new_document: myContent,
+            };
+            const response = await axios.put('http://127.0.0.1:5000/document/update', payload, { // change to deployment uri
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });       
+            console.log("Update successful", response.data);     
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    const createMyDocuments = async () => { // create new document
+        try{
+            const payload = {
+                user_id: userID,
+                document_name: "",
+                document: "",
+            };
+            const response = await axios.put('http://127.0.0.1:5000/document/create', payload, { // change to deployment uri
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });      
+            console.log("Update successful", response.data);
+      
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
 
 
     var modules = {
@@ -43,8 +98,20 @@ const TextEditor = () => {
     ];
     
     const handleProcedureContentChange = (content: string) => {
-        console.log("content---->", content);
+        setMyContent(content)
+        console.log("content---->", myContent);
     };
+
+   
+
+    useEffect(() => {
+        if(!newDoc) {
+            getMyDocuments(); // get the document
+        } else {
+            createMyDocuments(); // create new document
+        }
+    }, [])
+
 
     return (
         <div>
@@ -54,13 +121,14 @@ const TextEditor = () => {
                 <a className="text-main-color font-bold font-newsreader flex items-center">
                     <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
                     <span>Back</span> </a>
-
               </Link>
+             <h1 className="text-center">{myTitle}</h1> 
             <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
+                        value={myContent}
                         placeholder="write your content ...."
                         onChange={handleProcedureContentChange}
                         className='h-[50vh] border border-gray-300 rounded-lg'
@@ -89,4 +157,3 @@ const TextEditor = () => {
 };
 
 export default TextEditor;
-  

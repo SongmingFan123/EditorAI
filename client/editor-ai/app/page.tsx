@@ -1,13 +1,12 @@
+"use client"
 import './styles/globals.css'
-import SignupPage from './pages/signup/SignupPage';
-import { Sign } from 'crypto';
+import { useRouter } from 'next/navigation';
+
 
 function App() {
-  return (
-    <main>
-      <SignupPage />
-    </main>
-  );
+  const router = useRouter();
+  router.push('/pages/login');
+
 }
 
 export default App;

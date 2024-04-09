@@ -6,6 +6,10 @@ import Head from 'next/head';
 import ProjectSection from './ProjectSection';
 import SearchBar from './SearchBar';
 import ActionButton from './ActionButton';
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+
+
 
 const HomePage = () => {
   const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];
@@ -15,41 +19,20 @@ const HomePage = () => {
   const [documentContent, setDocumentContent] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const { user } = useAuthContext();
-  const userId = user.uid;
+  const userId = user?.uid || '';
+  const router = useRouter();
 
-  const handleCreateDocument = async () => {
-    console.log("creating document")
-    try {
 
-      const response = await fetch('http://127.0.0.1:4000/documents/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user_id: userId,
-          document_name: documentName,
-          document: documentContent,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to create document');
+  const handleCreateDocument = async () => {    
+    router.push({
+      pathname: '/texteditor',
+      query: {
+        documentID: "",
+        userID: userId,
+        newDoc: "true",
+        documentName: documentName,
       }
-
-      // Document created successfully, handle accordingly (e.g., show a success message)
-      console.log('Document created successfully');
-      console.log(response);
-      
-    } catch (error) {
-      // Handle errors (e.g., show an error message)
-      console.error('Error creating document:', error);
-    }
-
-    console.log("document created")
-
-    
-
+    });
   };
 
   const handlePopupClose = () => {
@@ -58,8 +41,8 @@ const HomePage = () => {
 
   const handlePopupSubmit = () => {
     // Perform any validation or additional logic here before creating the document
-    handleCreateDocument();
     setShowPopup(false);
+    handleCreateDocument();
   };
 
   return (
