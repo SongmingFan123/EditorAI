@@ -8,7 +8,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { GetServerSideProps } from 'next';
 import {updateDocument,getDocument} from '../../api/document_functions';
 
 
@@ -53,7 +52,6 @@ const TextEditor = () => {
     const handleProcedureContentChange = (content: string) => {
         console.log("content---->", content);
         updateDocument(userId,documentName,documentId, content);
-
     };
 
     return (
@@ -66,6 +64,7 @@ const TextEditor = () => {
                     <span>Back</span> </a>
 
               </Link>
+            <h1>{documentName}</h1>
             <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
@@ -98,17 +97,5 @@ const TextEditor = () => {
     );
 };
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//     let documentId = '';
-//     if (context.params) {
-//         documentId = context.params.documentId as string;
-//     }
-
-//     return {
-//         props: {
-//             documentId,
-//         },
-//     };
-// };
 
 export default TextEditor;

@@ -25,7 +25,7 @@ export const handleCreateDocument = async (userId: string, documentName: string,
 
         const status = response.ok;
 
-        // return status ? documentId : null;
+        return status
     } catch (error) {
         console.error('Error creating document:', error);
         throw error;
@@ -35,7 +35,8 @@ export const handleCreateDocument = async (userId: string, documentName: string,
 export const getDocuments = async (userId: string) => {
 
 
-    console.log('UserID:', userId);
+    console.log(`Getting documents for user: ${userId}`);
+
 
     try {
         const response = await fetch(`../api/getall/${userId}`, {
@@ -53,6 +54,7 @@ export const getDocuments = async (userId: string) => {
         const documents = getDocuments(userId);
         console.log('Data:', data);
 
+        return data
 
     } catch (error) {
         console.error('Error getting documents:', error);
@@ -111,6 +113,29 @@ export const getDocument = async (userId: string, documentId: string) => {
 
     } catch (error) {
         console.error('Error creating document:', error);
+        throw error;
+    }
+};
+
+export const handleRemoveDocument = async (userId: string, documentId: string) => {
+    try {
+        const response = await fetch(`../api/delete/${userId}/${documentId}`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        console.log('Response:', response);
+
+        const data = await response.json();
+
+        console.log('Data:', data);
+        return data;
+
+    } catch (error) {
+        console.error('Error deleting document:', error);
         throw error;
     }
 };

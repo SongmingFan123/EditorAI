@@ -1,6 +1,6 @@
   "use client"
 
-  import React, { useState } from 'react';
+  import React, { useState, useEffect } from 'react';
   import { useAuth } from '@/context/AuthContext';
   import Head from 'next/head';
   import ProjectSection from './ProjectSection';
@@ -11,19 +11,15 @@ import { documentId } from 'firebase/firestore';
 import { handleCreateDocument } from '../../api/document_functions';
 
   const HomePage = () => {
-    // const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];
-    // const recentProjects = [{ name: 'Project 3' }, { name: 'Project 4' }];
 
     const [documentName, setDocumentName] = useState('');
     const [documentContent, setDocumentContent] = useState('');
     const [showPopup, setShowPopup] = useState(false);
+    const [createDocumentFailed, setCreateDocumentFailed] = useState(false);
+
     const { user } = useAuth();
     const userId = user?.uid as string;
-
     const router = useRouter();
-
-    
-
 
 
 
@@ -36,7 +32,11 @@ import { handleCreateDocument } from '../../api/document_functions';
       const documentId = await handleCreateDocument(userId,documentName, "");
       
       if (documentId != null) {
+        setCreateDocumentFailed(false);
         router.push(`/texteditor/${documentId}`);
+      }
+      else {
+        setCreateDocumentFailed(true);
       }
 
       
@@ -53,6 +53,7 @@ import { handleCreateDocument } from '../../api/document_functions';
         {showPopup && (
           <div className="bg-slate-200">
             <div className="popup-content flex flex-col">
+              {createDocumentFailed && <h1>That document name already exists. Select a new name.</h1>}
               <input
                 type="text"
                 placeholder="Enter document name"
@@ -80,7 +81,6 @@ import { handleCreateDocument } from '../../api/document_functions';
           <div className= 'mb4' style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', width: '100%', position: 'relative', top: '-10px', font: 'Bold'}}></div>
           <div className="flex font-newsreader">
           <ProjectSection title={"Priority Projects"}/>
-          <ProjectSection title={"Recent Projects"}/>
         </div>
       </div>
     );

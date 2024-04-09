@@ -1,10 +1,11 @@
 from flask import Blueprint, request
 from ..services import *
 from ..utils import *
-from flask_cors import cross_origin
+from flask_cors import cross_origin, CORS
 
 
 bp = Blueprint('document', __name__)
+CORS(bp)
 docsOrCollection = {"d": "docs", "c": "collection"}
 
 
@@ -34,7 +35,7 @@ def create_document():
         if not res:
             return handle_server_error("Unknown error occured")
         
-        return handle_success("Successfully posted!")
+        return handle_success({"message":"Successfully posted!", "data": res.id})
 
     except Exception as e:
         return handle_server_error(e)
