@@ -13,7 +13,6 @@ import { handleCreateDocument } from '../../api/document_functions';
   const HomePage = () => {
 
     const [documentName, setDocumentName] = useState('');
-    const [documentContent, setDocumentContent] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [createDocumentFailed, setCreateDocumentFailed] = useState(false);
 

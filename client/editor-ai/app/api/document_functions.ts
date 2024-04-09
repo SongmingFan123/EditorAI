@@ -33,11 +33,7 @@ export const handleCreateDocument = async (userId: string, documentName: string,
 };
 
 export const getDocuments = async (userId: string) => {
-
-
     console.log(`Getting documents for user: ${userId}`);
-
-
     try {
         const response = await fetch(`../api/getall/${userId}`, {
             method: 'GET',
