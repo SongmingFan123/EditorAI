@@ -3,10 +3,11 @@
 import React, { useEffect } from 'react';
 import HomePage from './HomePage';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 
 const Home: React.FC = () => {
-  const { user } = useAuthContext();
+  // @ts-ignore
+  const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {

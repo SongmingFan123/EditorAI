@@ -12,13 +12,15 @@ def create_app():
 
 
     # Enable CORS
-    CORS(app)
+    CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+
 
     # Configure CORS settings to allow requests from your Next.js application
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config['CORS_ORIGINS'] = ['http://localhost:3000']
 
     cred = credentials.Certificate(r"./backend/secrets/se-editor-ai-firebase-adminsdk-nd6dz-b1262c7a32.json")
+
 
     firebase_admin.initialize_app(cred)
 

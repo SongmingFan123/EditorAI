@@ -6,8 +6,10 @@ import 'quill/dist/quill.snow.css';
 import SuggestionBox from './SuggestionBox';
 import Link from 'next/link';
 import Image from 'next/image';
-import axios from "axios";
-import { TextEditorProps } from "./page";
+
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
+import {updateDocument,getDocument} from '../../api/document_functions';
 
 
 const ReactQuillNoSSR = dynamic(
@@ -15,63 +17,15 @@ const ReactQuillNoSSR = dynamic(
   { ssr: false }
 );
 
-const TextEditor: React.FC<TextEditorProps>  = ( {documentID, userID, newDoc, docName} ) => {
 
-    const [myContent, setMyContent] = useState("");
-    const [myTitle, setMyTitle] = useState("");
+const TextEditor = () => {
 
-    // API calls
-    const getMyDocuments = async () => { // get document
-        try{
-            const response = await axios.get(`http://127.0.0.1:5000/document/read/${userID}/${documentID}`); // change to deployment uri
-            const message = response.data.message[0];
-            console.log("hello world", response.data.message[0].Content);
-            setMyContent(message.Content);
-            setMyTitle(message.Title);
-        } catch(error) {
-            console.log(error);
-        }
-    }
+    const router = useRouter();
+    const { user } = useAuth();
+    const userId = user?.uid as string;
+    const documentId = ""
 
-    const saveMyDocuments = async () => { // save document
-        try{
-            const payload = {
-                user_id: userID,
-                document_name: myTitle,
-                document_id: documentID,
-                new_document: myContent,
-            };
-            const response = await axios.put('http://127.0.0.1:5000/document/update', payload, { // change to deployment uri
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });       
-            console.log("Update successful", response.data);     
-        } catch(error) {
-            console.log(error);
-        }
-    }
-
-    const createMyDocuments = async () => { // create new document
-        try{
-            const payload = {
-                user_id: userID,
-                document_name: "",
-                document: "",
-            };
-            const response = await axios.put('http://127.0.0.1:5000/document/create', payload, { // change to deployment uri
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });      
-            console.log("Update successful", response.data);
-      
-        } catch(error) {
-            console.log(error);
-        }
-    }
-
-
+    const documentName = "documentName";
 
     var modules = {
         toolbar: [
@@ -98,8 +52,9 @@ const TextEditor: React.FC<TextEditorProps>  = ( {documentID, userID, newDoc, do
     ];
     
     const handleProcedureContentChange = (content: string) => {
-        setMyContent(content)
-        console.log("content---->", myContent);
+
+        console.log("content---->", content);
+        updateDocument(userId,documentName,documentId, content);
     };
 
    
@@ -122,7 +77,8 @@ const TextEditor: React.FC<TextEditorProps>  = ( {documentID, userID, newDoc, do
                     <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
                     <span>Back</span> </a>
               </Link>
-             <h1 className="text-center">{myTitle}</h1> 
+
+            <h1>{documentName}</h1>
             <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
@@ -155,5 +111,6 @@ const TextEditor: React.FC<TextEditorProps>  = ( {documentID, userID, newDoc, do
         </div>
     );
 };
+
 
 export default TextEditor;

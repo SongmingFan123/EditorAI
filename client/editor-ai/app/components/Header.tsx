@@ -4,13 +4,14 @@ import Head from 'next/head'
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from 'react';
-import { useAuthContext } from '@/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from 'next/navigation'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user } = useAuthContext();
+  // @ts-ignore
+  const { user } = useAuth();
   const auth = getAuth();
   const router = useRouter();
 
