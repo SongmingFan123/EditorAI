@@ -1,11 +1,12 @@
 'use client'
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from 'next/dynamic';
-import 'quill/dist/quill.snow.css'
-import SuggestionBox from './SuggestionBox'
+import 'quill/dist/quill.snow.css';
+import SuggestionBox from './SuggestionBox';
 import Link from 'next/link';
 import Image from 'next/image';
+
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import {updateDocument,getDocument} from '../../api/document_functions';
@@ -15,6 +16,7 @@ const ReactQuillNoSSR = dynamic(
   () => import('react-quill'), 
   { ssr: false }
 );
+
 
 const TextEditor = () => {
 
@@ -50,9 +52,21 @@ const TextEditor = () => {
     ];
     
     const handleProcedureContentChange = (content: string) => {
+
         console.log("content---->", content);
         updateDocument(userId,documentName,documentId, content);
     };
+
+   
+
+    useEffect(() => {
+        if(!newDoc) {
+            getMyDocuments(); // get the document
+        } else {
+            createMyDocuments(); // create new document
+        }
+    }, [])
+
 
     return (
         <div>
@@ -62,14 +76,15 @@ const TextEditor = () => {
                 <a className="text-main-color font-bold font-newsreader flex items-center">
                     <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
                     <span>Back</span> </a>
-
               </Link>
+
             <h1>{documentName}</h1>
             <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
+                        value={myContent}
                         placeholder="write your content ...."
                         onChange={handleProcedureContentChange}
                         className='h-[50vh] border border-gray-300 rounded-lg'

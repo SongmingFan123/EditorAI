@@ -32,10 +32,11 @@ def create_document():
             
         res = fireconfig.add_document(collection_route, dateHandler.last_modified({"Title": data["document_name"], "Content": data["document"]}))
 
-        if not res:
+        if not res[0]:
             return handle_server_error("Unknown error occured")
         
-        return handle_success({"message":"Successfully posted!", "data": res.id})
+        return handle_success("Successfully posted!", res[1])
+
 
     except Exception as e:
         return handle_server_error(e)

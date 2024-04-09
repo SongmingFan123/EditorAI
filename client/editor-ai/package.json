@@ -10,9 +10,11 @@
   "dependencies": {
     "@react-firebase/auth": "^0.2.10",
     "again": "^0.0.1",
+    "axios": "^1.6.8",
     "cors": "^2.8.5",
-    "firebase": "^10.10.0",
-    "next": "14.1.0",
+    "firebase": "^10.9.0",
+    "next": "latest",
+
     "react": "^18",
     "react-dom": "^18",
     "react-quill": "^2.0.0",
