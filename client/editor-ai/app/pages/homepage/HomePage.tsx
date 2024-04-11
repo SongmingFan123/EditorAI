@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import Head from 'next/head';
 import ProjectSection from './ProjectSection';
@@ -6,9 +6,11 @@ import SearchBar from './SearchBar';
 import ActionButton from './ActionButton';
 import { useRouter } from 'next/navigation';
 import { handleCreateDocument } from '../../api/document_functions';
+import UploadButton from './UploadButton';
 
 const HomePage = () => {
   const [documentName, setDocumentName] = useState('');
+  const [documentContent, setDocumentContent] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [createDocumentFailed, setCreateDocumentFailed] = useState(false);
 
@@ -26,25 +28,32 @@ const HomePage = () => {
     setShowPopup(false);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await handleCreateDocument(userId, documentName, documentContent);
+    };
+    fetchData();
+  }, [documentContent, documentName]);
+
   const handlePopupSubmit = async () => {
     const documentId = await handleCreateDocument(userId, documentName, "");
     console.log('DocumentId:', documentId);
-    if (documentId ==true) {
+    if (documentId == true) {
       setCreateDocumentFailed(false);
       setShowPopup(false);
-
     } else {
       setCreateDocumentFailed(true);
     }
-
   };
 
   return (
     <div className="p-0">
+      <h1>{documentContent}</h1>
+      <h1>{documentName}</h1>
       <SearchBar onSearchQueryChange={handleSearchQueryChange} />
-    <div className="flex">
+      <div className="flex">
         <ActionButton text="Create Document" onClick={() => setShowPopup(true)} />
-        <ActionButton text="Upload Document" />
+        <UploadButton setContent={setDocumentContent} setSelectedFile={setDocumentName} />
       </div>
       {showPopup && (
         <div className="bg-slate-200">
