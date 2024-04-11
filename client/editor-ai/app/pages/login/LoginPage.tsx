@@ -12,6 +12,7 @@ const LoginPage = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [loginError, setLoginError] = React.useState('')
+  const [loginFailed, setLoginFailed] = React.useState(false)
   const router = useRouter()
 
   const { user, signUp, signIn, signOut } = useAuth();

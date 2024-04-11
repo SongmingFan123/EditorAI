@@ -10,7 +10,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import {updateDocument,getDocument} from '../../api/document_functions';
 import { HfInference, textGeneration } from '@huggingface/inference'
-
+import { pipeline } from '@xenova/transformers';
 
 const ReactQuillNoSSR = dynamic(
   () => import('react-quill'), 
@@ -19,6 +19,11 @@ const ReactQuillNoSSR = dynamic(
 
 
 const hf = new HfInference(process.env.HF_ACCESS_TOKEN)
+// const model_name = 'gpt2';
+// const pipe = await pipeline(
+//     'text-generation',
+//     model_name
+// );
 
 
 const TextEditor = () => {
@@ -55,7 +60,7 @@ const TextEditor = () => {
 
     }, []);
 
-    // const {generatedText , setGeneratedText} = useState('');
+    const [generatedText, setGeneratedText] = useState('');
 
     
 
@@ -91,15 +96,17 @@ const TextEditor = () => {
         // handleAskEditorAI(content);
     };
 
-    // const handleAskEditorAI = async (input) => {
-    //     const output = await hf.textGeneration({
-    //         model: 'gpt2',
-    //         inputs: input
-    //     })
+    const handleAskEditorAI = async (input) => {
+        const output = await hf.textGeneration({
+            model: 'gpt2',
+            inputs: input
+        })
 
-    //     setGeneratedText(output);
-    //     console.log("output---->", generatedText);
-    // }
+        // const output = await pipe(input)
+
+        setGeneratedText(output);
+        console.log("output---->", generatedText);
+    }
 
 
 
@@ -140,7 +147,7 @@ const TextEditor = () => {
                         </ul>
                     </div>
                     <div className='bg-white p-4 rounded-lg font-newsreader'>
-                        <h2>Ask EditorAI</h2>
+                        <button onClick={() => handleAskEditorAI(documentContent)} className="bg-main-color text-white px-4 py-2 rounded-lg">Ask EditorAI</button>
                         {/* <p>{generatedText}</p> */}
                     </div>
                 </div>
