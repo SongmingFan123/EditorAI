@@ -30,18 +30,6 @@ const HomePage = () => {
     setShowPopup(false);
   };
 
-  // useEffect(() => {
-  //   if (isMounted.current) {
-  //     const fetchData = async () => {
-  //       await handleCreateDocument(userId, documentName, documentContent);
-  //     };
-  //     fetchData();
-  //   } else {
-  //     isMounted.current = true;
-  //   }
-    
-  // }, [documentContent]);
-
   const handlePopupSubmit = async () => {
     const documentId = await handleCreateDocument(userId, documentName, "");
     console.log('DocumentId:', documentId);

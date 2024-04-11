@@ -1,44 +1,38 @@
-
 "use client"
 
 import React, { useState, ChangeEvent } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { useAuth } from '../../context/AuthContext';
 
-
-// function UploadButton({ setContent,setSelectedFile }) {
 function UploadButton({ createDocument }) {
-
-    
-
     const { user } = useAuth();
     const userId = user?.uid as string;
 
-    const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0] as File
-        const fileName = file.name;
+    const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0] as File;
 
-        // setSelectedFile(fileName);
-        const fileContent = readContents(file);
+        const fileName = file.name as string;
+        const fileContent = await readContents(file) as string;
 
-        createDocument(userId, fileName, fileContent)
+        console.log("User ID: ", userId);
+        console.log("File Name: ", fileName);
+        console.log("File Content: ", fileContent);
+        createDocument(userId, fileName, fileContent);
     };
 
-    const readContents = async (file: File) => {
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            const text = e.target?.result as string;
-            console.log(text);
-
-            return text
-            // setContent(text);
-        };
-        const text = reader.readAsText(file);
-        return text;
-    }
-
-
-
+    const readContents = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const res = e.target?.result as string;
+                resolve(res);
+            };
+            reader.onerror = (error) => {
+                reject(error);
+            };
+            reader.readAsText(file);
+        });
+    };
 
     return (
         <div>
