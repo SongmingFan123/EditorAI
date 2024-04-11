@@ -63,6 +63,15 @@ export const updateDocument = async (
     documentId: string, 
     documentName:string,
     new_document:string) => {
+
+        const body = JSON.stringify({
+            "user_id": userId,
+            "document_name": documentName,
+            "document_id": documentId,
+            "new_document": new_document
+        })
+
+        // console.log('Body:', body);
     
         try {
             const response = await fetch(`../api/update`, {
@@ -71,15 +80,10 @@ export const updateDocument = async (
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    "user_id": userId,
-                    "document_name": documentName,
-                    "document_id": documentId,
-                    "new_document": new_document
-                })
+                body: body
             });
 
-            console.log('Response:', response);
+            // console.log('Response:', response);
             const data = await response.json();
             console.log(data)
     

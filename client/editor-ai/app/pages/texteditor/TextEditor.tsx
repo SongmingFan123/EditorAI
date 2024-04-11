@@ -86,7 +86,7 @@ const TextEditor = () => {
     
     const handleProcedureContentChange = async (content: string) => {
         console.log("content---->", content);
-        await updateDocument(userId,documentName,documentId, content);
+        await updateDocument(userId,documentId,documentName,content);
 
         // handleAskEditorAI(content);
     };
@@ -119,7 +119,7 @@ const TextEditor = () => {
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
-                        placeholder={documentContent}
+                        value={documentContent}
                         onChange={handleProcedureContentChange}
                         className='h-[50vh] border border-gray-300 rounded-lg'
                     />

@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from 'react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from 'next/navigation'
 
