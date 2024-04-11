@@ -7,7 +7,7 @@ import SuggestionBox from './SuggestionBox'
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from "react";
-
+import OptionButton from "./Options";
 
 
 const ReactQuillNoSSR = dynamic(
@@ -18,6 +18,9 @@ const ReactQuillNoSSR = dynamic(
 
 
 const TextEditor = () => {
+    const [showSuggestions, setShowSuggestions] = useState(true);
+    const [showOptions, setShowOptions] = useState(true);
+
 
 
     var modules = {
@@ -46,44 +49,46 @@ const TextEditor = () => {
     
     const handleProcedureContentChange = (content: string) => {
         console.log("content---->", content);
-
     };
-
+    const handleShowSuggestions = () => {
+        setShowOptions(false);
+  
+    
+    };
     return (
         <div>
-
             <h1 className="text-center"></h1>
             <Link href="./homepage" legacyBehavior> 
                 <a className="text-main-color font-bold font-newsreader flex items-center">
                     <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
-                    <span>Back</span> </a>
+                    <span> Back </span> </a>
 
               </Link>
             <div className='flex justify-between p-5 h-full font-newsreader'>
-                <div className='flex-1 mr-5'>
+                <div className='bg-white flex-grow mr-5 p-4' style={{ flexBasis: '70%' }}>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
                         placeholder="write your content ...."
                         onChange={handleProcedureContentChange}
-                        className='h-[50vh] border border-gray-300 rounded-lg'
+                        className='h-[80vh] rounded-lg'
                     />
                 </div>
-                <div className="w-[20vw]">
-                    <div className="bg-white p-4 mb-5 rounded-lg">
-                        <h2>Suggested Edits</h2>
-                        <ul className='list-none p-0'>
-                            <li className='mb-2.5 bg-main-color rounded-lg text-white'style={{fontWeight: '25'}}>
-                                <SuggestionBox header="Suggestion 1" content="This is a suggestion" />
-                            </li>
-                            <li className='mb-2.5 bg-main-color rounded-lg text-white'>
-                                <SuggestionBox header="Suggestion 2" content="This is another suggestion" />
-                            </li>
-                        </ul>
-                    </div>
-                    <div className='bg-white p-4 rounded-lg font-newsreader'>
-                        <h2>Ask EditorAI</h2>
-                    </div>
+                <div className='bg-white flex-grow ml-5 p-4'style={{ flexBasis: '30%'}}>
+                    {showOptions ? ( <> 
+                        <p> I need help with: </p>
+                        <div className="button-container" style={{fontFamily:'Poppins'}}>
+                            <OptionButton text = "Grammer/Spell Check" /> 
+                            <OptionButton text = "Generate New Source(s)" /> 
+                            <OptionButton text = "Create Headline" /> 
+                            <OptionButton text = "Ap Style Check" /> 
+                            <OptionButton text = "Submit" onClick={handleShowSuggestions} /> 
+                        </div>
+                    </>
+                    ) : (
+                        <> Suggestions  <SuggestionBox header='content' content='content' /> </>
+                    )}
+                    
                 </div>
             </div>
         </div>

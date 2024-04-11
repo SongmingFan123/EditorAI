@@ -7,6 +7,10 @@ import Head from 'next/head';
 import ProjectSection from './ProjectSection';
 import SearchBar from './SearchBar';
 import ActionButton from './ActionButton';
+import DocumentModal from '@/components/DocumentModal';
+import { Modal } from 'reactstrap';
+import { useRouter } from 'next/router';
+import Link from "next/link";
 
 const HomePage = () => {
   const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];
@@ -15,8 +19,11 @@ const HomePage = () => {
   const [documentName, setDocumentName] = useState('');
   const [documentContent, setDocumentContent] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [open, setOpen] = useState<boolean>(false)
   const { user } = useAuthContext();
   const userId = user.uid;
+ 
+
 
   const handleCreateDocument = async () => {
     console.log("creating document")
@@ -63,47 +70,76 @@ const HomePage = () => {
     setShowPopup(false);
   };
 
+
+
   return (
     <div className="p-0">
       <SearchBar />
-      <div className="flex">
-        <ActionButton text="Create Document" onClick={() => setShowPopup(true)} icon1="/+.png"/>
+      <div className="flex" style={{fontFamily:'Poppins'}}>
+        <ActionButton text="Create Document" onClick={() => setOpen(true)} icon1="/+.png"/>
         <ActionButton text="Upload Document" onClick={() => setShowPopup(true)} icon2="/Vector.png" />
       </div>
       {showPopup && (
-        <div className="bg-slate-200">
-          <div className="popup-content flex flex-col">
-            <input
-              type="text"
-              placeholder="Enter document name"
-              value={documentName}
-              onChange={(e) => setDocumentName(e.target.value)}
-              className="rounded-lg p-2 m-2"
-            />
-            <div className='flex flex-row'>
-              <button
-                onClick={handlePopupSubmit}
-                className="bg-brand-red text-white rounded-full p-2 m-2"
-              >
-                Submit
-              </button>
-              <button
-                onClick={handlePopupClose}
-                className="bg-brand-red text-white rounded-full p-2 m-2"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-        )}
+       <div className="bg-slate-200">
+        
+             <DocumentModal open={open} onClose={()=> setOpen(false)}> 
+        <div className="flex flex-col gap-4"  style={{ width: '80%', maxWidth: '800px', height: 'auto' }}> 
+        <h1 className="text-4xl font-newsreader mb-6">What would you like help with?</h1>
+      <hr className="border-t-solid border-1 border-grey" /> 
+      <div className="flex flex-row justify-center"> 
+      <Link href="/pages/texteditor"  passHref>
+        <button 
+          className="border border-neutral-300 rounded-lg py-1.5 px-10 
+          bg-main-color hover:bg-red-700 text-white" style={{fontFamily:'Poppins'}}
+          > 
+          Edit an article
+        </button>
+        </Link>
+        <button 
+          className="border border-neutral-300 rounded-lg py-1.5 px-10 
+          bg-main-color hover:bg-red-700 text-white" style={{fontFamily:'Poppins'}}
+          onClick={() => setOpen(false)}
+        > 
+          Promote an article 
+        </button>
+      </div>
+      </div> 
+      </DocumentModal>
+           </div>
+       )}
+
         <div className= 'mb4 max-w-full m-4 mx-auto' style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', width: '96%', position: 'relative', top: '10px', font: 'Bold'}}></div>
         <div className="flex font-newsreader font-bold">
         <ProjectSection title={"Priority Projects"}/>
         <ProjectSection title={"Recent Projects"}/>
       </div>
     </div>
+    
   );
 };
 
 export default HomePage;
+
+/*<div className="popup-content flex flex-col">
+<input
+  type="text"
+  placeholder="Enter document name"
+  value={documentName}
+  onChange={(e) => setDocumentName(e.target.value)}
+  className="rounded-lg p-2 m-2"
+/>
+<div className='flex flex-row'>
+  <button
+    onClick={handlePopupSubmit}
+    className="bg-brand-red text-white rounded-full p-2 m-2"
+  >
+    Submit
+  </button>
+  <button
+    onClick={handlePopupClose}
+    className="bg-brand-red text-white rounded-full p-2 m-2"
+  >
+    Cancel
+  </button> 
+  </div>
+       </div>*/

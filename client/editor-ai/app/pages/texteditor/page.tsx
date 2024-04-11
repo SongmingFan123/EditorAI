@@ -7,7 +7,8 @@ import TextEditor from './TextEditor';
 import SuggestionBox from './SuggestionBox';
 import AskAIBot from '@/components/AskAi';
 
-
+//export const metadata = {
+//  title: "Editor AI Text Editor"}
 
 const texteditpage = () => {
   const { user } = useAuthContext();
@@ -28,12 +29,6 @@ const texteditpage = () => {
     <div className="h-screen w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', minHeight: '100vh', padding: '15px' }}>
       <div className="homepage"> 
         <TextEditor />
-        <SuggestionBox header="Your Header" content="Your Content" onAskClick={() => setShowAskAIBot(true)} />
-        {showAskAIBot && (
-          <div className="flex" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <AskAIBot header="Ask AI Header" content="Ask AI Content" />
-          </div>
-        )}
       </div>
     </div>
   );
