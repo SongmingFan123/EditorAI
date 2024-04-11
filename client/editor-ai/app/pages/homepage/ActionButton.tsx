@@ -5,6 +5,8 @@ import React, { useRef } from "react";
 type ActionButtonProps = {
     text: string;
     onClick?: () => void;
+    icon1?: React.ReactNode;
+    icon2?: React.ReactNode;
 
 };
 
