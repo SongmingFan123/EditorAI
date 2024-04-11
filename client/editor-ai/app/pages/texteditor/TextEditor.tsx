@@ -110,12 +110,13 @@ const TextEditor = () => {
                     <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
                     <span>Back</span> </a>
             </Link>
-            <input type="text" value={documentName} className="bg-transparent border-b border-gray-300"/>
-            {/* <input onClick={handleChangeDocumentName} type="text" value={documentName}/> */}
+            
 
    
             <div className='flex justify-between p-5 h-full font-newsreader'>
-                <div className='flex-1 mr-5'>
+                <div className="text-center">
+                    <h1 className="text-4xl font-bold font-newsreader">{documentName}</h1>
+                    <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
@@ -124,6 +125,8 @@ const TextEditor = () => {
                         className='h-[50vh] border border-gray-300 rounded-lg'
                     />
                 </div>
+                </div>
+                
                 <div className="w-[20vw]">
                     <div className="bg-white p-4 mb-5 rounded-lg">
                         <h2>Suggested Edits</h2>
