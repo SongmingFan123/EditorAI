@@ -16,6 +16,12 @@ const HomePage = () => {
   const userId = user?.uid as string;
   const router = useRouter();
 
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchQueryChange = (query) => {
+    setSearchQuery(query);
+  };
+
   const handlePopupClose = () => {
     setShowPopup(false);
   };
@@ -35,8 +41,8 @@ const HomePage = () => {
 
   return (
     <div className="p-0">
-      <SearchBar />
-      <div className="flex">
+      <SearchBar onSearchQueryChange={handleSearchQueryChange} />
+    <div className="flex">
         <ActionButton text="Create Document" onClick={() => setShowPopup(true)} />
         <ActionButton text="Upload Document" />
       </div>
@@ -73,7 +79,7 @@ const HomePage = () => {
       )}
       <div className= 'mb4' style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', width: '100%', position: 'relative', top: '-10px', font: 'Bold'}}></div>
       <div className="flex font-newsreader">
-        <ProjectSection title={"Priority Projects"} />
+        <ProjectSection title={"Priority Projects"} searchQuery={searchQuery} />
       </div>
     </div>
   );

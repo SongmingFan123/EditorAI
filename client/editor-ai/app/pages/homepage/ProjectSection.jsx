@@ -3,7 +3,7 @@ import ProjectItem from './ProjectItem';
 import { getDocuments } from '@/api/document_functions';
 import { useAuth } from '@/context/AuthContext';
 
-const ProjectSection = ({ title }) => {
+const ProjectSection = ({ title, searchQuery }) => {
   const user = useAuth();
   const userId = user.user.uid;
 
@@ -29,23 +29,27 @@ const ProjectSection = ({ title }) => {
     console.log(projects[0]["Title"]);
   }
 
+  const filteredProjects = projects?.filter((project) =>
+    project.Title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="m-4">
       <h2 className="text-lg text-gray-700 mb-2">{title}</h2>
       <div className="flex flex-wrap gap-4"> 
-        {projects && projects.length > 0 ? (
-          projects.map((document) => ( 
-            <ProjectItem
-              key={document.id}
-              title={document.Title}
-              content={document.Content}
-              lastModified={document.LastModified}
-              documentId={document.id} 
-            />
-          ))
-        ) : (
-          <p>You have no projects...</p>
-        )}
+      {filteredProjects && filteredProjects.length > 0 ? (
+        filteredProjects.map((document) => (
+          <ProjectItem
+            key={document.id}
+            title={document.Title}
+            content={document.Content}
+            lastModified={document.LastModified}
+            documentId={document.id}
+          />
+        ))
+      ) : (
+        <p>No projects found matching the search query.</p>
+      )}
       </div>
     </div>
   );

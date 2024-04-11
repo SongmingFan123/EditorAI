@@ -86,22 +86,34 @@ const TextEditor = () => {
         await updateDocument(userId,documentId,documentName,content);
     };
 
-    const handleAskEditorAI = async (input) => {
+    const handleAskEditorAI = async (content) => {
         const accessToken = process.env.NEXT_PUBLIC_HF_ACCESS_TOKEN;
-        console.log(accessToken)
+
         const modelName = 'mistralai/Mistral-7B-Instruct-v0.2'
-        const prompt = `Please provide grammar suggestions and corrections for the following text:\n\n${input}\n\nSuggestions:`;
+        const prompt = `Please provide grammar suggestions and corrections for the following text`
+        const input =`PROMPT: ${prompt}. CONTENT:${content}. SUGGESTIONS:`;
 
         const output = await textGeneration({
             accessToken: accessToken,
             model: modelName,
-            inputs: prompt
+            inputs: input
         })
 
-        // const output = await pipe(input)
+        // use regex everything between PROMPT: and CONTENT:
+        const promptText = output.generated_text.match(/(?<=PROMPT:)(.*?)(?=CONTENT:)/s)[0];
+        
+        // and everything between CONTENT: and SUGGESTIONS:
+        const ContentText = output.generated_text.match(/(?<=CONTENT:)(.*?)(?=SUGGESTIONS:)/s)[0];
+
+        // to get everything after SUGGESTIONS:
+        
+        const generatedText = output.generated_text.match(/(?<=SUGGESTIONS:)(.*?)/s)[0];
+
+        console.log(generatedText)
+
 
         setGeneratedText(output.generated_text);
-        console.log("output---->", output);
+        // console.log("output---->", output);
 
     }
 
