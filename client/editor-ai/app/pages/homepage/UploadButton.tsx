@@ -3,17 +3,25 @@
 
 import React, { useState, ChangeEvent } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
+import { useAuth } from '../../context/AuthContext';
 
 
-function UploadButton({ setContent,setSelectedFile }) {
+// function UploadButton({ setContent,setSelectedFile }) {
+function UploadButton({ createDocument }) {
+
+    
+
+    const { user } = useAuth();
+    const userId = user?.uid as string;
 
     const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0] as File
         const fileName = file.name;
 
-        setSelectedFile(fileName);
-        readContents(file);
-        console.log(file);
+        // setSelectedFile(fileName);
+        const fileContent = readContents(file);
+
+        createDocument(userId, fileName, fileContent)
     };
 
     const readContents = async (file: File) => {
@@ -21,9 +29,12 @@ function UploadButton({ setContent,setSelectedFile }) {
         reader.onload = async (e) => {
             const text = e.target?.result as string;
             console.log(text);
-            setContent(text);
+
+            return text
+            // setContent(text);
         };
-        reader.readAsText(file);
+        const text = reader.readAsText(file);
+        return text;
     }
 
 

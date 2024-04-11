@@ -34,8 +34,8 @@ const ProjectItem = ({
   return (
     <>
       {!deleted && (
-        <div className="w-64 bg-white rounded-lg shadow-md p-4 relative" onClick={navigateToProject}>
-          <h1 className="text-xl font-bold mb-2 cursor-pointer" >{title}</h1>
+        <div className="w-64 bg-white rounded-lg shadow-md p-4 relative" >
+          <h1 className="text-xl font-bold mb-2 cursor-pointer" onClick={navigateToProject}>{title}</h1>
           <p className="text-gray-500 mb-2">{lastModified}</p>
           <button
             className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded absolute top-2 right-2 text-xs"

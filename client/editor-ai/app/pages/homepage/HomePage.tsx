@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import Head from 'next/head';
 import ProjectSection from './ProjectSection';
@@ -14,6 +14,8 @@ const HomePage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [createDocumentFailed, setCreateDocumentFailed] = useState(false);
 
+  const isMounted = useRef(false);
+
   const { user } = useAuth();
   const userId = user?.uid as string;
   const router = useRouter();
@@ -28,12 +30,17 @@ const HomePage = () => {
     setShowPopup(false);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await handleCreateDocument(userId, documentName, documentContent);
-    };
-    fetchData();
-  }, [documentContent, documentName]);
+  // useEffect(() => {
+  //   if (isMounted.current) {
+  //     const fetchData = async () => {
+  //       await handleCreateDocument(userId, documentName, documentContent);
+  //     };
+  //     fetchData();
+  //   } else {
+  //     isMounted.current = true;
+  //   }
+    
+  // }, [documentContent]);
 
   const handlePopupSubmit = async () => {
     const documentId = await handleCreateDocument(userId, documentName, "");
@@ -48,12 +55,12 @@ const HomePage = () => {
 
   return (
     <div className="p-0">
-      <h1>{documentContent}</h1>
-      <h1>{documentName}</h1>
       <SearchBar onSearchQueryChange={handleSearchQueryChange} />
       <div className="flex">
         <ActionButton text="Create Document" onClick={() => setShowPopup(true)} />
-        <UploadButton setContent={setDocumentContent} setSelectedFile={setDocumentName} />
+        {/* <UploadButton setContent={setDocumentContent} setSelectedFile={setDocumentName} /> */}
+        <UploadButton createDocument={handleCreateDocument} />
+
       </div>
       {showPopup && (
         <div className="bg-slate-200">
