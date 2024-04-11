@@ -1,34 +1,64 @@
 'use client'
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from 'next/dynamic';
 import 'quill/dist/quill.snow.css'
 import SuggestionBox from './SuggestionBox'
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '@/context/AuthContext';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useAuth } from '../../context/AuthContext';
 import {updateDocument,getDocument} from '../../api/document_functions';
+import { HfInference, textGeneration } from '@huggingface/inference'
+
 
 const ReactQuillNoSSR = dynamic(
   () => import('react-quill'), 
   { ssr: false }
 );
 
+
+const hf = new HfInference(process.env.HF_ACCESS_TOKEN)
+
+
 const TextEditor = () => {
+
 
     const router = useRouter();
     const { user } = useAuth();
     const userId = user?.uid as string;
 
+    const [documentName, setDocumentName] = useState<string>('');
+    const [documentId, setDocumentId] = useState<string>('');
+    const [documentContent, setDocumentContent] = useState<string>('');
+
+    const searchParams = useSearchParams()
 
 
     useEffect(() => {
-        const documentId = router.query.documentId as string;
-        const document = getDocument(userId, documentId);
+        const documentId = searchParams.get('documentid') as string;
+        setDocumentId(documentId);
+
+        const fetchDocument = async (documentId:string) => {
+            const document = await getDocument(userId, documentId)
+            console.log("Document:", document[0])
+
+            setDocumentName(document[0]["Title"])
+
+            const documentContent = getDocument(userId, documentId)
+            setDocumentContent(document[0]["Content"])
+        }
+
+        fetchDocument(documentId);
+
+
+
+    }, []);
+
+    // const {generatedText , setGeneratedText} = useState('');
+
     
-        const documentName = document.document_name;
-    }, [user]);
+
 
     var modules = {
         toolbar: [
@@ -54,28 +84,42 @@ const TextEditor = () => {
         "link", "image", "align", "size",
     ];
     
-    const handleProcedureContentChange = (content: string) => {
+    const handleProcedureContentChange = async (content: string) => {
         console.log("content---->", content);
-        updateDocument(userId,documentName,documentId, content);
+        await updateDocument(userId,documentName,documentId, content);
+
+        // handleAskEditorAI(content);
     };
+
+    // const handleAskEditorAI = async (input) => {
+    //     const output = await hf.textGeneration({
+    //         model: 'gpt2',
+    //         inputs: input
+    //     })
+
+    //     setGeneratedText(output);
+    //     console.log("output---->", generatedText);
+    // }
+
+
 
     return (
         <div>
-
-            <h1 className="text-center"></h1>
             <Link href="./homepage" legacyBehavior> 
                 <a className="text-main-color font-bold font-newsreader flex items-center">
                     <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
                     <span>Back</span> </a>
+            </Link>
+            <input type="text" value={documentName} className="bg-transparent border-b border-gray-300"/>
+            {/* <input onClick={handleChangeDocumentName} type="text" value={documentName}/> */}
 
-              </Link>
-            <h1>{documentName}</h1>
+   
             <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
-                        placeholder="write your content ...."
+                        placeholder={documentContent}
                         onChange={handleProcedureContentChange}
                         className='h-[50vh] border border-gray-300 rounded-lg'
                     />
@@ -94,7 +138,7 @@ const TextEditor = () => {
                     </div>
                     <div className='bg-white p-4 rounded-lg font-newsreader'>
                         <h2>Ask EditorAI</h2>
-                        
+                        {/* <p>{generatedText}</p> */}
                     </div>
                 </div>
             </div>

@@ -43,12 +43,12 @@ export const getDocuments = async (userId: string) => {
             }
         });
 
-        console.log('Response:', response);
+        // console.log('Response:', response);
 
         const data = await response.json();
 
-        const documents = getDocuments(userId);
-        console.log('Data:', data);
+        // const documents = getDocuments(userId);
+        // console.log('Data:', data);
 
         return data
 
@@ -93,18 +93,18 @@ export const updateDocument = async (
 export const getDocument = async (userId: string, documentId: string) => {
     try {
         const response = await fetch(`../api/read/${userId}/${documentId}`, {
-            method: 'POST',
+            method: 'GET',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             }
         });
 
-        console.log('Response:', response);
+        // console.log('Response:', response);
 
         const data = await response.json();
 
-        console.log('Data:', data);
+        // console.log('Data:', data);
         return data;
 
     } catch (error) {

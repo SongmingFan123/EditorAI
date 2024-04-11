@@ -12,7 +12,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // @ts-ignore
   const { user } = useAuth();
-  const userName = user?.displayName;
+  const userName = user?.displayName
   const auth = getAuth();
   const router = useRouter();
 
