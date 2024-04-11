@@ -9,22 +9,13 @@ import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import {updateDocument,getDocument} from '../../api/document_functions';
-import { HfInference, textGeneration } from '@huggingface/inference'
-import { pipeline } from '@xenova/transformers';
+import { textGeneration } from '@huggingface/inference'
+// import { pipeline } from '@xenova/transformers';
 
 const ReactQuillNoSSR = dynamic(
   () => import('react-quill'), 
   { ssr: false }
 );
-
-
-const hf = new HfInference(process.env.HF_ACCESS_TOKEN)
-// const model_name = 'gpt2';
-// const pipe = await pipeline(
-//     'text-generation',
-//     model_name
-// );
-
 
 const TextEditor = () => {
 
@@ -91,21 +82,27 @@ const TextEditor = () => {
     
     const handleProcedureContentChange = async (content: string) => {
         console.log("content---->", content);
+        setDocumentContent(content);
         await updateDocument(userId,documentId,documentName,content);
-
-        // handleAskEditorAI(content);
     };
 
     const handleAskEditorAI = async (input) => {
-        const output = await hf.textGeneration({
-            model: 'gpt2',
-            inputs: input
+        const accessToken = process.env.NEXT_PUBLIC_HF_ACCESS_TOKEN;
+        console.log(accessToken)
+        const modelName = 'mistralai/Mistral-7B-Instruct-v0.2'
+        const prompt = `Please provide grammar suggestions and corrections for the following text:\n\n${input}\n\nSuggestions:`;
+
+        const output = await textGeneration({
+            accessToken: accessToken,
+            model: modelName,
+            inputs: prompt
         })
 
         // const output = await pipe(input)
 
-        setGeneratedText(output);
-        console.log("output---->", generatedText);
+        setGeneratedText(output.generated_text);
+        console.log("output---->", output);
+
     }
 
 
@@ -148,7 +145,7 @@ const TextEditor = () => {
                     </div>
                     <div className='bg-white p-4 rounded-lg font-newsreader'>
                         <button onClick={() => handleAskEditorAI(documentContent)} className="bg-main-color text-white px-4 py-2 rounded-lg">Ask EditorAI</button>
-                        {/* <p>{generatedText}</p> */}
+                        <p>{generatedText}</p>
                     </div>
                 </div>
             </div>

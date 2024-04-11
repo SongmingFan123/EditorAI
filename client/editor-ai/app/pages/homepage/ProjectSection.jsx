@@ -32,18 +32,20 @@ const ProjectSection = ({ title }) => {
   return (
     <div className="m-4">
       <h2 className="text-lg text-gray-700 mb-2">{title}</h2>
-      <div className="flex flex-wrap gap-4"> {/* Add gap-4 class for margin */}
-        {projects ? projects.map((document) => { // Use curly braces to return JSX
-          return (
+      <div className="flex flex-wrap gap-4"> 
+        {projects && projects.length > 0 ? (
+          projects.map((document) => ( 
             <ProjectItem
               key={document.id}
               title={document.Title}
               content={document.Content}
               lastModified={document.LastModified}
-              documentId={document.id} // Pass documentId as a prop
+              documentId={document.id} 
             />
-          );
-        }) : <p>Loading...</p>}
+          ))
+        ) : (
+          <p>You have no projects...</p>
+        )}
       </div>
     </div>
   );

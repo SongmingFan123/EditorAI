@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React from "react";
 import { useRouter } from 'next/navigation'
 import { Poppins } from 'next/font/google'
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 //const poppins = Poppins({ weight: '400', subsets: ['latin']})
 const LoginPage = () => {
@@ -106,7 +106,7 @@ const LoginPage = () => {
         <h1  className="text-center mt-4 normal-font" style={{fontFamily:'poppins', fontWeight: 'light'}}>
          Dont have an account? 
          </h1>
-         <a href="/signup" className="text-main-color bold-weight underline" style={{fontWeight: 'bold'}}>Sign up</a>
+         <a href="/pages/signup" className="text-main-color bold-weight underline" style={{fontWeight: 'bold'}}>Sign up</a>
       </div>
     </div>
   );
