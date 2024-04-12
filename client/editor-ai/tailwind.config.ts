@@ -24,7 +24,7 @@ const config: Config = {
         '1/6': '0% 0%',
       },
       colors: {
-        'brand-red': '#9F4949',
+        'brand-red': '#801212',
         'brand-tan': '#F5F0EF',
         'main-color': '#801212',
         'login-text': '#31302F',

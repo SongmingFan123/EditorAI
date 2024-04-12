@@ -74,10 +74,10 @@ const TextEditor = () => {
                         className='h-[80vh] rounded-lg'
                     />
                 </div>
-                <div className='bg-white flex-grow ml-5 p-4'style={{ flexBasis: '30%'}}>
+                <div className=' flex-grow ml-5 p-4 'style={{ flexBasis: '30%'}}>
                     {showOptions ? ( <> 
-                        <p> I need help with: </p>
-                        <div className="button-container" style={{fontFamily:'Poppins'}}>
+                        <p style={{ fontSize: '28px', fontFamily: 'Newsreader, serif', textAlign: 'center'}}> I need help with: </p>
+                        <div className="button-container" >
                             <OptionButton text = "Grammer/Spell Check" /> 
                             <OptionButton text = "Generate New Source(s)" /> 
                             <OptionButton text = "Create Headline" /> 

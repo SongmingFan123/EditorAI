@@ -1,11 +1,12 @@
-import SignupPage from "./SignupPage";
+import './styles/globals.css'
+import SignupPage from './SignupPage';
+import { Sign } from 'crypto';
 
 function App() {
   return (
     <main>
       <SignupPage />
     </main>
-
   );
 }
 

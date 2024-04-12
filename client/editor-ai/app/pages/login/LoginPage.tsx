@@ -3,29 +3,27 @@
 import { FormEvent } from 'react'
 import Image from 'next/image';
 import React from "react";
-import signIn from "@/firebase/auth/signin";
 import { useRouter } from 'next/navigation'
 import { Poppins } from 'next/font/google'
+import { useAuth } from '../../context/AuthContext';
 
 //const poppins = Poppins({ weight: '400', subsets: ['latin']})
 const LoginPage = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [loginError, setLoginError] = React.useState('')
+  const [loginFailed, setLoginFailed] = React.useState(false)
   const router = useRouter()
+
+  const { user, signUp, signIn, signOut } = useAuth();
+
 
   const handleForm = async (event: FormEvent) => {
     event.preventDefault();
 
-    const { result, error } = await signIn(email, password);
+    await signIn(email, password);
 
-    if (error) {
-      setLoginError('Login failed. Please check your credentials.');
-      return;
-    }
 
-    // else successful
-    console.log(result);
     return router.push("/admin");
   };
 
@@ -63,7 +61,7 @@ const LoginPage = () => {
               type="email"
               value={email}
               placeholder="Email"
-              className='font-poppins pl-3 placeholder-color custom-border-opacity'
+              // className='font-poppins pl-3 placeholder-color custom-border-opacity'
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -85,7 +83,7 @@ const LoginPage = () => {
                 }}
               type="password"
               placeholder='Password'
-              className='pl-3 font-poppins placeholder-color custom-border-opacity' 
+              // className='pl-3 font-poppins placeholder-color custom-border-opacity' 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -105,15 +103,14 @@ const LoginPage = () => {
             log in
           </button>
         </form>
-        <h1  
-        className="text-center mt-4 normal-font" style={{fontFamily:'poppins', fontWeight: 'light'}}
-      >
-         Don't have an account? <a href="/signup" className="text-main-color bold-weight underline" style={{fontWeight: 'bold'}}>Sign up</a></h1>
+        <h1  className="text-center mt-4 normal-font" style={{fontFamily:'poppins', fontWeight: 'light'}}>
+         Dont have an account? 
+         </h1>
+         <a href="/pages/signup" className="text-main-color bold-weight underline" style={{fontWeight: 'bold'}}>Sign up</a>
       </div>
     </div>
   );
 };
 
 export default LoginPage;
-
 

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import TextEditor from './TextEditor';
 import SuggestionBox from './SuggestionBox';
 import AskAIBot from '@/components/AskAi';
@@ -11,7 +11,7 @@ import AskAIBot from '@/components/AskAi';
 //  title: "Editor AI Text Editor"}
 
 const texteditpage = () => {
-  const { user } = useAuthContext();
+  const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
