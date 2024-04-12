@@ -10,6 +10,7 @@ import ActionButton from './ActionButton';
 import DocumentModal from '@/components/DocumentModal';
 import { Modal } from 'reactstrap';
 import { useRouter } from 'next/navigation';
+//import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const HomePage = () => {
@@ -70,7 +71,7 @@ const HomePage = () => {
   };
 
   const handleModal = async () => {
-    router.push("pages/texteditor");
+    router.push("/pages/texteditor");
   }
 
   return (
@@ -80,7 +81,7 @@ const HomePage = () => {
         <ActionButton text="Create Document" onClick={() => setOpen(true)} icon1="/+.png"/>
         <ActionButton text="Upload Document" onClick={() => setShowPopup(true)} icon2="/Vector.png" />
       </div>
-      {/* <DocumentModal open={open} onClose={()=> setOpen(false)}> 
+      { <DocumentModal open={open} onClose={()=> setOpen(false)}> 
         <div className="flex flex-col gap-4"  style={{ width: '80%', maxWidth: '800px', height: 'auto' }}> 
         <h1 className="text-4xl font-newsreader mb-6">What would you like help with?</h1>
       <hr className="border-t-solid border-1 border-grey" /> 
@@ -101,7 +102,7 @@ const HomePage = () => {
         </button>
       </div>
       </div> 
-      </DocumentModal> */}
+      </DocumentModal> }
         <div className= 'mb4 max-w-full m-4 mx-auto' style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', width: '96%', position: 'relative', top: '10px', font: 'Bold'}}></div>
         <div className="flex font-newsreader font-bold">
         <ProjectSection title={"Priority Projects"}/>

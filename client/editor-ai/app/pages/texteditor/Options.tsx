@@ -34,6 +34,7 @@ const OptionButton = ({ text, onClick}: OptionButtonProps) => {
 
 
         <button onClick={onClick} className={buttonClasses}>
+        {text}
         </button>
     </div>
     
