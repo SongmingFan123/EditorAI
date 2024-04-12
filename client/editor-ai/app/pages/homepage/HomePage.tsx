@@ -53,7 +53,7 @@ const HomePage = () => {
       {showPopup && (
         <div className="bg-slate-200">
           <div className="popup-content flex flex-col">
-            {createDocumentFailed && <h1>That document name already exists. Select a new name.</h1>}
+            {/* {createDocumentFailed && <h1>That document name already exists. Select a new name.</h1>} */}
             <>
               <input
                 type="text"
