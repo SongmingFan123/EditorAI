@@ -92,6 +92,7 @@ const TextEditor = () => {
         const modelName = 'mistralai/Mistral-7B-Instruct-v0.2'
         const prompt = `Please provide 2-3 grammar suggestions and corrections for the following text in bullet format`
         const input =`PROMPT: ${prompt}. CONTENT:${content}. SUGGESTIONS:`;
+        console.log(content)
 
         const output = await textGeneration({
             accessToken: accessToken,
