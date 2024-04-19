@@ -103,6 +103,7 @@ const LoginPage = () => {
             log in
           </button>
         </form>
+
         <h1  className="text-center mt-4 normal-font" style={{fontFamily:'poppins', fontWeight: 'light'}}>
          Dont have an account? 
          </h1>

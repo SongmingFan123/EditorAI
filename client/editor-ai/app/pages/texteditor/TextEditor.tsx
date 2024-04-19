@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import dynamic from 'next/dynamic';
-import 'quill/dist/quill.snow.css'
-import SuggestionBox from './SuggestionBox'
+import 'quill/dist/quill.snow.css';
+import SuggestionBox from './SuggestionBox';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
+
 import {updateDocument,getDocument} from '../../api/document_functions';
 import { textGeneration } from '@huggingface/inference'
 // import { pipeline } from '@xenova/transformers';
@@ -16,6 +17,7 @@ const ReactQuillNoSSR = dynamic(
   () => import('react-quill'), 
   { ssr: false }
 );
+
 
 const TextEditor = () => {
 
@@ -81,6 +83,7 @@ const TextEditor = () => {
     ];
     
     const handleProcedureContentChange = async (content: string) => {
+
         console.log("content---->", content);
         setDocumentContent(content);
         await updateDocument(userId,documentId,documentName,content);
@@ -116,6 +119,7 @@ const TextEditor = () => {
 
 
 
+
     return (
         <div>
             <Link href="./homepage" legacyBehavior> 
@@ -126,6 +130,7 @@ const TextEditor = () => {
             
 
    
+
             <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className="text-center">
                     <h1 className="text-4xl font-bold font-newsreader">{documentName}</h1>
@@ -134,6 +139,7 @@ const TextEditor = () => {
                         modules={modules}
                         formats={formats}
                         value={documentContent}
+
                         onChange={handleProcedureContentChange}
                         className='h-[50vh] border border-gray-300 rounded-lg'
                     />

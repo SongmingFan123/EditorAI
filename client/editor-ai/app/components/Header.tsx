@@ -64,7 +64,7 @@ const Header = () => {
             <div className="flex items-center">
               {/* welcome + name */}
               <div className="flex flex-column">
-                <span className="mr-2">Welcome, {user.email}</span>
+                <span className="mr-2">Welcome, {user.displayName}</span>
                 <button onClick={handleSignOut} className="text-white bg-red-500 px-2 py-2 rounded-md">Sign Out</button>
               </div>
               {/* allowed pages */}
