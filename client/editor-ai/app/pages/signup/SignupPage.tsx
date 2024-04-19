@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import { FormEvent, useState } from 'react';
 
 const SignupPage = () => {
@@ -54,13 +54,71 @@ const SignupPage = () => {
         >
           Editor AI
         </h1>
+
         {signupFailed && ( // Render the popup if signupFailed is true
           <div className="bg-red-500 text-white p-2 mb-4 rounded">
             Signup Failed
           </div>
         )}
         <form onSubmit={handleForm} className="w-full flex flex-col items-center">
-          {/* Rest of the form */}
+        <div className="mb-4">
+          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px'}}></div>
+            <input
+              className="w-full border p-2" style={{ 
+                width: '341px', 
+                height: '42px',
+                top: '347px',
+                left: '475px',
+                borderRadius: '10px',
+                fontFamily: 'Poppins',               
+                fontSize: '20px',
+                lineHeight: '30px',
+                //position: 'absolute'
+                }}
+              type="email"
+              value={email}
+              placeholder="Email"
+              // className='font-poppins pl-3 placeholder-color custom-border-opacity'
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>
+            <input
+              className="w-full border p-2" style={{ 
+                width: '341px', 
+                height: '42px',
+                top: '413px',
+                left: '475px',
+                borderRadius: '10px',
+                fontFamily: 'Poppins',              
+                fontSize: '20px',
+                lineHeight: '30px',
+                color: 'login-text'
+                //position: 'absolute', 
+                
+                }}
+              type="password"
+              placeholder='Password'
+              // className='pl-3 font-poppins placeholder-color custom-border-opacity' 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+          </div> 
+          <button
+             className="bg-main-color text-white px-4 py-2 hover:bg-blue-600 items-center"   style={{
+              width: '252px',
+              height: '54px',
+              fontFamily: 'poppins', // Corrected from 'font'
+              fontSize: '22px',
+              //lineHeight: '33px',
+              background: 'radial-gradient(50% 50% at 50% 50%, #9F4949 0%, #801212 100%)',
+              borderRadius: '12px'}}
+            type="submit"
+          >
+            Sign up
+          </button>
         </form>
         <h1
           className="text-center mt-4 normal-font"

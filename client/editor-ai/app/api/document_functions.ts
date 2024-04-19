@@ -33,11 +33,7 @@ export const handleCreateDocument = async (userId: string, documentName: string,
 };
 
 export const getDocuments = async (userId: string) => {
-
-
     console.log(`Getting documents for user: ${userId}`);
-
-
     try {
         const response = await fetch(`../api/getall/${userId}`, {
             method: 'GET',
@@ -47,12 +43,12 @@ export const getDocuments = async (userId: string) => {
             }
         });
 
-        console.log('Response:', response);
+        // console.log('Response:', response);
 
         const data = await response.json();
 
-        const documents = getDocuments(userId);
-        console.log('Data:', data);
+        // const documents = getDocuments(userId);
+        // console.log('Data:', data);
 
         return data
 
@@ -67,6 +63,15 @@ export const updateDocument = async (
     documentId: string, 
     documentName:string,
     new_document:string) => {
+
+        const body = JSON.stringify({
+            "user_id": userId,
+            "document_name": documentName,
+            "document_id": documentId,
+            "new_document": new_document
+        })
+
+        // console.log('Body:', body);
     
         try {
             const response = await fetch(`../api/update`, {
@@ -75,15 +80,10 @@ export const updateDocument = async (
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    "user_id": userId,
-                    "document_name": documentName,
-                    "document_id": documentId,
-                    "new_document": new_document
-                })
+                body: body
             });
 
-            console.log('Response:', response);
+            // console.log('Response:', response);
             const data = await response.json();
             console.log(data)
     
@@ -97,18 +97,18 @@ export const updateDocument = async (
 export const getDocument = async (userId: string, documentId: string) => {
     try {
         const response = await fetch(`../api/read/${userId}/${documentId}`, {
-            method: 'POST',
+            method: 'GET',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             }
         });
 
-        console.log('Response:', response);
+        // console.log('Response:', response);
 
         const data = await response.json();
 
-        console.log('Data:', data);
+        // console.log('Data:', data);
         return data;
 
     } catch (error) {
