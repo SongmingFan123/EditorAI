@@ -22,7 +22,7 @@ const HomePage = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearchQueryChange = (query) => {
+  const handleSearchQueryChange = (query:string) => {
     setSearchQuery(query);
   };
 
