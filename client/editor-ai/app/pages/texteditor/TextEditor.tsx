@@ -20,6 +20,8 @@ const ReactQuillNoSSR = dynamic(
 const TextEditor = () => {
     const [showSuggestions, setShowSuggestions] = useState(true);
     const [showOptions, setShowOptions] = useState(true);
+    const [showSaveContainer, setShowSaveContainer] = useState(false);
+
 
 
 
@@ -86,7 +88,7 @@ const TextEditor = () => {
                         </div>
                     </>
                     ) : (
-                        <> Suggestions  <SuggestionBox header='content' content='content' /> </>
+                        <> Suggestions  <SuggestionBox header='content' content='content' onApply={() => setShowSaveContainer(true)} /> </>
                     )}
                     
                 </div>

@@ -8,15 +8,13 @@ import { useAuth } from '@/context/AuthContext';
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from 'next/navigation'
 
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useAuth();
   const auth = getAuth();
   const router = useRouter();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const handleSignOut = async () => {
       await signOut(auth).then(() => {
@@ -29,6 +27,7 @@ const Header = () => {
       });
 
   };
+
 
   return (
     <>
@@ -54,24 +53,24 @@ const Header = () => {
 
 
       <div className="flex flex-row">
-        <div className={isMenuOpen ? "" : "hidden flex flex-row space-between"}>
+        <div className= 'grow '>
           <div >
 
             {/* user is logged in  */}
             {user && (
             <div className="flex items-center">
               {/* welcome + name */}
-              <div className="flex flex-column">
+              <div className="flex items-center justify-center gap-2 md:gap-8">
                 <span className="mr-2">Welcome, {user.email}</span>
                 <button onClick={handleSignOut} className="text-white bg-brand-red px-2 py-2 rounded-md">Sign Out</button>
               </div>
               {/* allowed pages */}
               <ul>
+
                 <li>
-                  <Link href={"/pages/homepage"}>Go to Homepage</Link>
-                </li>
-                <li>
+                <Link href={"/pages/homepage"}>Go to Homepage</Link>
                   <Link href={"/pages/texteditor"}>Go to Text Editor</Link>
+                  <Link href={"/pages/texteditor"}>View Profile</Link>
                 </li>
               </ul>
             </div>
@@ -81,10 +80,10 @@ const Header = () => {
             {!user && (
               <ul>
                 <li>
-                  <Link href={"/pages/login"}>Go to Login</Link>
+                  <Link href={"/pages/login"} className='font-bold'>Login</Link>
                 </li>
                 <li>
-                  <Link href={"/pages/signup"}>Go to Signup</Link>
+                  <Link href={"/pages/signup"}className='font-bold'>Signup</Link>
                 </li>
               </ul>
             )}
@@ -92,14 +91,12 @@ const Header = () => {
 
         </div>
         <div className="flex items-end">
-        <button onClick={toggleMenu} className="menu-toggle text-4xl large-font" >
-          ☰
-        </button>
       </div>
       </div>
     </div>
     </>
   );
 };
+
 
 export default Header;

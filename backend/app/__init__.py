@@ -18,7 +18,7 @@ def create_app():
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config['CORS_ORIGINS'] = ['http://localhost:3000']
 
-    cred = credentials.Certificate(r"./secrets/se-editor-ai-firebase-adminsdk-nd6dz-2b544b1b09.json")
+    cred = credentials.Certificate(r"./secrets/se-editor-ai-firebase-adminsdk-nd6dz-dc11e6bb8f.json")
 
     firebase_admin.initialize_app(cred)
 

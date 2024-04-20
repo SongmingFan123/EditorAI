@@ -1,11 +1,16 @@
 import React from "react";
 import Image from 'next/image';
 
-const SearchBar = () => {
-  const handleSearch = () => {
-    // Implement your search logic here
-    console.log("Search triggered");
+const SearchBar = ({onSearchQueryChange}) => {
+  const handleQueryChange = (e) => {
+    const text = e.target.value;
+    console.log(`Query: ${text}`)
+    onSearchQueryChange(text);
   };
+    const handleSearch = () => {
+      // Implement your search logic here
+      console.log("Search triggered");
+    };
 
   return (
     <div className="max-w-full mx-auto px-4 py-4">
@@ -16,6 +21,7 @@ const SearchBar = () => {
         <input
           type="text"
           placeholder="Search Documents and Files..."
+          onChange={handleQueryChange}
           className="w-full bg-brand-tan pr-2 py-1 placeholder-brand-red" 
           style={{ fontFamily: 'Poppins' }}
         />

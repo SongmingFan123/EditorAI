@@ -1,7 +1,7 @@
 "use client"
 //import url=("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import Head from 'next/head';
 import ProjectSection from './ProjectSection';
@@ -11,7 +11,7 @@ import DocumentModal from '@/components/DocumentModal';
 import { Modal } from 'reactstrap';
 import { useRouter } from 'next/navigation';
 import { handleCreateDocument } from '../../api/document_functions';
-//import { useRouter } from 'next/router';
+import UploadButton from './UploadButton';
 import Link from 'next/link';
 
 const HomePage = () => {
@@ -22,8 +22,7 @@ const HomePage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [createDocumentFailed, setCreateDocumentFailed] = useState(false);
 
-
-
+  const isMounted = useRef(false);
 
   const { user } = useAuth();
   const userId = user?.uid as string;
@@ -31,7 +30,7 @@ const HomePage = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearchQueryChange = (query) => {
+  const handleSearchQueryChange = (query:string) => {
     setSearchQuery(query);
   };
 
@@ -55,15 +54,19 @@ const HomePage = () => {
 
 
 
-  const handleModal = async () => {
+  const handleEditArticleModal = async () => {
     router.push("/pages/texteditor");
   }
 
+  const handlePromoteArticleModal = async () => {
+    router.push("/pages/promotearticles");
+  }
   return (
     <div className="p-0">
       <SearchBar onSearchQueryChange={handleSearchQueryChange} />
       <div className="flex" style={{fontFamily:'Poppins'}}>
         <ActionButton text="Create Document" onClick={() => setOpen(true)} icon1="/+.png"/>
+        <UploadButton createDocument={handleCreateDocument} />
         <ActionButton text="Upload Document" onClick={() => setShowPopup(true)} icon2="/Vector.png" />
       </div>
       { <DocumentModal open={open} onClose={()=> setOpen(false)}> 
@@ -79,7 +82,7 @@ const HomePage = () => {
           top:'375px',
           borderRadius: '50px 50px 50px 50px',
           cursor: 'pointer', marginTop: '50px', margin: '40px', boxShadow: "3px 3px 7.5px 4px rgba(0, 0, 0, 0.25)", fontSize: '37px' }}
-          onClick={handleModal}
+          onClick={handleEditArticleModal}
         > 
           Edit an article 
         </button>
@@ -100,12 +103,42 @@ const HomePage = () => {
       </div>
       </div> 
       </DocumentModal> }
+      {showPopup && (
+        <div className="bg-slate-200">
+          <div className="popup-content flex flex-col">
+            {/* {createDocumentFailed && <h1>That document name already exists. Select a new name.</h1>} */}
+            <>
+              <input
+                type="text"
+                placeholder="Enter document name"
+                value={documentName}
+                onChange={(e) => setDocumentName(e.target.value)}
+                className="rounded-lg p-2 m-2"
+              />
+              <div className='flex flex-row'>
+                <button
+                  onClick={handlePopupSubmit}
+                  className="bg-brand-red text-white rounded-full p-2 m-2"
+                >
+                  Submit
+                </button>
+                <button
+                  onClick={handlePopupClose}
+                  className="bg-brand-red text-white rounded-full p-2 m-2"
+                >
+                  Cancel
+                </button>
+              </div>
+            </>
+            
+          </div>
+        </div>
+      )}
         <div className= 'mb4 max-w-full m-4 mx-auto divider-line' 
           style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', opacity: open ? 0.5 : 1, width: '96%', position: 'relative', top: '10px', font: 'Bold'}}>
           </div>
         <div className="flex font-newsreader font-bold">
-        <ProjectSection title={"Priority Projects"}/>
-        <ProjectSection title={"Recent Projects"}/>
+        <ProjectSection title={"Priority Projects"} searchQuery={searchQuery} />
       </div>
     </div>
     
