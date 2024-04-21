@@ -5,6 +5,7 @@ from firebase_admin import firestore
 class firestore_service:
 
     def __init__(self):
+        
         self.db = firestore.client()
 
 
@@ -58,6 +59,7 @@ class firestore_service:
         except Exception as e:
             print(f"Failed to update document: {e}")
             return False
+
 
 
     def delete_document(self, collection_navigation: "list[tuple[str, str]]", document_id: str) -> bool:

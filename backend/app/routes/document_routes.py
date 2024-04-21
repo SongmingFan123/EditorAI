@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..services import *
+from ..services import firestore_service
 from ..utils import *
 from flask_cors import cross_origin, CORS
 
@@ -7,7 +7,6 @@ from flask_cors import cross_origin, CORS
 bp = Blueprint('document', __name__)
 CORS(bp)
 docsOrCollection = {"d": "docs", "c": "collection"}
-
 
 @bp.route('/create', methods=['POST'])
 @cross_origin()
@@ -21,6 +20,7 @@ def create_document():
     """
     try:
         fireconfig = firestore_service()
+
         data = request.json
         collection_route = [(docsOrCollection['c'], "documents"), \
                                 (docsOrCollection['d'], data["user_id"]), \
@@ -52,7 +52,6 @@ def get_document(userID, documentID):
 
     try:
         fireconfig = firestore_service()
-
         collection_route = [(docsOrCollection['c'], "documents"), \
                                         (docsOrCollection['d'], userID), \
                                             (docsOrCollection['c'], "docs") \
@@ -106,10 +105,9 @@ def update_document():
 @bp.route('/delete/<userID>/<documentID>', methods=["DELETE"])
 @cross_origin()
 def delete_document(userID, documentID):
-    """ Deletes document with given userID and documentID"""
+    """ Deletes document with given userID and documentID """
     try:
         fireconfig = firestore_service()
-
         collection_route = [(docsOrCollection['c'], "documents"), \
                                         (docsOrCollection['d'], userID), \
                                             (docsOrCollection['c'], "docs") \
@@ -128,6 +126,7 @@ def delete_document(userID, documentID):
 @bp.route('/getall/<userID>', methods=["GET"])
 @cross_origin()
 def get_all_documents(userID):
+    """ Returns all the documents of a given user """
     try:
         fireconfig = firestore_service()
         collection_route = [(docsOrCollection['c'], "documents"), \

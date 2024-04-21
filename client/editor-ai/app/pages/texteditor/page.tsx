@@ -23,7 +23,7 @@ const App = () => {
 
     <div className="h-screen w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', minHeight: '100vh', padding: '15px' }}>
       <div className="homepage"> 
-        <TextEditor documentID={documentID} userID={user?.uid || ``} newDoc={newDoc} docName={docName} /> {/* change this line once the projects page is set up */}
+        <TextEditor /> {/* change this line once the projects page is set up */}
       </div>
     </div>
   );

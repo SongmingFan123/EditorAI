@@ -59,13 +59,6 @@ const TextEditor = () => {
 
    
 
-    useEffect(() => {
-        if(!newDoc) {
-            getMyDocuments(); // get the document
-        } else {
-            createMyDocuments(); // create new document
-        }
-    }, [])
 
 
     return (
@@ -84,7 +77,7 @@ const TextEditor = () => {
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
-                        value={myContent}
+                        value={"asdf"}
                         placeholder="write your content ...."
                         onChange={handleProcedureContentChange}
                         className='h-[50vh] border border-gray-300 rounded-lg'
