@@ -9,11 +9,11 @@ Original file is located at
 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration
 import os
-from google.colab import userdata
+# from google.colab import userdata
 import keras
-import keras_nlp
+# import keras_nlp
 
-class EditorAIChatbot:
+class editorai_chatbot:
     def __init__(self):
         # Initialize models
         self.title_tokenizer = AutoTokenizer.from_pretrained("czearing/article-title-generator")
@@ -22,78 +22,34 @@ class EditorAIChatbot:
         self.summary_tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-large")
         self.summary_model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-large")
 
-        self.copy_model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
+        self.copy_model = keras.models.GemmaCausalLM.from_preset("gemma_2b_en")
 
         # Set environment variables
-        try:
-            os.environ["KAGGLE_USERNAME"] = userdata.get('tiahannah')
-            os.environ["KAGGLE_KEY"] = userdata.get('8a0706f772f2d5372f942efd629b6be4')
-        except Exception as e:
-            print("Error:", e)
-            os.environ["KAGGLE_USERNAME"] = "your_username"
-            os.environ["KAGGLE_KEY"] = "your_key"
+        # try:
+        #     os.environ["KAGGLE_USERNAME"] = userdata.get('tiahannah')
+        #     os.environ["KAGGLE_KEY"] = userdata.get('8a0706f772f2d5372f942efd629b6be4')
+        # except Exception as e:
+        #     print("Error:", e)
+        #     os.environ["KAGGLE_USERNAME"] = "your_username"
+        #     os.environ["KAGGLE_KEY"] = "your_key"
         os.environ["KERAS_BACKEND"] = "jax"
         os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
 
-    def create_title(self, article):
+    def create_title(self, article: str) -> str:
         input_text = f"Create a title for this text: {article}"
         input_ids = self.title_tokenizer(input_text, return_tensors="pt").input_ids
         outputs = self.title_model.generate(input_ids, max_length=50, num_return_sequences=1)
         title = self.title_tokenizer.decode(outputs[0], skip_special_tokens=True)
         return title
 
-    def summarize_article(self, article):
+    def summarize_article(self, article: str) -> str:
         input_text = f"Summarize: {article}"
         input_ids = self.summary_tokenizer(input_text, return_tensors="pt").input_ids
         outputs = self.summary_model.generate(input_ids, max_length=100)
         summary = self.summary_tokenizer.decode(outputs[0])
         return summary
 
-    def create_social_media_copy(self, article):
+    def create_social_media_copy(self, article:str) -> str:
         input_text = f"Craft a social media transcript for the following text that is both engaging, with emojis and Emphasizes the core message of the article, Keep the tone positive and relatable. : {article}"
         social_media_copy = self.copy_model.generate(input_text, max_length=300)
         return social_media_copy
-
-    def process_user_request(self, option, article_text):
-        if option == "create a title":
-            return self.create_title(article_text)
-        elif option == "summarize your article":
-            return self.summarize_article(article_text)
-        elif option == "create a social media copy":
-            return self.create_social_media_copy(article_text)
-        else:
-            return "Option not recognized. Please try again."
-
-    def chatbot_main(self):
-        print("Hi! Please choose the option that best suits your needs:")
-        print("1. Create a title")
-        print("2. Summarize your article")
-        print("3. Make AP style changes - not functional")
-        print("4. Make stylistic changes - not functional")
-        print("5. Create a social media copy")
-
-        option_selected = input("Enter the number of your choice: ")
-        options = {
-            "1": "create a title",
-            "2": "summarize your article",
-            "3": "make ap style changes",
-            "4": "make stylistic changes",
-            "5": "create a social media copy"
-        }
-
-        option_text = options.get(option_selected, "")
-        if not option_text:
-            print("Invalid option selected. Please restart the chatbot and select a valid option.")
-            return
-
-        article_text = input("Please enter the text EditorAI chatbot will adjust: ")
-        result = self.process_user_request(option_text, article_text)
-        print(result)
-
-
-if __name__ == "__main__":
-    chatbot = EditorAIChatbot()
-    chatbot.chatbot_main()
-
-
- 

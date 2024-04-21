@@ -138,6 +138,7 @@ const TextEditor = () => {
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
+
                         value={documentContent}
 
                         onChange={handleProcedureContentChange}
