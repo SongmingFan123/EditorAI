@@ -6,11 +6,12 @@ import 'quill/dist/quill.snow.css';
 import SuggestionBox from './SuggestionBox';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useAuth } from '../../context/AuthContext';
 
-import { useRouter } from 'next/navigation';
-import { useAuth } from '@/context/AuthContext';
 import {updateDocument,getDocument} from '../../api/document_functions';
-
+import { textGeneration } from '@huggingface/inference'
+// import { pipeline } from '@xenova/transformers';
 
 const ReactQuillNoSSR = dynamic(
   () => import('react-quill'), 
@@ -20,12 +21,42 @@ const ReactQuillNoSSR = dynamic(
 
 const TextEditor = () => {
 
+
     const router = useRouter();
     const { user } = useAuth();
     const userId = user?.uid as string;
-    const documentId = ""
 
-    const documentName = "documentName";
+    const [documentName, setDocumentName] = useState<string>('');
+    const [documentId, setDocumentId] = useState<string>('');
+    const [documentContent, setDocumentContent] = useState<string>('');
+
+    const searchParams = useSearchParams()
+
+
+    useEffect(() => {
+        const documentId = searchParams.get('documentid') as string;
+        setDocumentId(documentId);
+
+        const fetchDocument = async (documentId:string) => {
+            const document = await getDocument(userId, documentId)
+            console.log("Document:", document[0])
+
+            setDocumentName(document[0]["Title"])
+
+            const documentContent = getDocument(userId, documentId)
+            setDocumentContent(document[0]["Content"])
+        }
+
+        fetchDocument(documentId);
+
+
+
+    }, []);
+
+    const [generatedText, setGeneratedText] = useState('');
+
+    
+
 
     var modules = {
         toolbar: [
@@ -51,38 +82,71 @@ const TextEditor = () => {
         "link", "image", "align", "size",
     ];
     
-    const handleProcedureContentChange = (content: string) => {
+    const handleProcedureContentChange = async (content: string) => {
 
         console.log("content---->", content);
-        updateDocument(userId,documentName,documentId, content);
+        setDocumentContent(content);
+        await updateDocument(userId,documentId,documentName,content);
     };
 
-   
+    const handleAskEditorAI = async (content:string) => {
+        const accessToken = process.env.NEXT_PUBLIC_HF_ACCESS_TOKEN;
+
+        const modelName = 'mistralai/Mistral-7B-Instruct-v0.2'
+        const prompt = `Please provide 2-3 grammar suggestions and corrections for the following text in bullet format`
+        const input =`PROMPT: ${prompt}. CONTENT:${content}. SUGGESTIONS:`;
+
+        const output = await textGeneration({
+            accessToken: accessToken,
+            model: modelName,
+            inputs: input
+        })
+
+        
+        const generatedText = output.generated_text
+
+        const suggestions = generatedText.match(/(?<=SUGGESTIONS:)(.*?)/s)[0].trim();
+        const bullets = suggestions.match(/- (.*)/g);
+
+        console.log(bullets);
+
+        // console.log(generatedText)
+
+
+        setGeneratedText(output.generated_text);
+
+    }
+
 
 
 
     return (
         <div>
-
-            <h1 className="text-center"></h1>
             <Link href="./homepage" legacyBehavior> 
                 <a className="text-main-color font-bold font-newsreader flex items-center">
                     <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
                     <span>Back</span> </a>
-              </Link>
+            </Link>
+            
 
-            <h1>{documentName}</h1>
+   
+
             <div className='flex justify-between p-5 h-full font-newsreader'>
-                <div className='flex-1 mr-5'>
+                <div className="text-center">
+                    <h1 className="text-4xl font-bold font-newsreader">{documentName}</h1>
+                    <div className='flex-1 mr-5'>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
-                        value={"asdf"}
-                        placeholder="write your content ...."
+
+                        value={documentContent}
+
                         onChange={handleProcedureContentChange}
                         className='h-[50vh] border border-gray-300 rounded-lg'
                     />
                 </div>
+                </div>
+                
                 <div className="w-[20vw]">
                     <div className="bg-white p-4 mb-5 rounded-lg">
                         <h2>Suggested Edits</h2>
@@ -96,8 +160,8 @@ const TextEditor = () => {
                         </ul>
                     </div>
                     <div className='bg-white p-4 rounded-lg font-newsreader'>
-                        <h2>Ask EditorAI</h2>
-                        
+                        <button onClick={() => handleAskEditorAI(documentContent)} className="bg-main-color text-white px-4 py-2 rounded-lg">Ask EditorAI</button>
+                        <p>{generatedText}</p>
                     </div>
                 </div>
             </div>
