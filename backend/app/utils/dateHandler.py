@@ -6,7 +6,6 @@ from datetime import datetime
 def last_modified(data: dict) -> dict:
     """Helper function to add in the last modified date"""
 
-
     # Get the current date
     current_date = datetime.now().date()
     data["LastModified"] = formatted_date = current_date.strftime("%Y-%m-%d")
