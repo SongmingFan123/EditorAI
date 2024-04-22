@@ -4,7 +4,7 @@ from ..utils import *
 from flask_cors import cross_origin, CORS
 
 
-bp = Blueprint('document', __name__)
+bp = Blueprint('documents', __name__)
 CORS(bp)
 docsOrCollection = {"d": "docs", "c": "collection"}
 
@@ -20,7 +20,6 @@ def create_document():
     """
     try:
         fireconfig = firestore_service()
-
         data = request.json
         collection_route = [(docsOrCollection['c'], "documents"), \
                                 (docsOrCollection['d'], data["user_id"]), \
@@ -49,18 +48,16 @@ def get_document(userID, documentID):
     """
         Reads document with the given userID and documentID
     """
-
     try:
         fireconfig = firestore_service()
         collection_route = [(docsOrCollection['c'], "documents"), \
                                         (docsOrCollection['d'], userID), \
                                             (docsOrCollection['c'], "docs") \
                                     ]    
-        
         res = fireconfig.get_document(collection_route, documentID)
         if not res:
             return handle_not_found()
-        return handle_success(res)
+        return handle_success(list(res)[0])
 
     except Exception as e:
         return handle_server_error(e)
@@ -90,7 +87,6 @@ def update_document():
                 return handle_bad_request("Name already exists, please try again")
 
         newdoc = dateHandler.last_modified({"Title": data["document_name"], "Content": data["new_document"]})
-        print(newdoc)
 
         res = fireconfig.update_document(collection_route, data["document_id"], newdoc)
         if not res:
