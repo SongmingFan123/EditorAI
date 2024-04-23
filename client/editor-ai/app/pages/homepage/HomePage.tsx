@@ -51,8 +51,10 @@ const HomePage = () => {
     }
   };   
 
+// Code for Modal for Priority Projects
+// <ActionButton text="Create Document" onClick={() => setOpen(true)} icon1="/+.png"/>
 
-
+//<ActionButton text="Upload Document" onClick={() => setShowPopup(true)} icon2="/Vector.png" />
 
   const handleEditArticleModal = async () => {
     router.push("/pages/texteditor");
@@ -64,10 +66,10 @@ const HomePage = () => {
   return (
     <div className="p-0">
       <SearchBar onSearchQueryChange={handleSearchQueryChange} />
-      <div className="flex" style={{fontFamily:'Poppins'}}>
-        <ActionButton text="Create Document" onClick={() => setOpen(true)} icon1="/+.png"/>
-        <UploadButton createDocument={handleCreateDocument} />
-        <ActionButton text="Upload Document" onClick={() => setShowPopup(true)} icon2="/Vector.png" />
+      <div className="flex mb-8 gap-8" style={{fontFamily:'Poppins'}}>
+        <ActionButton onClick={() => setShowPopup(true)} icon="/+.svg"/>
+        <UploadButton createDocument={handleCreateDocument} icon="/upload.svg"/>
+        
       </div>
       { <DocumentModal open={open} onClose={()=> setOpen(false)}> 
         <div className="flex flex-col gap-4" > 

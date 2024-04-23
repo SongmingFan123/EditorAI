@@ -16,7 +16,7 @@ const SearchBar = ({onSearchQueryChange}) => {
     <div className="max-w-full mx-auto px-4 py-4">
       <div className="flex w-full items-center border-4 custom-border-color rounded-search-bar bg-brand-tan">
         <button type='button' className="h-6 w-6 ml-2" onClick={handleSearch}>
-          <Image src="/Vector (1).png" alt="Search Icon" width={15.99} height={15.99} />
+          <Image src="/search.svg" alt="Search Icon" width={15.99} height={15.99} />
         </button>
         <input
           type="text"

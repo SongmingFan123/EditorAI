@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import SaveWorkModal from '@/components/SaveWorkModal';
 import { useRouter } from 'next/router';
+import SearchBar from '@/components/SearchBar';
+import OptionButton from './Options';
 
 interface SuggestionBoxProps {
   header: string;
@@ -75,45 +77,28 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content, onShowAs
       )}
 
       {showSaveContainer && (
-        <div style={{backgroundColor: '#801212', alignItems: 'center', justifyContent: 'center', padding: '20px'}}>
-          <p> 
-          <button onClick={handleOpenModal} style={{ width: '115.43px', height: '31px', backgroundColor: '#F5F0EF', border: '1px solid #F5F0EF', margin: '5px'}} className="action-button">Apply</button>
-                <button style={{ width: '115.43px', height: '31px', backgroundColor: '#F5F0EF', border: '1px solid #F5F0EF', margin: '5px'}} className="action-button">Ignore</button>
-                <button onClick={handleAskAIClick} style={{ width: '257px', height: '70px', backgroundColor: '#F5F0EF', border: '2px solid #F5F0EF'}} className="action-button">Ask AI</button>
-          </p>
+        <div className="button-container" style={{ alignItems: 'center', justifyContent: 'center', padding: '20px', background:"#FFFFFF"}}>
+          <p style={{ fontSize: '28px', fontFamily: 'Newsreader, serif', textAlign: 'center'}}> Save Your Work</p>
+                        <div className="button-container" >
+                            <OptionButton text = "Save to Editor AI" onClick={handleOpenModal}/> 
+                            <OptionButton text = "Download as..." /> 
+                            <OptionButton text = "Save to Google Docs" onClick={handleAskAIClick}/> 
+                        </div>
         </div>
       )}
             { <SaveWorkModal open={open} onClose={()=> setOpen(false)}> 
         <div className="flex flex-col gap-4" > 
-        <h1 className="text-4xl font-newsreader mb-6" style={{ textAlign: 'center', fontSize: '46px' , marginTop: '28px'}}>What would you like help with?</h1>
+        <h1 className="text-4xl font-newsreader mb-6 text-bold" style={{ textAlign: 'center', fontSize: '46px' , marginTop: '28px'}}>Save to Editor AI</h1>
       <hr className="border-t-solid border-1 border-grey" /> 
       <div className="flex flex-row justify-center"> 
-        <button 
-          className="border border-neutral-300 py-1.5 px-10 
-          bg-main-color hover:bg-red-800 text-white " style={{fontFamily:'Poppins', width: '338px',
-          height: '239px',
-          left:'269px',
-          top:'375px',
-          borderRadius: '50px 50px 50px 50px',
-          cursor: 'pointer', marginTop: '50px', margin: '40px', boxShadow: "3px 3px 7.5px 4px rgba(0, 0, 0, 0.25)", fontSize: '37px' }}
-          //onClick={handleModal}
-        > 
-          Edit an article 
+        <p> Title:
+        <SearchBar/> </p>
+        <p> Tags:
+        <SearchBar/> </p>
+        <button style={{  backgroundColor: '#801212', margin: '5px',}} className="action-button">
         </button>
-        <button 
-          className="border border-neutral-300 rounded-lg py-1.5 px-10 
-          bg-main-color hover:bg-red-800 text-white text-xl " style={{fontFamily:'Poppins', width: '338px',
-          height: '239px',
-          top:'375px',
-          left:'672px',
-          borderRadius: '50px 50px 50px 50px',
-          cursor: 'pointer', marginTop: '50px', margin: '40px', boxShadow: "3px 3px 7.5px 4px rgba(0, 0, 0, 0.25)" , fontSize: '37px'}}
-          onClick={() => setOpen(false)}
-        > 
-    
-          Promote an article 
+        
 
-        </button>
       </div>
       </div> 
       </SaveWorkModal> }

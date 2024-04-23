@@ -31,7 +31,7 @@ const SignupPage = () => {
       <div className="bg-brand-tan p-8 rounded-lg shadow-md flex flex-col items-center" style={{width: '532px', 
       height: '640px', borderRadius: '9px 0px 0px 0px'}}>
         <div className="flex justify-center w-full">
-        <Image src="/Ellipse 2.png" alt="Logo" width={100} height={100} /></div>
+        <Image src="/editorai.svg" alt="Logo" width={100} height={100} /></div>
         <h1 className="text-2xl text-center mb-6 font-newsreader font-bold"  style={{
           //position: 'absolute', 
           top: '283px', left: '540px', width: '210px', fontSize: '48px', lineHeight: '48px', color: '#31302F', fontWeight: '700', border: '0.69x solid #31302F'}}>Editor AI</h1>

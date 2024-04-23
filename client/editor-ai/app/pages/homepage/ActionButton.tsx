@@ -3,15 +3,13 @@ import React, { useRef } from "react";
 
 
 type ActionButtonProps = {
-    text: string;
     onClick?: () => void;
-    icon1?: React.ReactNode;
-    icon2?: React.ReactNode;
+    icon?: React.ReactNode;
 
 };
 
-const ActionButton = ({ text, onClick, icon1, icon2}: ActionButtonProps) => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
+const ActionButton = ({ onClick, icon}: ActionButtonProps) => {
+
 
   const handleButtonClick = () => {
     // Trigger the file input dialog when the button is clicked
@@ -25,18 +23,10 @@ const ActionButton = ({ text, onClick, icon1, icon2}: ActionButtonProps) => {
   return (
     <div>
       <input
-        type="file"
-        ref={fileInputRef}
-        
-        style={{ display: 'none' }}
-
       />
-
-
         <button onClick={onClick} className={buttonClasses}>
-        {icon1 && <img src="/+.png" className="icon-class mb-8" alt="icon 1" style={{ width: '26px', height: '26px' }} />}
-        {icon2 && <img src={"/Vector.png"} alt="icon 2" className="icon-class mb-8" style={{ width: '26px', height: '26px' }} />}
-        <span > {text} </span>
+        {icon && <img src="/+.svg" className="icon-class mb-8" alt="icon" style={{ width: '26px', height: '26px'}} />}
+        Create Document
         </button>
 
     </div>

@@ -32,7 +32,7 @@ const LoginPage = () => {
       <div className="bg-brand-tan p-8 rounded-lg shadow-md flex flex-col items-center" style={{ width: '532px', 
        height: '640px',borderRadius: '9px 0px 0px 0px'}}>
         <div className="flex justify-center w-full">
-        <Image src="/Ellipse 2.png" alt="Logo" width={90} height={90} 
+        <Image src="/editorai.svg" alt="Logo" width={90} height={90} 
         //style={{top: '135px', left: '595px', position: 'absolute'}} 
         />
         </div>

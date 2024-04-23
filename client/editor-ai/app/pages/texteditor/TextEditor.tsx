@@ -62,7 +62,7 @@ const TextEditor = () => {
             <h1 className="text-center"></h1>
             <Link href="./homepage" legacyBehavior> 
                 <a className="text-main-color font-bold font-newsreader flex items-center">
-                    <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
+                    <Image src="/back.svg" alt="logo" width={20} height={20} />
                     <span> Back </span> </a>
 
               </Link>
@@ -88,7 +88,7 @@ const TextEditor = () => {
                         </div>
                     </>
                     ) : (
-                        <> Suggestions  <SuggestionBox header='content' content='content' onApply={() => setShowSaveContainer(true)} /> </>
+                        <> <SuggestionBox header='content' content='content' onApply={() => setShowSaveContainer(true)} /> </>
                     )}
                     
                 </div>
