@@ -1,4 +1,3 @@
-
 import SignupPage from './SignupPage';
 import { Sign } from 'crypto';
 

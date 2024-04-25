@@ -39,7 +39,7 @@ const SignupPage = () => {
           <div className="mb-4">
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>
             <input
-              className="w-full border p-2" style={{ 
+              className="w-full border p-2 pl-3 placeholder-color custom-border-opacity" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '413px',
@@ -51,7 +51,7 @@ const SignupPage = () => {
                 color: 'login-text'}}
               type="text"
               placeholder='Full Name'
-              className='pl-3 placeholder-color custom-border-opacity' 
+              //className='pl-3 placeholder-color custom-border-opacity' 
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
             />
@@ -59,7 +59,7 @@ const SignupPage = () => {
           <div className="mb-4">
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>
             <input
-              className="w-full border p-2" style={{ 
+              className="w-full border p-2 pl-3 placeholder-color custom-border-opacity" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '413px',
@@ -72,14 +72,14 @@ const SignupPage = () => {
               type="email"
               value={email}
               placeholder="Email"
-              className='pl-3 placeholder-color custom-border-opacity' 
+              //className='pl-3 placeholder-color custom-border-opacity' 
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-4">
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>
             <input
-              className="w-full border p-2" style={{ 
+              className="w-full border p-2 pl-3 placeholder-color custom-border-opacity" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '413px',
@@ -91,7 +91,7 @@ const SignupPage = () => {
                 color: 'login-text'}}
               type="password"
               placeholder='Password'
-              className='pl-3 placeholder-color custom-border-opacity' 
+              //className='pl-3 placeholder-color custom-border-opacity' 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

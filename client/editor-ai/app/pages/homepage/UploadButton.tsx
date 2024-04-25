@@ -1,43 +1,51 @@
 "use client"
 
-import React, { useRef } from 'react';
+import React, { useRef, ChangeEvent } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 type UploadButtonProps = {
     createDocument: (userId: string, fileName: string, fileContent: string) => void;
-    icon?: React.ReactNode;  // Optional prop for passing an icon
+    icon?: React.ReactNode;  
 };
 
 function UploadButton({ createDocument, icon }: UploadButtonProps) {
     const { user } = useAuth();
     const userId = user?.uid as string;
-    const inputFileRef = useRef(null);
+    const inputFileRef = useRef<HTMLInputElement>(null);
 
-    const handleFileUpload = async (event) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            const fileName = file.name;
+
+const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+        const fileName = file.name;
+        try {
             const fileContent = await readContents(file);
-
             console.log("User ID: ", userId);
             console.log("File Name: ", fileName);
             console.log("File Content: ", fileContent);
             createDocument(userId, fileName, fileContent);
+        } catch (error) {
+            console.error('Error reading file content:', error);
         }
-    };
+    }
+};
 
-    const readContents = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = e => resolve(e.target.result);
-            reader.onerror = e => reject(e);
-            reader.readAsText(file);
-        });
-    };
+
+const readContents = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+            // Force TypeScript to treat the result as a string
+            resolve(e.target!.result as string);
+        };
+        reader.onerror = e => reject(e);
+        reader.readAsText(file);
+    });
+};
 
     const handleClick = () => {
         // This function is triggered when the custom button is clicked
-        inputFileRef.current.click();
+        inputFileRef.current?.click();
     };
 
     return (

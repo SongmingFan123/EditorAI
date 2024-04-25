@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from 'next/navigation'
+import Navigation from './NavigationMenu';
 
 
 const Header = () => {
@@ -42,33 +43,31 @@ const Header = () => {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
       </Head>
 
-      <div className="flex flex-row justify-between bg-brand-white p-4 font-newsreader" style={{ color: '#801212' }}>
+      <nav className="bg-white font-lg p-4">
+      <div className="flex flex-row justify-between bg-brand-white max-w-screen-xl flex-wrap" style={{ color: '#801212' }}>
     
       <div className="flex items-end ml-2">
-        <h1> <img src="/header.svg" alt="Editor AI Logo" /> </h1>
+        <h1> <img src="/header.svg" alt="Editor AI Logo"/> </h1>
       </div>
 
 
 
       <div className="flex flex-row">
-        <div className= 'grow '>
+        <div className= 'grow flex'>
           <div >
 
             {/* user is logged in  */}
             {user && (
-            <div className="flex items-center">
+            <div className="flex justify-end items-center" >
               {/* welcome + name */}
               <div className="flex items-center justify-center gap-2 md:gap-8">
-                <span className="mr-2">Welcome, {user.email}</span>
-                <button onClick={handleSignOut} className="text-white bg-brand-red px-2 py-2 rounded-md">Sign Out</button>
+                <span className="mr-2 mt-1">Welcome, {user.email}</span>
+                <button onClick={handleSignOut} className="text-white bg-brand-red px-2 py-2 rounded-md hover:bg-red-800">Sign Out</button>
               </div>
               {/* allowed pages */}
-              <ul>
-
-                <li>
-                  <Link href={"/pages/homepage"}>Go to Homepage</Link>
-                  <Link href={"/pages/texteditor"}>Go to Text Editor</Link>
-                  <Link href={"/pages/texteditor"}>View Profile</Link>
+              <ul> 
+                <li style={{ display: 'inline', marginRight: '40px' }}>
+                  <Navigation></Navigation>
                 </li>
               </ul>
             </div>
@@ -92,7 +91,9 @@ const Header = () => {
       </div>
       </div>
     </div>
+    </nav>
     </>
+    
   );
 };
 

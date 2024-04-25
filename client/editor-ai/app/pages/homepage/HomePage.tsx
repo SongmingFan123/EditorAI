@@ -66,7 +66,7 @@ const HomePage = () => {
   return (
     <div className="p-0">
       <SearchBar onSearchQueryChange={handleSearchQueryChange} />
-      <div className="flex mb-8 gap-8" style={{fontFamily:'Poppins'}}>
+      <div className="flex mb-8 gap-8 " style={{fontFamily:'Poppins'}}>
         <ActionButton onClick={() => setShowPopup(true)} icon="/+.svg"/>
         <UploadButton createDocument={handleCreateDocument} icon="/upload.svg"/>
         

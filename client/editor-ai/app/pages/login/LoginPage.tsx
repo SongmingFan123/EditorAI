@@ -47,7 +47,7 @@ const LoginPage = () => {
           <div className="mb-4">
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px'}}></div>
             <input
-              className="w-full border p-2" style={{ 
+              className="w-full border p-2 pl-3 placeholder-color custom-border-opacity" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '347px',
@@ -66,9 +66,9 @@ const LoginPage = () => {
             />
           </div>
           <div className="mb-4">
-          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>
+          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)',width: '100%', position: 'relative', top: '50px' }}></div>
             <input
-              className="w-full border p-2" style={{ 
+              className="w-full border p-2 pl-3 placeholder-color custom-border-opacity" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '413px',
