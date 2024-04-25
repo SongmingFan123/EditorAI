@@ -32,29 +32,17 @@ const Header = () => {
 
   return (
     <>
-      <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous'/>
         <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400&display=swap" rel="stylesheet"/>
-      </Head>
-      <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous'/>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-      </Head>
 
-      <nav className="bg-white font-lg p-4">
-      <div className="flex flex-row justify-between bg-brand-white max-w-screen-xl flex-wrap" style={{ color: '#801212' }}>
-    
-      <div className="flex items-end ml-2">
-        <h1> <img src="/header.svg" alt="Editor AI Logo"/> </h1>
-      </div>
+      <nav className='bg-white font-lg fixed w-full z-20 top-0 start-0 border-b py-1 font-newsreader scroll-py-0' style={{height: '120px'}}>
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4" style={{ color: '#801212'}}>
+        <h1> <img src="/header.svg"alt="Editor AI Logo"/> </h1>
 
-
-
-      <div className="flex flex-row">
-        <div className= 'grow flex'>
-          <div >
 
             {/* user is logged in  */}
             {user && (
@@ -64,33 +52,23 @@ const Header = () => {
                 <span className="mr-2 mt-1">Welcome, {user.email}</span>
                 <button onClick={handleSignOut} className="text-white bg-brand-red px-2 py-2 rounded-md hover:bg-red-800">Sign Out</button>
               </div>
-              {/* allowed pages */}
-              <ul> 
-                <li style={{ display: 'inline', marginRight: '40px' }}>
-                  <Navigation></Navigation>
-                </li>
-              </ul>
+              {/* allowed pages */}                  <Navigation></Navigation>
             </div>
             )}
-
+            <ul> 
+                <li style={{ display: 'inline', marginRight: '40px' }}>
+                </li>
+              </ul>
             {/* user is not logged in */}
             {!user && (
               <ul>
                 <li>
-                  <Link href={"/pages/login"} className='font-bold'>Login</Link>
-                </li>
-                <li>
-                  <Link href={"/pages/signup"}className='font-bold'>Signup</Link>
+                  <Link href={"/pages/login"} className='font-bold p-2'>Login</Link>
+                  <Link href={"/pages/signup"}className='font-bold p-2 '>Signup</Link>
                 </li>
               </ul>
             )}
           </div>
-
-        </div>
-        <div className="flex items-end">
-      </div>
-      </div>
-    </div>
     </nav>
     </>
     

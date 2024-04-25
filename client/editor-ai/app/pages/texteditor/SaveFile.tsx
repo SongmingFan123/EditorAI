@@ -4,13 +4,13 @@ import { Newsreader } from "next/font/google";
 import React, { useState, useRef } from "react";
 
 
-type OptionButtonProps = {
+type SaveButtonProps = {
     text: string;
     onClick?: () => void;
 
 };
 
-const OptionButton = ({ text, onClick}: OptionButtonProps) => {
+const SaveButton = ({ text, onClick}: SaveButtonProps) => {
   //const fileInputRef = useRef<HTMLInputElement>(null);
   const [isActive, setIsActive] = useState(false); 
 
@@ -25,7 +25,7 @@ const OptionButton = ({ text, onClick}: OptionButtonProps) => {
 
 
   const buttonClasses = `inline-block m-4 px-6 py-3 text-lg border-4 custom-border-color 
-  rounded-xl cursor-pointer transition-colors duration-300 ease-in-out mr-2 flex items-center italic justify-center 
+  rounded-xl cursor-pointer transition-colors duration-300 ease-in-out mr-2 flex items-center justify-center 
   ${isActive ? 'bg-brand-red text-white' : 'bg-white text-brand-red hover:bg-brand-red hover:text-white'}`;
 
 
@@ -37,7 +37,7 @@ const OptionButton = ({ text, onClick}: OptionButtonProps) => {
 
         <button onClick={handleButtonClick} className={buttonClasses} style={{ border: '6.05px solid rgba(128, 18, 18, 1)', fontSize:'22.5px',
   boxShadow: isActive ? 'inset 0 2px 4px rgba(0, 0, 0, 0.3)' : '3.45px 3.45px 5.18px 0.86px rgba(0, 0, 0, 0.25)',
-  width: '284.14px', fontFamily: 'newsreader'
+  width: '284.14px', fontFamily: 'Poppins'
 }}>
         {text}
         </button>
@@ -46,4 +46,4 @@ const OptionButton = ({ text, onClick}: OptionButtonProps) => {
   );
 };
 
-export default OptionButton;
+export default SaveButton;

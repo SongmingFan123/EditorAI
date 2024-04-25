@@ -5,20 +5,23 @@ import SaveWorkModal from '@/components/SaveWorkModal';
 import { useRouter } from 'next/router';
 import SearchBar from '@/components/SearchBar';
 import OptionButton from './Options';
+import SaveButton from './SaveFile';
 
 interface SuggestionBoxProps {
   header: string;
   content: string;
   onShowAskAI?: () => void;
   onApply?: () => void;
+  onClose?: ()=> void;
 }
 
-const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content, onShowAskAI, onApply }) => {
+const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content, onShowAskAI, onApply, onClose }) => {
   //const router = useRouter();
   const [isClicked, setIsClicked] = useState(false);
   const [showAskAI, setShowAskAI] = useState(false);
   const [showSaveContainer, setShowSaveContainer] = useState(false); 
   const [open, setOpen] = useState<boolean>(false);
+  const [showSplitContainer, setShowSplitContainer] = useState(true);
   
 
   const handleClick = () => {
@@ -40,8 +43,9 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content, onShowAs
   //};
   
 
-  const handleAskAIClick = () => {
+  const handleShowAskAI = () => {
     setShowAskAI(true);
+    setIsClicked(true);   
     if (onShowAskAI) {
       onShowAskAI();  
     }
@@ -57,20 +61,17 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content, onShowAs
   return (
     <div>
       {!showSaveContainer && (
-        <div onClick={handleClick}>
-          <div className="suggestion-header">
-            <button className="close-button" onClick={handleClose}></button>
-          </div>
-          <div className="suggestion-content">
-            <p>{content}</p>
+        <div onClick={() => setIsClicked(true)} className="button-container" style={{ borderRadius: '7px', backgroundColor: '#801212', alignItems: 'center', justifyContent: 'center', padding: '20px', flexDirection: 'column' }}>
+          <div className="suggestion-header" style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <p style={{ fontFamily: 'Newsreader', flex: '1', color: '#FFFFFF' }}>{content}</p>
+            <button className="close-button" onClick={handleClose} style={{ color: '#FFFFFF'}}>X</button>
           </div>
           {isClicked && (
-            <div className="button-container" style={{backgroundColor: '#801212', alignItems: 'center', justifyContent: 'center', padding: '20px'}}>
-              <div className="suggestion-actions" style={{fontFamily: 'Poppins'}}>
-                <button onClick={handleApplyClick} style={{ width: '115.43px', height: '31px', backgroundColor: '#F5F0EF', border: '1px solid #F5F0EF', margin: '5px'}} className="action-button">Apply</button>
-                <button style={{ width: '115.43px', height: '31px', backgroundColor: '#F5F0EF', border: '1px solid #F5F0EF', margin: '5px'}} className="action-button">Ignore</button>
-                <button onClick={handleAskAIClick} style={{ width: '257px', height: '70px', backgroundColor: '#F5F0EF', border: '2px solid #F5F0EF'}} className="action-button">Ask AI</button>
-              </div>
+            <div className="suggestion-actions">
+              <button onClick={handleApplyClick} className="action-button" style={{fontFamily: 'Poppins', color: '#801212' , borderRadius: '5px', width: '115.43px', height: '31px', backgroundColor: '#F5F0EF', border: '1px solid #F5F0EF', margin: '5px'}}>Apply</button>
+              <button className="close-button" onClick={handleClose} style={{ fontFamily: 'Poppins',color: '#801212' ,borderRadius: '5px',  width: '115.43px', height: '31px', backgroundColor: '#F5F0EF', border: '1px solid #F5F0EF', margin: '5px'}} >Ignore</button>
+              {showAskAI && <p>AI is processing your request...</p>}
+              <button onClick={handleShowAskAI} className="action-button" style={{fontFamily: 'Poppins',color: '#801212' ,  borderRadius: '5px', width: '257px', height: '70px', backgroundColor: '#F5F0EF', border: '2px solid #F5F0EF'}} >Ask AI</button>
             </div>
           )}
         </div>
@@ -80,9 +81,9 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content, onShowAs
         <div className="button-container" style={{ alignItems: 'center', justifyContent: 'center', padding: '20px', background:"#FFFFFF"}}>
           <p style={{ fontSize: '28px', fontFamily: 'Newsreader, serif', textAlign: 'center'}}> Save Your Work</p>
                         <div className="button-container" >
-                            <OptionButton text = "Save to Editor AI" onClick={handleOpenModal}/> 
-                            <OptionButton text = "Download as..." /> 
-                            <OptionButton text = "Save to Google Docs" onClick={handleAskAIClick}/> 
+                            <SaveButton text = "Save to Editor AI" onClick={handleOpenModal}/> 
+                            <SaveButton text = "Download as..." /> 
+                            <SaveButton text = "Save to Google Docs"/> 
                         </div>
         </div>
       )}
@@ -95,7 +96,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ header, content, onShowAs
         <SearchBar/> </p>
         <p> Tags:
         <SearchBar/> </p>
-        <button style={{  backgroundColor: '#801212', margin: '5px',}} className="action-button">
+        <button style={{  backgroundColor: '#801212', margin: '5px',}} className="action-button"> Save
         </button>
         
 

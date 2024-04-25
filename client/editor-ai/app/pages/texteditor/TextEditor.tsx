@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from "react";
 import OptionButton from "./Options";
+import SubmitButton from "./Submit";
 
 
 const ReactQuillNoSSR = dynamic(
@@ -21,6 +22,8 @@ const TextEditor = () => {
     const [showSuggestions, setShowSuggestions] = useState(true);
     const [showOptions, setShowOptions] = useState(true);
     const [showSaveContainer, setShowSaveContainer] = useState(false);
+    const [showButtonContainer, setShowButtonContainer] = useState(true);
+    
 
 
 
@@ -54,15 +57,19 @@ const TextEditor = () => {
     };
     const handleShowSuggestions = () => {
         setShowOptions(false);
-  
-    
     };
+    
+    const handleShowButtonContainer = () => {
+         setShowButtonContainer(false);
+    };
+    
+
     return (
         <div>
             <h1 className="text-center"></h1>
             <Link href="./homepage" legacyBehavior> 
                 <a className="text-main-color font-bold font-newsreader flex items-center">
-                    <Image src="/back.svg" alt="logo" width={20} height={20} />
+                    <Image src="/back.svg" alt="logo" width={20} height={20} style={{ marginRight: '8px' }}/>
                     <span> Back </span> </a>
 
               </Link>
@@ -77,25 +84,32 @@ const TextEditor = () => {
                     />
                 </div>
                 <div className=' flex-grow ml-5 p-4 'style={{ flexBasis: '30%'}}>
-                    {showOptions ? ( <> 
-                        <p style={{ fontSize: '28px', fontFamily: 'Newsreader, serif', textAlign: 'center'}}> I need help with: </p>
-                        <div className="button-container" >
-                            <OptionButton text = "Grammer/Spell Check" /> 
-                            <OptionButton text = "Generate New Source(s)" /> 
-                            <OptionButton text = "Create Headline" /> 
-                            <OptionButton text = "Ap Style Check" /> 
-                            <OptionButton text = "Submit" onClick={handleShowSuggestions} /> 
-                        </div>
-                    </>
-                    ) : (
-                        <> <SuggestionBox header='content' content='content' onApply={() => setShowSaveContainer(true)} /> </>
-                    )}
+                {showOptions ? (
+        <>
+            <p style={{ fontSize: '28px', fontFamily: 'Newsreader', textAlign: 'center' }}>I need help with:</p>
+            <div className="button-container">
+                <OptionButton text="Grammar/Spell Check" /> 
+                <OptionButton text="Generate New Source(s)" /> 
+                <OptionButton text="Create Headline" /> 
+                <OptionButton text="AP Style Check" /> 
+                <SubmitButton text="Submit" onClick={handleShowSuggestions} /> 
+            </div>
+        </>
+    ) : (
+        <>
+        {showButtonContainer && (
+            <div style={{ background: '#FFFFFF', padding: '20px', borderRadius: '5px' }}>
+                {/* This is the background button container */}
+         <SuggestionBox header='content' content='Example Suggestion' onApply={() => setShowSaveContainer(true)} onShowAskAI={() => setShowButtonContainer(false)} />
+         </div>
+         )}
+</>
+    )}
                     
-                </div>
+        </div>
             </div>
         </div>
     );
 };
 
 export default TextEditor;
-  

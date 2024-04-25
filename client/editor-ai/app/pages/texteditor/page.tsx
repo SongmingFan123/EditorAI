@@ -22,11 +22,9 @@ import AskAIBot from '@/components/SaveWorkModal';
     
     return (
   
-      <div className="h-screen w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', margin:"0", minHeight: '100vh', padding: '15px' }}>
-        <div className="homepage"> 
+      <div className="w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', height:'100%'}}>
           <TextEditor /> {/* change this line once the projects page is set up */}
         </div>
-      </div>
     );
   };
   
