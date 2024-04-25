@@ -7,7 +7,7 @@ import Head from 'next/head';
 import ProjectSection from './ProjectSection';
 import SearchBar from './SearchBar';
 import ActionButton from './ActionButton';
-import DocumentModal from '@/components/DocumentModal';
+import DocumentModal from '../../components/DocumentModal';
 import { Modal } from 'reactstrap';
 import { useRouter } from 'next/navigation';
 import { handleCreateDocument } from '../../api/document_functions';
