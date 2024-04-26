@@ -21,13 +21,8 @@ def create_app(cred_route=r"./secrets/se-editor-ai-firebase-adminsdk-nd6dz-b1262
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config['CORS_ORIGINS'] = ['http://localhost:3000']
 
-<<<<<<< HEAD:backend/flask_app/__init__.py
     # cred = credentials.Certificate(r"./backend/secrets/se-editor-ai-firebase-adminsdk-nd6dz-b1262c7a32.json")
     cred = credentials.Certificate(json.loads(os.getenv('FIREBASE_CREDENTIALS')))
-=======
-    cred = credentials.Certificate(cred_route)
-    firebase_admin.initialize_app(cred)
->>>>>>> dev:backend/app/__init__.py
 
     firebase_admin.initialize_app(cred)
     
