@@ -1,6 +1,6 @@
 'use client'
 
-import React from "react";
+import React, { useEffect } from "react";
 import dynamic from 'next/dynamic';
 import 'quill/dist/quill.snow.css'
 import SuggestionBox from './SuggestionBox'
@@ -9,6 +9,12 @@ import Image from 'next/image';
 import { useState } from "react";
 import OptionButton from "./Options";
 import SubmitButton from "./Submit";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useAuth } from '../../context/AuthContext';
+
+import {updateDocument,getDocument} from '../../api/document_functions';
+import { textGeneration } from '@huggingface/inference'
+// import { pipeline } from '@xenova/transformers';
 
 
 const ReactQuillNoSSR = dynamic(
@@ -23,9 +29,40 @@ const TextEditor = () => {
     const [showOptions, setShowOptions] = useState(true);
     const [showSaveContainer, setShowSaveContainer] = useState(false);
     const [showButtonContainer, setShowButtonContainer] = useState(true);
+    const router = useRouter();
+    const { user } = useAuth();
+    const userId = user?.uid as string;
+
+    const [documentName, setDocumentName] = useState<string>('');
+    const [documentId, setDocumentId] = useState<string>('');
+    const [documentContent, setDocumentContent] = useState<string>('');
+
+    const searchParams = useSearchParams()
+
+
+    useEffect(() => {
+        const documentId = searchParams.get('documentid') as string;
+        setDocumentId(documentId);
+
+        const fetchDocument = async (documentId:string) => {
+            const document = await getDocument(userId, documentId)
+            console.log("Document:", document[0])
+
+            setDocumentName(document[0]["Title"])
+
+            const documentContent = getDocument(userId, documentId)
+            setDocumentContent(document[0]["Content"])
+        }
+
+        fetchDocument(documentId);
+
+
+
+    }, []);
+
+    const [generatedText, setGeneratedText] = useState('');
+
     
-
-
 
 
     var modules = {
@@ -51,18 +88,57 @@ const TextEditor = () => {
         "list", "color", "bullet", "indent",
         "link", "image", "align", "size",
     ];
-    
-    const handleProcedureContentChange = (content: string) => {
-        console.log("content---->", content);
-    };
+
     const handleShowSuggestions = () => {
         setShowOptions(false);
     };
     
-    const handleShowButtonContainer = () => {
-         setShowButtonContainer(false);
+    const handleProcedureContentChange = async (content: string) => {
+
+        console.log("content---->", content);
+        setDocumentContent(content);
+        await updateDocument(userId,documentId,documentName,content);
     };
-    
+
+    const handleAskEditorAI = async (content:string) => {
+        const accessToken = process.env.NEXT_PUBLIC_HF_ACCESS_TOKEN;
+
+        const modelName = 'mistralai/Mistral-7B-Instruct-v0.2'
+        const prompt = `Please provide 2-3 grammar suggestions and corrections for the following text in bullet format`
+        const input =`PROMPT: ${prompt}. CONTENT:${content}. SUGGESTIONS:`;
+        console.log(content)
+
+        const output = await textGeneration({
+            accessToken: accessToken,
+            model: modelName,
+            inputs: input
+        })
+
+        
+        // const generatedText = output.generated_text
+
+        // const suggestions = generatedText.match(/(?<=SUGGESTIONS:)(.*?)/s)[0].trim();
+        // const bullets = suggestions.match(/- (.*)/g);
+
+        // console.log(bullets);
+
+        const generatedText = output.generated_text;
+
+        // Using optional chaining with nullish coalescing operator to provide a fallback
+        const suggestionsMatch = generatedText.match(/(?<=SUGGESTIONS:)(.*?)/s);
+        const suggestions = suggestionsMatch ? suggestionsMatch[0].trim() : '';
+
+        const bullets = suggestions ? suggestions.match(/- (.*)/g) : [];
+
+        console.log(bullets);
+
+
+        // console.log(generatedText)
+
+
+        setGeneratedText(output.generated_text);
+
+    }
 
     return (
         <div>

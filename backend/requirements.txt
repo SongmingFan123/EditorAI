@@ -1,5 +1,6 @@
 Flask==2.0.1
 firebase-admin==6.4.0
-datetime==3.11
-pytest==7.4.0
-random
+Werkzeug==2.2.2
+Flask-Cors
+datetime
+gunicorn==20.1.0
