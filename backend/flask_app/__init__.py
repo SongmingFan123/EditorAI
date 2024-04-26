@@ -28,6 +28,12 @@ def create_app():
     
 
     routes.register_blueprints(app)
-    print("reaches here")
+    print("reaches here", app)
+
+    @app.route('/')
+    def home():
+        app.logger.info('Home page was accessed')
+        print("ahahahahahahahahahahah")
+        return 'Hello, World!'
 
     return app
