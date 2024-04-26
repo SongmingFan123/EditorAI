@@ -28,6 +28,6 @@ def create_app():
     
 
     routes.register_blueprints(app)
-    app.run(host='0.0.0.0', debug=False)
+    print("reaches here")
 
     return app
