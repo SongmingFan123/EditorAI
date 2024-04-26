@@ -25,9 +25,9 @@ def create_app():
     cred = credentials.Certificate(json.loads(os.getenv('FIREBASE_CREDENTIALS')))
 
     firebase_admin.initialize_app(cred)
-
+    
 
     routes.register_blueprints(app)
-
+    app.run(host='0.0.0.0', debug=False)
 
     return app
