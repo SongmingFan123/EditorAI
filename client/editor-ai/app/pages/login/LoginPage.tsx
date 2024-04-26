@@ -6,7 +6,6 @@ import React from "react";
 import { useRouter } from 'next/navigation'
 import { Poppins } from 'next/font/google'
 import { useAuth } from '../../context/AuthContext';
-import { useAuth } from '../../context/AuthContext';
 
 //const poppins = Poppins({ weight: '400', subsets: ['latin']})
 const LoginPage = () => {
@@ -14,10 +13,7 @@ const LoginPage = () => {
   const [password, setPassword] = React.useState('')
   const [loginError, setLoginError] = React.useState('')
   const [loginFailed, setLoginFailed] = React.useState(false)
-  const [loginFailed, setLoginFailed] = React.useState(false)
   const router = useRouter()
-
-  const { user, signUp, signIn, signOut } = useAuth();
 
 
   const { user, signUp, signIn, signOut } = useAuth();

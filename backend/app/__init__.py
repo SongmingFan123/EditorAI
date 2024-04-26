@@ -6,7 +6,7 @@ from .routes import *
 
 # create_app Flask function
 
-def create_app(cred_route=r"./secrets/se-editor-ai-firebase-adminsdk-nd6dz-b1262c7a32.json", Test=False) -> Flask:
+def create_app(cred_route=r"", Test=False) -> Flask:
 
     app = Flask(__name__)
     app.config["TESTING"] = Test

@@ -108,7 +108,7 @@ const SignupPage = () => {
             type="submit"
             //onClick={handleLogin}
           >
-            sign up
+            Sign up
           </button>
         </form>
         <h1 className="text-center mt-4 normal-font" style={{fontFamily:'poppins', fontWeight: 'light'}}>Already have an account? <a href="/pages/login" className="text-main-color bold-weight underline" style={{fontWeight: 'bold'}}>Log In</a></h1>
