@@ -13,6 +13,7 @@ const ProjectSection = ({ title, searchQuery }) => {
     const fetchProjects = async () => {
       try {
         const response = await getDocuments(userId);
+        console.log(response)
         console.log('Response:', response.message); // Check the response structure
         setProjects(response.message);
       } catch (error) {
