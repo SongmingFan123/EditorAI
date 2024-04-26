@@ -1,30 +1,30 @@
 "use client"
 
-import { FormEvent } from 'react'
 import Image from 'next/image';
-import React from "react";
-import signUp from "@/firebase/auth/signup";
-import { useRouter } from 'next/navigation'
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../../context/AuthContext';
+import { FormEvent, useState } from 'react';
 
 const SignupPage = () => {
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [fullName, setFullName] = React.useState('')
-  const router = useRouter()
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [signupFailed, setSignupFailed] = useState(false); // State variable for signup status
+  const router = useRouter();
+
+  const { user, signUp, signIn, signOut } = useAuth();
 
   const handleForm = async (event: FormEvent) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    const { result, error } = await signUp(email, password,fullName);
-
-    if (error) {
-      return console.log(error)
+    try {
+      await signUp(email, password);
+      router.push('/admin');
+    } catch (error) {
+      setSignupFailed(true); // Set signup status to failed
     }
-
-    // else successful
-    console.log(result)
-    return router.push("/admin")
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center flex-col">

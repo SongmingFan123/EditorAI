@@ -1,13 +1,16 @@
+"use client"
 import './styles/globals.css'
-import SignupPage from './pages/signup/SignupPage';
-import { Sign } from 'crypto';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
 
 function App() {
-  return (
-    <main>
-      <SignupPage />
-    </main>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/pages/login');
+  }, [])
+ 
 }
 
 export default App;

@@ -6,6 +6,7 @@ import React from "react";
 import { useRouter } from 'next/navigation'
 import { Poppins } from 'next/font/google'
 import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 //const poppins = Poppins({ weight: '400', subsets: ['latin']})
 const LoginPage = () => {
@@ -13,7 +14,11 @@ const LoginPage = () => {
   const [password, setPassword] = React.useState('')
   const [loginError, setLoginError] = React.useState('')
   const [loginFailed, setLoginFailed] = React.useState(false)
+  const [loginFailed, setLoginFailed] = React.useState(false)
   const router = useRouter()
+
+  const { user, signUp, signIn, signOut } = useAuth();
+
 
   const { user, signUp, signIn, signOut } = useAuth();
 
@@ -21,6 +26,7 @@ const LoginPage = () => {
   const handleForm = async (event: FormEvent) => {
     event.preventDefault();
 
+    await signIn(email, password);
     await signIn(email, password);
 
 
@@ -62,6 +68,7 @@ const LoginPage = () => {
               value={email}
               placeholder="Email"
               // className='font-poppins pl-3 placeholder-color custom-border-opacity'
+              // className='font-poppins pl-3 placeholder-color custom-border-opacity'
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -83,6 +90,7 @@ const LoginPage = () => {
                 }}
               type="password"
               placeholder='Password'
+              // className='pl-3 font-poppins placeholder-color custom-border-opacity' 
               // className='pl-3 font-poppins placeholder-color custom-border-opacity' 
               value={password}
               onChange={(e) => setPassword(e.target.value)}

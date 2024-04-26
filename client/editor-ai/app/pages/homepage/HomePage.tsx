@@ -41,15 +41,13 @@ const HomePage = () => {
   const handlePopupSubmit = async () => {
     const documentId = await handleCreateDocument(userId, documentName, "");
     console.log('DocumentId:', documentId);
-    setShowPopup(false);
-
     if (documentId == true) {
       setCreateDocumentFailed(false);
       setShowPopup(false);
     } else {
       setCreateDocumentFailed(true);
     }
-  };   
+  };
 
 // Code for Modal for Priority Projects
 // <ActionButton text="Create Document" onClick={() => setOpen(true)} icon1="/+.png"/>
@@ -148,4 +146,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

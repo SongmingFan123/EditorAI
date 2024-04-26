@@ -1,12 +1,12 @@
 from flask import Blueprint, request
-from ..services import *
+from ..services import firestore_service
 from ..utils import *
-from flask_cors import cross_origin
+from flask_cors import cross_origin, CORS
 
 
-bp = Blueprint('document', __name__)
+bp = Blueprint('documents', __name__)
+CORS(bp)
 docsOrCollection = {"d": "docs", "c": "collection"}
-
 
 @bp.route('/create', methods=['POST'])
 @cross_origin()
@@ -31,10 +31,11 @@ def create_document():
             
         res = fireconfig.add_document(collection_route, dateHandler.last_modified({"Title": data["document_name"], "Content": data["document"]}))
 
-        if not res:
+        if not res[0]:
             return handle_server_error("Unknown error occured")
         
-        return handle_success("Successfully posted!")
+        return handle_success("Successfully posted!", res[1])
+
 
     except Exception as e:
         return handle_server_error(e)
@@ -47,19 +48,16 @@ def get_document(userID, documentID):
     """
         Reads document with the given userID and documentID
     """
-
     try:
         fireconfig = firestore_service()
-
         collection_route = [(docsOrCollection['c'], "documents"), \
                                         (docsOrCollection['d'], userID), \
                                             (docsOrCollection['c'], "docs") \
                                     ]    
-        
         res = fireconfig.get_document(collection_route, documentID)
         if not res:
             return handle_not_found()
-        return handle_success(res)
+        return handle_success(list(res)[0])
 
     except Exception as e:
         return handle_server_error(e)
@@ -89,7 +87,6 @@ def update_document():
                 return handle_bad_request("Name already exists, please try again")
 
         newdoc = dateHandler.last_modified({"Title": data["document_name"], "Content": data["new_document"]})
-        print(newdoc)
 
         res = fireconfig.update_document(collection_route, data["document_id"], newdoc)
         if not res:
@@ -104,10 +101,9 @@ def update_document():
 @bp.route('/delete/<userID>/<documentID>', methods=["DELETE"])
 @cross_origin()
 def delete_document(userID, documentID):
-    """ Deletes document with given userID and documentID"""
+    """ Deletes document with given userID and documentID """
     try:
         fireconfig = firestore_service()
-
         collection_route = [(docsOrCollection['c'], "documents"), \
                                         (docsOrCollection['d'], userID), \
                                             (docsOrCollection['c'], "docs") \
@@ -126,6 +122,7 @@ def delete_document(userID, documentID):
 @bp.route('/getall/<userID>', methods=["GET"])
 @cross_origin()
 def get_all_documents(userID):
+    """ Returns all the documents of a given user """
     try:
         fireconfig = firestore_service()
         collection_route = [(docsOrCollection['c'], "documents"), \

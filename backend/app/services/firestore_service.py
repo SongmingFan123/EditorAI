@@ -5,11 +5,12 @@ from firebase_admin import firestore
 class firestore_service:
 
     def __init__(self):
+        
         self.db = firestore.client()
 
 
     
-    def parse_firestore_data(self, path: "list[tuple[str]]"):
+    def parse_firestore_data(self, path: "list[tuple[str, str]]"):
         """Pareses the input field to navigate to the right data location"""
         ref = self.db
         for i, segment in path:
@@ -21,18 +22,19 @@ class firestore_service:
     
 
 
-    def add_document(self, collection_navigation: "list[tuple[str]]", document_data: dict) -> bool:
+    def add_document(self, collection_navigation: "list[tuple[str, str]]", document_data: dict) -> "tuple[bool, str]":
         """Addes document given the path"""
         try:
             ref = self.parse_firestore_data(collection_navigation)
-            ref.add(document_data)
-            return True
+            new_doc_ref = ref.document()
+            new_doc_ref.set(document_data)
+            return (True, new_doc_ref.id)
         except Exception as e:
             print(f"Failed to add document: {e}")
-            return False
+            return (False, "")
 
 
-    def get_document(self, collection_navigation: "list[tuple[str]]", document_id: str) -> dict:
+    def get_document(self, collection_navigation: "list[tuple[str, str]]", document_id: str) -> dict:
         """Gets documents given the path and ID, including the document's ID in the return."""
         try:
             ref = self.parse_firestore_data(collection_navigation + [("document", document_id)])
@@ -48,7 +50,7 @@ class firestore_service:
             return None
 
 
-    def update_document(self, collection_navigation: "list[tuple[str]]", document_id: str, update_data: dict) -> bool:
+    def update_document(self, collection_navigation: "list[tuple[str, str]]", document_id: str, update_data: dict) -> bool:
         """Updates document given the path and document ID"""
         try:
             ref = self.parse_firestore_data(collection_navigation + [["document", document_id]])
@@ -59,7 +61,8 @@ class firestore_service:
             return False
 
 
-    def delete_document(self, collection_navigation: "list[tuple[str]]", document_id: str) -> bool:
+
+    def delete_document(self, collection_navigation: "list[tuple[str, str]]", document_id: str) -> bool:
         """Deletes documents given the path and ID"""
         try:
             ref = self.parse_firestore_data(collection_navigation + [["document", document_id]])
@@ -70,7 +73,7 @@ class firestore_service:
             return False
 
 
-    def get_all_documents(self, collection_navigation: "list[tuple[str]]") -> "list[dict]":
+    def get_all_documents(self, collection_navigation: "list[tuple[str, str]]") -> "list[dict]":
         """Gets all documents in the path, including each document's ID in their respective return."""
         try:
             ref = self.parse_firestore_data(collection_navigation)
