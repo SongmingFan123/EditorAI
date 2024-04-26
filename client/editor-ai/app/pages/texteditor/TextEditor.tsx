@@ -104,12 +104,23 @@ const TextEditor = () => {
         })
 
         
-        const generatedText = output.generated_text
+        // const generatedText = output.generated_text
 
-        const suggestions = generatedText.match(/(?<=SUGGESTIONS:)(.*?)/s)[0].trim();
-        const bullets = suggestions.match(/- (.*)/g);
+        // const suggestions = generatedText.match(/(?<=SUGGESTIONS:)(.*?)/s)[0].trim();
+        // const bullets = suggestions.match(/- (.*)/g);
+
+        // console.log(bullets);
+
+        const generatedText = output.generated_text;
+
+        // Using optional chaining with nullish coalescing operator to provide a fallback
+        const suggestionsMatch = generatedText.match(/(?<=SUGGESTIONS:)(.*?)/s);
+        const suggestions = suggestionsMatch ? suggestionsMatch[0].trim() : '';
+
+        const bullets = suggestions ? suggestions.match(/- (.*)/g) : [];
 
         console.log(bullets);
+
 
         // console.log(generatedText)
 

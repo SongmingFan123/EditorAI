@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+from flask_app import create_app
+=======
 from app import create_app
+>>>>>>> dev
 import pytest
 import random
 import threading
