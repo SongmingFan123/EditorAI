@@ -32,7 +32,6 @@ def create_app():
 
     @app.route('/')
     def home():
-        app.logger.info('Home page was accessed')
         print("ahahahahahahahahahahah")
         return 'Hello, World!'
 

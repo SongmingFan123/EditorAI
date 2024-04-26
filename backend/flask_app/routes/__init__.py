@@ -8,6 +8,6 @@ from .AI_routes import bp as AI_bp
 
 """A function to register all the blueprints."""
 def register_blueprints(app: Flask):
-    app.register_blueprint(doc_bp, url_prefix='/document')
+    app.register_blueprint(doc_bp, url_prefix='/documents')
     # app.register_blueprint(AI_bp, url_prefix='/AI')
 
