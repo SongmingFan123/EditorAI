@@ -3,7 +3,7 @@ import '../styles/SearchBar.css';
 
 const SearchBar: React.FC = () => (
     <div>
-      <input type="text" placeholder="Search Documents and Files..." />
+      <input type="text" placeholder="..." />
     </div>
 );
 

@@ -15,12 +15,14 @@ const LoginPage = () => {
   const [loginFailed, setLoginFailed] = React.useState(false)
   const router = useRouter()
 
+
   const { user, signUp, signIn, signOut } = useAuth();
 
 
   const handleForm = async (event: FormEvent) => {
     event.preventDefault();
 
+    await signIn(email, password);
     await signIn(email, password);
 
 
@@ -32,7 +34,7 @@ const LoginPage = () => {
       <div className="bg-brand-tan p-8 rounded-lg shadow-md flex flex-col items-center" style={{ width: '532px', 
        height: '640px',borderRadius: '9px 0px 0px 0px'}}>
         <div className="flex justify-center w-full">
-        <Image src="/Ellipse 2.png" alt="Logo" width={90} height={90} 
+        <Image src="/editorai.svg" alt="Logo" width={90} height={90} 
         //style={{top: '135px', left: '595px', position: 'absolute'}} 
         />
         </div>
@@ -47,7 +49,7 @@ const LoginPage = () => {
           <div className="mb-4">
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px'}}></div>
             <input
-              className="w-full border p-2" style={{ 
+              className="w-full border p-2 pl-3 placeholder-color custom-border-opacity" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '347px',
@@ -62,13 +64,14 @@ const LoginPage = () => {
               value={email}
               placeholder="Email"
               // className='font-poppins pl-3 placeholder-color custom-border-opacity'
+              // className='font-poppins pl-3 placeholder-color custom-border-opacity'
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-4">
-          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>
+          <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)',width: '100%', position: 'relative', top: '50px' }}></div>
             <input
-              className="w-full border p-2" style={{ 
+              className="w-full border p-2 pl-3 placeholder-color custom-border-opacity" style={{ 
                 width: '341px', 
                 height: '42px',
                 top: '413px',
@@ -83,6 +86,7 @@ const LoginPage = () => {
                 }}
               type="password"
               placeholder='Password'
+              // className='pl-3 font-poppins placeholder-color custom-border-opacity' 
               // className='pl-3 font-poppins placeholder-color custom-border-opacity' 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -103,7 +107,6 @@ const LoginPage = () => {
             log in
           </button>
         </form>
-
         <h1  className="text-center mt-4 normal-font" style={{fontFamily:'poppins', fontWeight: 'light'}}>
          Dont have an account? 
          </h1>
@@ -114,5 +117,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
 

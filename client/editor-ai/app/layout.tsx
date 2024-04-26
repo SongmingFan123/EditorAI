@@ -18,11 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
+        <AuthProvider>\
           <Header />
-          {children}
+           <div style={{ paddingTop: '120px' }}>  {/* This padding should match or exceed the header's height */}
+            {children}
+          </div>
         </AuthProvider>      
       </body>
     </html>

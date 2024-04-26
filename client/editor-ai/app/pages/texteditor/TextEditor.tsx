@@ -1,11 +1,14 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import dynamic from 'next/dynamic';
-import 'quill/dist/quill.snow.css';
-import SuggestionBox from './SuggestionBox';
+import 'quill/dist/quill.snow.css'
+import SuggestionBox from './SuggestionBox'
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from "react";
+import OptionButton from "./Options";
+import SubmitButton from "./Submit";
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 
@@ -13,15 +16,19 @@ import {updateDocument,getDocument} from '../../api/document_functions';
 import { textGeneration } from '@huggingface/inference'
 // import { pipeline } from '@xenova/transformers';
 
+
 const ReactQuillNoSSR = dynamic(
   () => import('react-quill'), 
   { ssr: false }
 );
 
 
+
 const TextEditor = () => {
-
-
+    const [showSuggestions, setShowSuggestions] = useState(true);
+    const [showOptions, setShowOptions] = useState(true);
+    const [showSaveContainer, setShowSaveContainer] = useState(false);
+    const [showButtonContainer, setShowButtonContainer] = useState(true);
     const router = useRouter();
     const { user } = useAuth();
     const userId = user?.uid as string;
@@ -81,6 +88,10 @@ const TextEditor = () => {
         "list", "color", "bullet", "indent",
         "link", "image", "align", "size",
     ];
+
+    const handleShowSuggestions = () => {
+        setShowOptions(false);
+    };
     
     const handleProcedureContentChange = async (content: string) => {
 
@@ -129,57 +140,52 @@ const TextEditor = () => {
 
     }
 
-
-
-
     return (
         <div>
+            <h1 className="text-center"></h1>
             <Link href="./homepage" legacyBehavior> 
                 <a className="text-main-color font-bold font-newsreader flex items-center">
-                    <Image src="/Vector (2).png" alt="logo" width={20} height={20} />
-                    <span>Back</span> </a>
-            </Link>
-            
+                    <Image src="/back.svg" alt="logo" width={20} height={20} style={{ marginRight: '8px' }}/>
+                    <span> Back </span> </a>
 
-   
-
+              </Link>
             <div className='flex justify-between p-5 h-full font-newsreader'>
-                <div className="text-center">
-                    <h1 className="text-4xl font-bold font-newsreader">{documentName}</h1>
-                    <div className='flex-1 mr-5'>
+                <div className='bg-white flex-grow mr-5 p-4' style={{ flexBasis: '70%' }}>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
-
-                        value={documentContent}
-
+                        placeholder="write your content ...."
                         onChange={handleProcedureContentChange}
-                        className='h-[50vh] border border-gray-300 rounded-lg'
+                        className='h-[80vh] rounded-lg'
                     />
                 </div>
-                </div>
-                
-                <div className="w-[20vw]">
-                    <div className="bg-white p-4 mb-5 rounded-lg">
-                        <h2>Suggested Edits</h2>
-                        <ul className='list-none p-0'>
-                            <li className='mb-2.5 bg-main-color rounded-lg text-white'style={{fontWeight: '25'}}>
-                                <SuggestionBox header="Suggestion 1" content="This is a suggestion" />
-                            </li>
-                            <li className='mb-2.5 bg-main-color rounded-lg text-white'>
-                                <SuggestionBox header="Suggestion 2" content="This is another suggestion" />
-                            </li>
-                        </ul>
-                    </div>
-                    <div className='bg-white p-4 rounded-lg font-newsreader'>
-                        <button onClick={() => handleAskEditorAI(documentContent)} className="bg-main-color text-white px-4 py-2 rounded-lg">Ask EditorAI</button>
-                        <p>{generatedText}</p>
-                    </div>
-                </div>
+                <div className=' flex-grow ml-5 p-4 'style={{ flexBasis: '30%'}}>
+                {showOptions ? (
+        <>
+            <p style={{ fontSize: '28px', fontFamily: 'Newsreader', textAlign: 'center' }}>I need help with:</p>
+            <div className="button-container">
+                <OptionButton text="Grammar/Spell Check" /> 
+                <OptionButton text="Generate New Source(s)" /> 
+                <OptionButton text="Create Headline" /> 
+                <OptionButton text="AP Style Check" /> 
+                <SubmitButton text="Submit" onClick={handleShowSuggestions} /> 
+            </div>
+        </>
+    ) : (
+        <>
+        {showButtonContainer && (
+            <div style={{ background: '#FFFFFF', padding: '20px', borderRadius: '5px' }}>
+                {/* This is the background button container */}
+         <SuggestionBox header='content' content='Example Suggestion' onApply={() => setShowSaveContainer(true)} onShowAskAI={() => setShowButtonContainer(false)} />
+         </div>
+         )}
+</>
+    )}
+                    
+        </div>
             </div>
         </div>
     );
 };
-
 
 export default TextEditor;

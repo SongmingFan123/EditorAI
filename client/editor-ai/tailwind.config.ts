@@ -9,9 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      //fontFamily: {
-      //  poppins: ["Poppins", "sans-serif"],
-      //},
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        newsreader: ['Newsreader', 'sans-serif']
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -24,7 +25,7 @@ const config: Config = {
         '1/6': '0% 0%',
       },
       colors: {
-        'brand-red': '#9F4949',
+        'brand-red': '#801212',
         'brand-tan': '#F5F0EF',
         'main-color': '#801212',
         'login-text': '#31302F',
