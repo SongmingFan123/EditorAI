@@ -28,11 +28,5 @@ def create_app():
     
 
     routes.register_blueprints(app)
-    print("reaches here", app)
-
-    @app.route('/')
-    def home():
-        print("ahahahahahahahahahahah")
-        return 'Hello, World!'
 
     return app
