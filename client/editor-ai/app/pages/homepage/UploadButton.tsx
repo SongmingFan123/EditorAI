@@ -4,7 +4,11 @@ import React, { useState, ChangeEvent } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { useAuth } from '../../context/AuthContext';
 
-function UploadButton({ createDocument }) {
+interface UploadButtonProps {
+    createDocument: (userId: string, documentName: string, documentContent: string) => Promise<boolean>;
+}
+
+function UploadButton({ createDocument }: UploadButtonProps) {
     const { user } = useAuth();
     const userId = user?.uid as string;
 
