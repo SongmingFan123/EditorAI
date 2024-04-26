@@ -7,22 +7,23 @@ Original file is located at
     https://colab.research.google.com/drive/1ctAkxTyhMjOSajHEKX0i8g65WgcUnAFo
 """
 
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration
-import os
+# from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration
+# import os
 # from google.colab import userdata
-import keras
+# import keras
 # import keras_nlp
 
 class editorai_chatbot:
     def __init__(self):
+        pass
         # Initialize models
-        self.title_tokenizer = AutoTokenizer.from_pretrained("czearing/article-title-generator")
-        self.title_model = AutoModelForSeq2SeqLM.from_pretrained("czearing/article-title-generator")
+        # self.title_tokenizer = AutoTokenizer.from_pretrained("czearing/article-title-generator")
+        # self.title_model = AutoModelForSeq2SeqLM.from_pretrained("czearing/article-title-generator")
 
-        self.summary_tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-large")
-        self.summary_model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-large")
+        # self.summary_tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-large")
+        # self.summary_model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-large")
 
-        self.copy_model = keras.models.GemmaCausalLM.from_preset("gemma_2b_en")
+        # self.copy_model = keras.models.GemmaCausalLM.from_preset("gemma_2b_en")
 
         # Set environment variables
         # try:
@@ -32,24 +33,27 @@ class editorai_chatbot:
         #     print("Error:", e)
         #     os.environ["KAGGLE_USERNAME"] = "your_username"
         #     os.environ["KAGGLE_KEY"] = "your_key"
-        os.environ["KERAS_BACKEND"] = "jax"
-        os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
+        # os.environ["KERAS_BACKEND"] = "jax"
+        # os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
 
     def create_title(self, article: str) -> str:
-        input_text = f"Create a title for this text: {article}"
-        input_ids = self.title_tokenizer(input_text, return_tensors="pt").input_ids
-        outputs = self.title_model.generate(input_ids, max_length=50, num_return_sequences=1)
-        title = self.title_tokenizer.decode(outputs[0], skip_special_tokens=True)
-        return title
+        pass
+        # input_text = f"Create a title for this text: {article}"
+        # input_ids = self.title_tokenizer(input_text, return_tensors="pt").input_ids
+        # outputs = self.title_model.generate(input_ids, max_length=50, num_return_sequences=1)
+        # title = self.title_tokenizer.decode(outputs[0], skip_special_tokens=True)
+        # return title
 
     def summarize_article(self, article: str) -> str:
-        input_text = f"Summarize: {article}"
-        input_ids = self.summary_tokenizer(input_text, return_tensors="pt").input_ids
-        outputs = self.summary_model.generate(input_ids, max_length=100)
-        summary = self.summary_tokenizer.decode(outputs[0])
-        return summary
+        pass
+        # input_text = f"Summarize: {article}"
+        # input_ids = self.summary_tokenizer(input_text, return_tensors="pt").input_ids
+        # outputs = self.summary_model.generate(input_ids, max_length=100)
+        # summary = self.summary_tokenizer.decode(outputs[0])
+        # return summary
 
     def create_social_media_copy(self, article:str) -> str:
-        input_text = f"Craft a social media transcript for the following text that is both engaging, with emojis and Emphasizes the core message of the article, Keep the tone positive and relatable. : {article}"
-        social_media_copy = self.copy_model.generate(input_text, max_length=300)
-        return social_media_copy
+        # input_text = f"Craft a social media transcript for the following text that is both engaging, with emojis and Emphasizes the core message of the article, Keep the tone positive and relatable. : {article}"
+        # social_media_copy = self.copy_model.generate(input_text, max_length=300)
+        # return social_media_copy
+        pass
