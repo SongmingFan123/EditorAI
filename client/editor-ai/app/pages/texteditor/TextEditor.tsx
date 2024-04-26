@@ -46,12 +46,11 @@ const TextEditor = () => {
 
         const fetchDocument = async (documentId:string) => {
             const document = await getDocument(userId, documentId)
-            console.log("Document:", document[0])
+            console.log("Document:", document.message.Title)
 
-            setDocumentName(document[0]["Title"])
-
-            const documentContent = getDocument(userId, documentId)
-            setDocumentContent(document[0]["Content"])
+            setDocumentName(document.message.Title)
+            console.log("test: ", document.message.Content)
+            setDocumentContent(document.message.Content)
         }
 
         fetchDocument(documentId);
