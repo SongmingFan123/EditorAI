@@ -1,8 +1,3 @@
-# pip install azure-identity
-# pip install --upgrade keras-nlp
-# pip install azure-keyvault-secrets
-
-# Importing necessary libraries
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration
 import os
 import keras
@@ -14,19 +9,25 @@ from azure.keyvault.secrets import SecretClient
 class PromoteBot:
   def __init__(self):
         # Initialize models
+        
 
         self.copy_model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
- 
-         # Set environment variables (kaggle/Azure)
+
+        # Set environment variables
+         # Set environment variables
         credential = DefaultAzureCredential()
         vault_url = "https://kagglegemma.vault.azure.net"  # Update with your Key Vault URL
         secret_client = SecretClient(vault_url=vault_url, credential=credential)
 
+        #Social media copy 
+        self.smc = "" 
+
         try:
-            # Get username and API key 
+            # Get username and API key from Key Vault secrets
             username_secret = secret_client.get_secret("Username").value
             api_key_secret = secret_client.get_secret("Key").value
 
+            # Set environment variables
             os.environ["KAGGLE_USERNAME"] = username_secret
             os.environ["KAGGLE_KEY"] = api_key_secret
         except Exception as e:
@@ -37,65 +38,134 @@ class PromoteBot:
         os.environ["KERAS_BACKEND"] = "jax"
         os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
 
-         # Authenticate with Twitter/other social API
-         #FB
-         #INSTA
-       
-  
-    def conversational_style(self, article):
-        input_text = (
-            'Revise the original text to enhance its conversational and engaging tone '
-            'while maintaining its original meaning. Ensure that the meaning of the '
-            'text remains intact and that no additional or inaccurate information '
-            'is added. Here is the original text: ' + article
-        )
-        outputs = self.model.generate(input_text, max_length=500)
-        return outputs
-
-    def data_driven_style(self, article):
-        input_text = (
-            'Revise the original text to enhance its emphasis on the data provided '
-            'in the original text, making it data-driven and analytical in its '
-            'approach to interpreting the data within the context of the article\'s main points. '
-            'Ensure that the meaning of the text remains intact and that no additional '
-            'or inaccurate information is added. Here is the original text: ' + article
-        )
-        outputs = self.model.generate(input_text, max_length=500)
-        return outputs
-
 
   def create_social_media_copy(self, article):
         input_text = f"Craft a social media transcript for the following text that is both engaging, with emojis and Emphasizes the core message of the article, Keep the tone positive and relatable. : {article}"
         social_media_copy = self.copy_model.generate(input_text, max_length=300)
-        return social_media_copy
-      
-    def make_stylistic_changes(self, article_text):
-        print("Stylistic options:")
-        print("1: Conversational and Engaging")
-        print("2: Data-driven and Analytical")
+        self.smc = social_media_copy
+       
 
-        choice = input("Enter your choice: ")
+# Posting the social media copy to SM NEED Spark Tokens for social medai routes
 
-        if choice == "1":
-            article = self.conversational_style(article_text)
-            conversational_social_copy = self.create_social_media_copy(article)
-            # return  conversational_social_copy --> put in social media box through api
-        elif choice == "2":
-            article = self.data_driven_style(article_text)
-            data_social_copy = self.create_social_media_copy(article)
-            # return data_social_copy --> put in social media box through api
-        else:
-            return "Invalid choice. Please try again."
 
-  def process_social_request(self, option_text, article_text):
+      def post_to_facebook(self, social_media_copy ):
+        # Facebook API 
+        url = "https://graph.facebook.com/v12.0/me/feed"
+
+        #Access Token 
+        fb_access_token = "ACCESS_TOKEN_HERE"
+
+        params = {
+            "access_token": fb_access_token,
+            "message": social_media_copy
+        }
+
+        try:
+            # Send POST / Facebook API 
+            response = requests.post(url, params=params)
+            response.raise_for_status()  
+            post_id = response.json().get("id")
+            return f"Post created successfully! Post ID: {post_id}"
+        
+        except requests.exceptions.HTTPError as err:
+            # HTTP error 
+            return f"Error creating post: {err}"
+
+        except Exception as e:
+            # Other errors 
+            return f"An error occurred: {e}"
+
+
+    def post_to_twitter(self, social_media_copy):
+        # Twitter API 
+        url = "https://api.twitter.com/2/tweets"
+
+        # NEED TOKEN
+        access_token = "YOUR_OAUTH_ACCESS_TOKEN_HERE"
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json"
+        }
+
+        # JSON body 
+        tweet_body = {
+            "text": social_media_copy
+        }
+
+        try:
+            # Send POST request to Twitter API to create a tweet
+            response = requests.post(url, headers=headers, json=tweet_body)
+            response.raise_for_status()  # 
+
+            tweet_data = response.json()["data"]
+            tweet_id = tweet_data["id"]
+            tweet_text = tweet_data["text"]
+            
+            return f"Tweet posted successfully! Tweet ID: {tweet_id}, Text: {tweet_text}"
+        
+        except requests.exceptions.HTTPError as err:
+            # HTTP error  
+            return f"Error posting tweet: {err}"
+
+        except Exception as e:
+            # Other errors  
+            return f"An error occurred: {e}"
+
+
+  def process_social_request(self, option_text, social_media_copy):
         if option_button == 'Twitter':
-            # Print SM Copy to Twitter/ Need APIKEY box
+            #Login
+
+            #Post to twitter
+            post_to_twitter(self.smc)
             pass
         elif option_button == 'Facebook':
-            # Print SM Copy to Facebook/APIKEY bos
-            pass
-        elif option_button == 'Instagram':
-            # Print SM Copy to Instagram/APIKEY
+            #Login
+
+            #Post to twitter
+            post_to_facebook(self, self.smc):
             pass
         else:
             return "Invalid option selected. Please select Twitter, Facebook, or Instagram."
+
+# IN THE FUTURE 
+    # def conversational_style(self, article):
+    #     input_text = (
+    #         'Revise the original text to enhance its conversational and engaging tone '
+    #         'while maintaining its original meaning. Ensure that the meaning of the '
+    #         'text remains intact and that no additional or inaccurate information '
+    #         'is added. Here is the original text: ' + article
+    #     )
+    #     outputs = self.model.generate(input_text, max_length=500)
+    #     return outputs
+
+    # def data_driven_style(self, article):
+    #     input_text = (
+    #         'Revise the original text to enhance its emphasis on the data provided '
+    #         'in the original text, making it data-driven and analytical in its '
+    #         'approach to interpreting the data within the context of the article\'s main points. '
+    #         'Ensure that the meaning of the text remains intact and that no additional '
+    #         'or inaccurate information is added. Here is the original text: ' + article
+    #     )
+    #     outputs = self.model.generate(input_text, max_length=500)
+    #     return outputs   
+
+    # def make_stylistic_changes(self, article_text):
+    #     print("Stylistic options:")
+    #     print("1: Conversational and Engaging")
+    #     print("2: Data-driven and Analytical")
+
+    #     choice = input("Enter your choice: ")
+
+    #     if choice == "1":
+    #         article = self.conversational_style(article_text)
+    #         social_copy = self.create_social_media_copy(article)
+    #         self.smc = social_media_copy
+             
+    #     elif choice == "2":
+    #         article = self.data_driven_style(article_text)
+    #         return  social_copy = self.create_social_media_copy(article)
+    #         self.smc = social_media_copy
+
+    #     else:
+    #         return "Invalid choice. Please try again."
