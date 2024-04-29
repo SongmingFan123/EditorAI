@@ -67,7 +67,7 @@ class EditorAIChatbot:
         outputs = self.model.generate(input_text, max_length=10) #max length of research ai api
         return outputs
 
-    def generate_source(self, article):
+      def generate_source(self, article):
         summary = self.summarize_article(article)
         #semanticscholar api
         headers = {'x-api-key': self.s2_api_key}
@@ -78,21 +78,23 @@ class EditorAIChatbot:
             response = requests.get(url, params=params, headers=headers)
             response.raise_for_status()  
             papers = response.json().get("data", [])
+            # Gives ONE similar resource to user
             if papers:
-      # Gives ONE similar resource
-                print("Title:", papers[0]["title"])
-                print("Paper ID:", papers[0]["paperId"])
-            else:
-                print("No papers found matching the summary.")
+                 first_resource = papers[0]
+                 authors = first_resource.get("authors", [])
+            if authors:
+              first_author = authors[0]  
+              self.generate_source = f"Title: {first_resource['title']}, Paper ID: {first_resource['paperId']}, Author: {first_author }"
 
+            else: #"No author info
+              self.generate_source = f"Title: {first_resource['title']}, Paper ID: {first_resource['paperId']}"
+              
         except requests.exceptions.HTTPError as err:
             # HTTP error 
             print("Error:", err)
 
         except Exception as e:
             print("An error occurred:", e)
-
-    
     
     def process_user_request(self, option, article_text):
         if option == "create headline":
