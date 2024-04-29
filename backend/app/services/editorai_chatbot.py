@@ -49,7 +49,7 @@ class EditorAIChatbot:
         self. article_headline = output
         return outputs
 
-
+#Function that checks the article for grammar and spelling errors and fixes them
     def grammar_check(self, article):
         input_text = ('Revise the original text to correct any grammatical and spelling errors, '
       'ensuring that the meaning of the text remains intact and that no additional '
@@ -57,17 +57,15 @@ class EditorAIChatbot:
 
         outputs = self.model.generate(input_text, max_length=500, num_return_sequences=1)
         self. revised_article = output
-
-    
-        return outputs
-
+        return output
+    #Finds the topics of the article 
     def summarize_article(self, article):
         input_text = ('Summarize the original text in two words or less,'
       'ensuring that the meaning of the text remains intact and that no additional '
             'or inaccurate information added. Here is the original text: ' + article)
         outputs = self.model.generate(input_text, max_length=10) #max length of research ai api
         return outputs
-
+# Function that uses the found topics to find scholarly articles (through API)  related to their article
     def generate_source(self, article):
         summary = self.summarize_article(article)
         #semanticscholar api
@@ -79,7 +77,7 @@ class EditorAIChatbot:
             response = requests.get(url, params=params, headers=headers)
             response.raise_for_status()  
             papers = response.json().get("data", [])
-            # Gives ONE similar resource to user
+            # Finds ONE similar resource to the user's article
             if papers:
                  first_resource = papers[0]
                  authors = first_resource.get("authors", [])
@@ -98,7 +96,7 @@ class EditorAIChatbot:
             print("An error occurred:", e)
 
     
-    
+    # For Testing but will be aligned to buttons on the frontend 
     def process_user_request(self, option, article_text):
         if option == "create headline":
             return self.create_headline(article_text)
