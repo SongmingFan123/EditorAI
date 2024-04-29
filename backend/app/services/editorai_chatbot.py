@@ -16,8 +16,6 @@ class EditorAIChatbot:
 
         self.model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
 
-        #Create new azure key for scholar api
-        self.s2_api_key = "mnflo7GDLb29nSeshdGH05xJxEUp5JXO81fyIKJm"
 
         # Set environment variables
         credential = DefaultAzureCredential()
