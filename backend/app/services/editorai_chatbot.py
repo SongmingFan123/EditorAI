@@ -58,7 +58,7 @@ class EditorAIChatbot:
         outputs = self.model.generate(input_text, max_length=500, num_return_sequences=1)
         self. revised_article = output
 
-        check
+    
         return outputs
 
     def summarize_article(self, article):
