@@ -1,7 +1,3 @@
-# pip install azure-identity
-# pip install --upgrade keras-nlp
-# pip install azure-keyvault-secrets
-
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration
 import os
 import keras
@@ -13,6 +9,9 @@ class EditorAIChatbot:
     def __init__(self):
         # Initialize models
 
+        self. article_headline = ""
+        self. generate_source = ""
+        self. revised_article = ""
 
         self.model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
 
@@ -45,8 +44,9 @@ class EditorAIChatbot:
         os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
 
     def create_headline(self, article):
-        input_text = f"Create a title for this text: {article}"
+        input_text = f"Create a title for this text based on the original text. Original Text: {article}"
         outputs = self.model.generate(input_text, max_length=50, num_return_sequences=1)
+        self. article_headline = output
         return outputs
 
 
@@ -56,6 +56,9 @@ class EditorAIChatbot:
             'or inaccurate information is added. Here is the original text: ' + article)
 
         outputs = self.model.generate(input_text, max_length=500, num_return_sequences=1)
+        self. revised_article = output
+
+        check
         return outputs
 
     def summarize_article(self, article):
@@ -65,7 +68,7 @@ class EditorAIChatbot:
         outputs = self.model.generate(input_text, max_length=10) #max length of research ai api
         return outputs
 
-      def generate_source(self, article):
+    def generate_source(self, article):
         summary = self.summarize_article(article)
         #semanticscholar api
         headers = {'x-api-key': self.s2_api_key}
@@ -86,13 +89,15 @@ class EditorAIChatbot:
 
             else: #"No author info
               self.generate_source = f"Title: {first_resource['title']}, Paper ID: {first_resource['paperId']}"
-              
+
         except requests.exceptions.HTTPError as err:
             # HTTP error 
             print("Error:", err)
 
         except Exception as e:
             print("An error occurred:", e)
+
+    
     
     def process_user_request(self, option, article_text):
         if option == "create headline":
