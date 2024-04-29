@@ -37,92 +37,62 @@ class EditorAIChatbot:
         os.environ["KERAS_BACKEND"] = "jax"
         os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
 
-    def create_title(self, article):
+    def create_headline(self, article):
         input_text = f"Create a title for this text: {article}"
         outputs = self.model.generate(input_text, max_length=50, num_return_sequences=1)
         return outputs
 
+
+    def grammer_check(self, article):
+        input_text = ('Revise the original text to correct any grammatical and spelling errors, '
+      'ensuring that the meaning of the text remains intact and that no additional '
+            'or inaccurate information is added. Here is the original text: ' + article
+)
+
+        outputs = self.model.generate(input_text, max_length=500, num_return_sequences=1)
+        return outputs
+
     def summarize_article(self, article):
         input_text = f"Summarize: {article}"
-        outputs = self.model.generate(input_text, max_length=100)
+        outputs = self.model.generate(input_text, max_length=30) #max length of research ai api
         return outputs
-      # Style section
-    def formal_style (self,article):
-      input_text = (
-        'Revise the original text to enhance its formality and professionalism '
-        'while maintaining its original meaning. Ensure that the meaning of the '
-        'text remains intact and that no additional or inaccurate information '
-        'is added. Here is the original text: ' + article)
-      outputs = self.model.generate(input_text, max_length=500)
-      return outputs
-    def conversational_style(self, article):
-      input_text = (
-        'Revise the original text to enhance its conversational and engaging tone '
-        'while maintaining its original meaning. Ensure that the meaning of the '
-        'text remains intact and that no additional or inaccurate information '
-        'is added. Here is the original text: ' + article
-     )
-      outputs = self.model.generate(input_text, max_length=500)
-      return outputs
-
-
-    def data_driven_style(self, article):
-      input_text = (
-        'Revise the original text to enhance its emphasis on the data provided '
-        'in the original text, making it data-driven and analytical in its '
-        'approach to interpreting the data within the context of the article\'s main points. '
-        'Ensure that the meaning of the text remains intact and that no additional '
-        'or inaccurate information is added. Here is the original text: ' + article
-    )
-      outputs = self.model.generate(input_text, max_length=500)
-      return outputs
-
-    def make_stylistic_changes(self, article_text):
-      print("Stylistic options:")
-      print("1: Formal and Professional")
-      print("2: Conversational and Engaging")
-      print("3: Data-driven and Analytical")
-
-      choice = input("Enter your choice: ").lower()
-
-      if choice == "1" or choice == "formal and professional":
-          return self.formal_style(article_text)
-      elif choice == "2" or choice == " conversational and engaging":
-          return self.conversational_style(article_text)
-      elif choice == "3" or choice == "data-driven and analytical":
-          return self.data_driven_style(article_text)
-      else:
-          return "Invalid choice. Please try again."
- 
+    def generate_source(self, article):
+        summary = summarize_article(article)
+        pass
+         # Put short summary in research ai api requested api code--> https://www.semanticscholar.org/product/api#api-key-form
+      
 
     def process_user_request(self, option, article_text):
-        if option == "create a title":
-            return self.create_title(article_text)
-        elif option == "summarize your article":
-            return self.summarize_article(article_text)
-        elif option == "Make stylistic changes":
-            return self.make_stylistic_changes(article_text)
+        if option == "create headline":
+            return self.create_headline(article_text)
+        elif option == "grammar check":
+            return self.grammar_check(article_text)
+        elif option == "generate source":
+            return self.generate_source(article_text)
+        elif option == "AP Style check":
+            pass
         else:
             return "Option not recognized. Please try again."
 
 
     def chatbot_main(self):
-        print("Hi! Please choose the option that best suits your needs:")
-        print("1. Create a title")
-        print("2. Summarize your article")
-        print("3. Make stylistic changes ")
+        print("1. Grammar/Spell Check")
+        print("2. Create Headline")
+        print("3. Generate New Source")
+        print("4. AP Style Check - not functional")
   
 
         option_selected = input("Enter your choice: ")
         options = {
-            "1": "create a title",
-            "create a title": "create a title",
-            "2": "summarize your article",
-           "summarize your article" : "summarize your article",
-            "3": "make ap style changes",
+            "1": "grammar check",
+            "grammar check": "grammar check",
+            "2": "create headline",
+            "create headline": "create headline",
+            "3": "generate  source",
+           "generate source" : "generate source",
+            "4": "make ap style changes",
             "make ap style changes" :"make ap style changes",
-            "4": "make stylistic changes",
-            "make stylistic changes":"make stylistic changes",
+      
         }
 
         option_text = options.get(option_selected, "")
@@ -130,9 +100,3 @@ class EditorAIChatbot:
             print("Invalid option selected. Please restart the chatbot and select a valid option.")
             return
        
-        article_text = input("Please enter the text EditorAI chatbot will adjust: ") # highlighted in the text box 
-        result = self.process_user_request(option_text, article_text)
-        print(result)
-
-
- 
