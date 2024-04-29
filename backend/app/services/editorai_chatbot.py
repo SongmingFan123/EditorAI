@@ -16,19 +16,28 @@ class EditorAIChatbot:
 
         self.model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
 
+        #Create new azure key for scholar api
+        self.s2_api_key = "mnflo7GDLb29nSeshdGH05xJxEUp5JXO81fyIKJm"
+
         # Set environment variables
         credential = DefaultAzureCredential()
         vault_url = "https://kagglegemma.vault.azure.net"   
         secret_client = SecretClient(vault_url=vault_url, credential=credential)
 
+
+
         try:
-            # Get username and API key from Key Vault secrets
-            username_secret = secret_client.get_secret("Username").value
-            api_key_secret = secret_client.get_secret("Key").value
+           
+            # Semantic Scholar API key 
+            self.s2_api_key = secret_client.get_secret("s2-api-key").value
+
+             #Kaggle  username and API key  
+            self.username_secret = secret_client.get_secret("kaggle-username").value
+            self.api_key_secret = secret_client.get_secret("kaggle-api-key").value
 
             # Set environment variables
-            os.environ["KAGGLE_USERNAME"] = username_secret
-            os.environ["KAGGLE_KEY"] = api_key_secret
+            os.environ["KAGGLE_USERNAME"] = self.username_secret
+            os.environ["KAGGLE_KEY"] = self.api_key_secret
         except Exception as e:
             print("Error:", e)
             os.environ["KAGGLE_USERNAME"] = "your_username"
@@ -43,25 +52,48 @@ class EditorAIChatbot:
         return outputs
 
 
-    def grammer_check(self, article):
+    def grammar_check(self, article):
         input_text = ('Revise the original text to correct any grammatical and spelling errors, '
       'ensuring that the meaning of the text remains intact and that no additional '
-            'or inaccurate information is added. Here is the original text: ' + article
-)
+            'or inaccurate information is added. Here is the original text: ' + article)
 
         outputs = self.model.generate(input_text, max_length=500, num_return_sequences=1)
         return outputs
 
     def summarize_article(self, article):
-        input_text = f"Summarize: {article}"
-        outputs = self.model.generate(input_text, max_length=30) #max length of research ai api
+        input_text = ('Summarize the original text in two words or less,'
+      'ensuring that the meaning of the text remains intact and that no additional '
+            'or inaccurate information added. Here is the original text: ' + article)
+        outputs = self.model.generate(input_text, max_length=10) #max length of research ai api
         return outputs
-    def generate_source(self, article):
-        summary = summarize_article(article)
-        pass
-         # Put short summary in research ai api requested api code--> https://www.semanticscholar.org/product/api#api-key-form
-      
 
+    def generate_source(self, article):
+        summary = self.summarize_article(article)
+        #semanticscholar api
+        headers = {'x-api-key': self.s2_api_key}
+        #Finding articles based on topics of article
+        params = {'query': summary}
+        url = "https://api.semanticscholar.org/v1/paper/search"
+        try:
+            response = requests.get(url, params=params, headers=headers)
+            response.raise_for_status()  
+            papers = response.json().get("data", [])
+            if papers:
+      # Gives ONE similar resource
+                print("Title:", papers[0]["title"])
+                print("Paper ID:", papers[0]["paperId"])
+            else:
+                print("No papers found matching the summary.")
+
+        except requests.exceptions.HTTPError as err:
+            # HTTP error 
+            print("Error:", err)
+
+        except Exception as e:
+            print("An error occurred:", e)
+
+    
+    
     def process_user_request(self, option, article_text):
         if option == "create headline":
             return self.create_headline(article_text)
@@ -99,4 +131,6 @@ class EditorAIChatbot:
         if not option_text:
             print("Invalid option selected. Please restart the chatbot and select a valid option.")
             return
+       
+       
        
