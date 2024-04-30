@@ -96,44 +96,44 @@ class EditorAIChatbot:
             print("An error occurred:", e)
 
     
-    # For Testing but will be aligned to buttons on the frontend 
-    def process_user_request(self, option, article_text):
-        if option == "create headline":
-            return self.create_headline(article_text)
-        elif option == "grammar check":
-            return self.grammar_check(article_text)
-        elif option == "generate source":
-            return self.generate_source(article_text)
-        elif option == "AP Style check":
-            pass
-        else:
-            return "Option not recognized. Please try again."
+    # # For Testing but will be aligned to buttons on the frontend 
+    # def process_user_request(self, option, article_text):
+    #     if option == "create headline":
+    #         return self.create_headline(article_text)
+    #     elif option == "grammar check":
+    #         return self.grammar_check(article_text)
+    #     elif option == "generate source":
+    #         return self.generate_source(article_text)
+    #     elif option == "AP Style check":
+    #         pass
+    #     else:
+    #         return "Option not recognized. Please try again."
 
 
-    def chatbot_main(self):
-        print("1. Grammar/Spell Check")
-        print("2. Create Headline")
-        print("3. Generate New Source")
-        print("4. AP Style Check - not functional")
+    # def chatbot_main(self):
+    #     print("1. Grammar/Spell Check")
+    #     print("2. Create Headline")
+    #     print("3. Generate New Source")
+    #     print("4. AP Style Check - not functional")
   
 
-        option_selected = input("Enter your choice: ")
-        options = {
-            "1": "grammar check",
-            "grammar check": "grammar check",
-            "2": "create headline",
-            "create headline": "create headline",
-            "3": "generate  source",
-           "generate source" : "generate source",
-            "4": "make ap style changes",
-            "make ap style changes" :"make ap style changes",
+    #     option_selected = input("Enter your choice: ")
+    #     options = {
+    #         "1": "grammar check",
+    #         "grammar check": "grammar check",
+    #         "2": "create headline",
+    #         "create headline": "create headline",
+    #         "3": "generate  source",
+    #        "generate source" : "generate source",
+    #         "4": "make ap style changes",
+    #         "make ap style changes" :"make ap style changes",
       
-        }
+    #     }
 
-        option_text = options.get(option_selected, "")
-        if not option_text:
-            print("Invalid option selected. Please restart the chatbot and select a valid option.")
-            return
+    #     option_text = options.get(option_selected, "")
+    #     if not option_text:
+    #         print("Invalid option selected. Please restart the chatbot and select a valid option.")
+    #         return
        
        
        
