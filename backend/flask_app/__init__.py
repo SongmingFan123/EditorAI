@@ -28,6 +28,9 @@ def create_app(cred_route=r"./secrets/se-editor-ai-firebase-adminsdk-nd6dz-b1262
     
 
     routes.register_blueprints(app)
+    @app.route('/')
+    def health():
+        return "Hello World", 200
 
 
     return app
