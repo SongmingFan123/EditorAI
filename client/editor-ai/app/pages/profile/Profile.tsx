@@ -25,7 +25,7 @@ const Profile = () => {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold">Profile</h1>
+            <h1 className="text-2xl font-bold">Update Profile</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mt-4">
                     <label htmlFor="displayName" className="block font-medium">Email:</label>
@@ -49,7 +49,7 @@ const Profile = () => {
                     />
                 </div>
                 <div className="mt-4">
-                    <label htmlFor="password" className="block font-medium">Password:</label>
+                    <label htmlFor="password" className="block font-medium">New Password:</label>
                     <input
                         type="password"
                         id="password"

@@ -16,6 +16,7 @@ import { useAuth } from '../../context/AuthContext';
 import {updateDocument,getDocument} from '../../api/document_functions';
 import { textGeneration } from '@huggingface/inference'
 import { isDeepStrictEqual } from "util";
+import { initialize } from "next/dist/server/lib/render-server";
 
 
 const ReactQuillNoSSR = dynamic(
@@ -30,12 +31,14 @@ const TextEditor = () => {
     const [showOptions, setShowOptions] = useState(true);
     const [showSaveContainer, setShowSaveContainer] = useState(false);
     const [showButtonContainer, setShowButtonContainer] = useState(true);
-    const router = useRouter();
+
     const { user } = useAuth();
     const userId = user?.uid as string;
     const [editing, setEditing] = useState(false);
 
-    const [documentName, setDocumentName] = useState<string>('');
+    const [currentDocumentName, setCurrentDocumentName] = useState<string>('');
+    const [InitialDocumentName, setInitialDocumentName] = useState<string>('');
+
     const [documentId, setDocumentId] = useState<string>('');
     const [documentContent, setDocumentContent] = useState<string>('');
 
@@ -49,8 +52,9 @@ const TextEditor = () => {
         const fetchDocument = async (documentId:string) => {
             const document = await getDocument(userId, documentId)
             console.log("Document:", document.message.Title)
-
-            setDocumentName(document.message.Title)
+            
+            setInitialDocumentName(document.message.Title)
+            setCurrentDocumentName(document.message.Title)
             console.log("test: ", document.message.Content)
             setDocumentContent(document.message.Content)
         }
@@ -98,7 +102,7 @@ const TextEditor = () => {
 
         console.log("content---->", content);
         setDocumentContent(content);
-        await updateDocument(userId,documentId,documentName,content);
+        await updateDocument(userId,documentId,InitialDocumentName,content);
     };
 
 
@@ -133,8 +137,9 @@ const TextEditor = () => {
 
     const handeTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newTitle = e.target.value;
+        setCurrentDocumentName(newTitle);
 
-        if (newTitle !== documentName) {
+        if (InitialDocumentName !== newTitle) {
             setEditing(true);
             console.log("editing")
         }
@@ -145,13 +150,17 @@ const TextEditor = () => {
     };
 
     const submitNewTitle = () => {
-        // updateDocument(userId,documentId,documentName,documentContent);
-        // setEditing(false);
+        console.log(currentDocumentName)
+        if (currentDocumentName.length > 0) {
+            updateDocument(userId,documentId,currentDocumentName,documentContent);
+            setEditing(false);
+        }
+        
     }
 
     return (
         <div>
-            <button type="button" onClick={handleSubmit}>Testing</button>
+            {/* <button type="button" onClick={handleSubmit}>Testing</button> */}
             <h1 className="text-center"></h1>
             <Link href="./homepage" legacyBehavior> 
                 <a className="text-main-color font-bold font-newsreader flex items-center">
@@ -160,9 +169,11 @@ const TextEditor = () => {
 
               </Link>
             <div className='flex justify-between p-5 h-full font-newsreader'>
-                <div className='bg-white flex-grow mr-5 p-4' style={{ flexBasis: '70%' }}>
-                    {editing && <button onClick={submitNewTitle}>Save</button>}
-                    <input className='text-2xl font-bold' placeholder={documentName} onChange={handeTitleChange}/>
+                <div className='justify-evenly	flex-row'>
+                    <div className="flex-row">
+                        {editing && <button onClick={submitNewTitle}>Save New Title </button>}
+                        <input className='text-2xl font-bold bg-transparent	' placeholder={InitialDocumentName} onChange={handeTitleChange}/>    
+                    </div>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}

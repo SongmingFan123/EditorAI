@@ -136,7 +136,7 @@ const HomePage = () => {
           style={{ height: '1.5px', background: 'rgba(128, 18, 18, 1)', opacity: open ? 0.5 : 1, width: '96%', position: 'relative', top: '10px', font: 'Bold'}}>
           </div>
         <div className="flex font-newsreader font-bold">
-        <ProjectSection title={"Priority Projects"} searchQuery={searchQuery} />
+        <ProjectSection title={"Projects"} searchQuery={searchQuery} />
       </div>
     </div>
     

@@ -12,7 +12,6 @@ const Navigation: React.FC = () => {
       <ul className="list-none text-right font-poppins mt-5 ml-auto">
         {[
           { href: "/pages/homepage", label: "Home Page" },
-          { href: "/pages/texteditor", label: "Text Editor" },
           { href: "/pages/profile", label: "Profile" }
         ].map(link => (
           <li key={link.href} className="inline-block">

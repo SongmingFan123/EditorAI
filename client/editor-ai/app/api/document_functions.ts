@@ -90,7 +90,7 @@ export const updateDocument = async (
                 body: body
             });
 
-            // console.log('Response:', response);
+            console.log('Response:', response);
             const data = await response.json();
             console.log(data)
     
