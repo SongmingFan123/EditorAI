@@ -4,7 +4,7 @@ import { handleRemoveDocument } from '../../api/document_functions';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 
-interface ProjectItemProps {
+export interface ProjectItemProps {
   title: string;
   lastModified: string;
   documentId: string; // Add documentId as a prop

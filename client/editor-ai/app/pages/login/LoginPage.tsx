@@ -4,29 +4,34 @@ import { FormEvent } from 'react'
 import Image from 'next/image';
 import React from "react";
 import { useRouter } from 'next/navigation'
-import { Poppins } from 'next/font/google'
 import { useAuth } from '../../context/AuthContext';
 
-//const poppins = Poppins({ weight: '400', subsets: ['latin']})
 const LoginPage = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const [loginError, setLoginError] = React.useState('')
   const [loginFailed, setLoginFailed] = React.useState(false)
   const router = useRouter()
 
 
-  const { user, signUp, signIn, signOut } = useAuth();
+  const { signIn } = useAuth();
 
 
   const handleForm = async (event: FormEvent) => {
     event.preventDefault();
 
-    await signIn(email, password);
-    await signIn(email, password);
+    const res = await signIn(email, password);
+    console.log(`Res: ${res}`)
 
 
-    return router.push("/admin");
+    if (res == false) {
+      setLoginFailed(true)
+      console.log("Login failed")
+    }
+    else {
+      setLoginFailed(false)
+      console.log("Login successful")
+      return router.push("/admin");
+    }
   };
 
   return (
@@ -34,9 +39,7 @@ const LoginPage = () => {
       <div className="bg-brand-tan p-8 rounded-lg shadow-md flex flex-col items-center" style={{ width: '532px', 
        height: '640px',borderRadius: '9px 0px 0px 0px'}}>
         <div className="flex justify-center w-full">
-        <Image src="/editorai.svg" alt="Logo" width={90} height={90} 
-        //style={{top: '135px', left: '595px', position: 'absolute'}} 
-        />
+        <Image src="/editorai.svg" alt="Logo" width={90} height={90} />
         </div>
 
 
@@ -44,7 +47,7 @@ const LoginPage = () => {
           //position: 'absolute', 
           top: '283px', left: '540px', width: '210px', fontSize: '48px', lineHeight: '48px', color: '#31302F', fontWeight: '700', border: '0.69x solid #31302F'}}>
           Editor AI</h1>
-        {loginError && <p className="text-red-500 mb-4">{loginError}</p>}
+        {loginFailed && <p className="text-red-500 mb-4">{"Login failed please try again"}</p>}
         <form onSubmit={handleForm} className="w-full flex flex-col items-center">
           <div className="mb-4">
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px'}}></div>

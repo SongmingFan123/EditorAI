@@ -12,9 +12,10 @@ import SubmitButton from "./Submit";
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 
+
 import {updateDocument,getDocument} from '../../api/document_functions';
 import { textGeneration } from '@huggingface/inference'
-// import { pipeline } from '@xenova/transformers';
+import { isDeepStrictEqual } from "util";
 
 
 const ReactQuillNoSSR = dynamic(
@@ -32,6 +33,7 @@ const TextEditor = () => {
     const router = useRouter();
     const { user } = useAuth();
     const userId = user?.uid as string;
+    const [editing, setEditing] = useState(false);
 
     const [documentName, setDocumentName] = useState<string>('');
     const [documentId, setDocumentId] = useState<string>('');
@@ -99,48 +101,57 @@ const TextEditor = () => {
         await updateDocument(userId,documentId,documentName,content);
     };
 
-    const handleAskEditorAI = async (content:string) => {
+
+    const handleSubmit= async () => {
+        handleAskEditorAI(documentContent);
+        handleShowSuggestions();
+    }
+
+    const handleAskEditorAI = async (content: string) => {
         const accessToken = process.env.NEXT_PUBLIC_HF_ACCESS_TOKEN;
-
-        const modelName = 'mistralai/Mistral-7B-Instruct-v0.2'
-        const prompt = `Please provide 2-3 grammar suggestions and corrections for the following text in bullet format`
-        const input =`PROMPT: ${prompt}. CONTENT:${content}. SUGGESTIONS:`;
-        console.log(content)
-
+    
+        const modelName = 'meta-llama/Meta-Llama-3-8B';
+        const prompt = 'Please provide 3-4 grammar suggestions and corrections for the following text in json format with the following headers type, description of error, incorrect text, corrected text';
+        const input = `PROMPT: ${prompt}\nCONTENT: ${content}\nSUGGESTIONS:`;
+        console.log(content);
+    
         const output = await textGeneration({
             accessToken: accessToken,
             model: modelName,
             inputs: input
-        })
+        });
 
+        console.log(output.generated_text);
+    
+        const regex = /SUGGESTIONS: (.+)/s;
+        const matches = output.generated_text.match(regex);
+        const suggestions = matches ? matches[1] : null;
         
-        // const generatedText = output.generated_text
+        console.log(suggestions);
+    
+    };
 
-        // const suggestions = generatedText.match(/(?<=SUGGESTIONS:)(.*?)/s)[0].trim();
-        // const bullets = suggestions.match(/- (.*)/g);
+    const handeTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newTitle = e.target.value;
 
-        // console.log(bullets);
+        if (newTitle !== documentName) {
+            setEditing(true);
+            console.log("editing")
+        }
+        else {
+            setEditing(false);
+            console.log("not editing")
+        }
+    };
 
-        const generatedText = output.generated_text;
-
-        // Using optional chaining with nullish coalescing operator to provide a fallback
-        const suggestionsMatch = generatedText.match(/(?<=SUGGESTIONS:)(.*?)/s);
-        const suggestions = suggestionsMatch ? suggestionsMatch[0].trim() : '';
-
-        const bullets = suggestions ? suggestions.match(/- (.*)/g) : [];
-
-        console.log(bullets);
-
-
-        // console.log(generatedText)
-
-
-        setGeneratedText(output.generated_text);
-
+    const submitNewTitle = () => {
+        // updateDocument(userId,documentId,documentName,documentContent);
+        // setEditing(false);
     }
 
     return (
         <div>
+            <button type="button" onClick={handleSubmit}>Testing</button>
             <h1 className="text-center"></h1>
             <Link href="./homepage" legacyBehavior> 
                 <a className="text-main-color font-bold font-newsreader flex items-center">
@@ -150,9 +161,12 @@ const TextEditor = () => {
               </Link>
             <div className='flex justify-between p-5 h-full font-newsreader'>
                 <div className='bg-white flex-grow mr-5 p-4' style={{ flexBasis: '70%' }}>
+                    {editing && <button onClick={submitNewTitle}>Save</button>}
+                    <input className='text-2xl font-bold' placeholder={documentName} onChange={handeTitleChange}/>
                     <ReactQuillNoSSR
                         modules={modules}
                         formats={formats}
+                        value={documentContent}
                         placeholder="write your content ...."
                         onChange={handleProcedureContentChange}
                         className='h-[80vh] rounded-lg'
@@ -167,7 +181,7 @@ const TextEditor = () => {
                 <OptionButton text="Generate New Source(s)" /> 
                 <OptionButton text="Create Headline" /> 
                 <OptionButton text="AP Style Check" /> 
-                <SubmitButton text="Submit" onClick={handleShowSuggestions} /> 
+                <SubmitButton text="Submit" onClick={handleSubmit} /> 
             </div>
         </>
     ) : (

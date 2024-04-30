@@ -22,8 +22,6 @@ const HomePage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [createDocumentFailed, setCreateDocumentFailed] = useState(false);
 
-  const isMounted = useRef(false);
-
   const { user } = useAuth();
   const userId = user?.uid as string;
   const router = useRouter();
@@ -41,11 +39,11 @@ const HomePage = () => {
   const handlePopupSubmit = async () => {
     const documentId = await handleCreateDocument(userId, documentName, "");
     console.log('DocumentId:', documentId);
-    if (documentId == true) {
-      setCreateDocumentFailed(false);
-      setShowPopup(false);
-    } else {
+    if (documentId == null) {
       setCreateDocumentFailed(true);
+      console.log('Document creation failed');
+    } else {
+      router.push(`/pages/texteditor?documentid=${documentId}`);
     }
   };
 
@@ -106,7 +104,7 @@ const HomePage = () => {
       {showPopup && (
         <div className="bg-slate-200">
           <div className="popup-content flex flex-col">
-            {/* {createDocumentFailed && <h1>That document name already exists. Select a new name.</h1>} */}
+            {createDocumentFailed && <h1 className="text-red-500 mb-4">That document name already exists</h1>}
             <>
               <input
                 type="text"

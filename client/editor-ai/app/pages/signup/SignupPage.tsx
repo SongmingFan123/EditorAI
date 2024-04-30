@@ -13,16 +13,22 @@ const SignupPage = () => {
   const [signupFailed, setSignupFailed] = useState(false); // State variable for signup status
   const router = useRouter();
 
-  const { user, signUp, signIn, signOut } = useAuth();
+  const { signUp  } = useAuth();
 
   const handleForm = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
-      await signUp(email, password);
-      router.push('/admin');
+      const res = await signUp(email, password,fullName);
+      if (res==true) {
+        setSignupFailed(false); // Set signup status to successful
+        router.push('/admin');
+      }
+      else {
+        setSignupFailed(true); // Set signup status to failed
+      }
     } catch (error) {
-      setSignupFailed(true); // Set signup status to failed
+      console.error('Failed to sign up:', error);
     }
   };
 
@@ -37,6 +43,7 @@ const SignupPage = () => {
           top: '283px', left: '540px', width: '210px', fontSize: '48px', lineHeight: '48px', color: '#31302F', fontWeight: '700', border: '0.69x solid #31302F'}}>Editor AI</h1>
         <form onSubmit={handleForm} className="w-full flex flex-col items-center">
           <div className="mb-4">
+          {signupFailed && <p className="text-red-500 mb-4">{"Signup failed please try again"}</p>}
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>
             <input
               className="w-full border p-2 pl-3 placeholder-color custom-border-opacity" style={{ 
