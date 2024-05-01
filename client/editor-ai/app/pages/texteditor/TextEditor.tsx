@@ -36,7 +36,7 @@ const TextEditor = () => {
 
                 <div id="asidesection" className="w-3/10">
                     {/* aside */}
-                    <Aside documentContent={documentContent} />
+                    <Aside documentContent={documentContent} setDocumentContent={setDocumentContent} />
                 </div>
         </div>
     </div>
