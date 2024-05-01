@@ -17,7 +17,7 @@ const TextEditor = () => {
     return (
         <div>
             <div className="flex flex-row">
-                <div id='editorsection'>
+                <div id='editorsection' className="w-7/10">
                     {/* back button */}
                     <Link href="./homepage" legacyBehavior> 
                         <a className="text-main-color font-bold font-newsreader flex items-center">
@@ -34,7 +34,7 @@ const TextEditor = () => {
                     />
                 </div>
 
-                <div id="asidesection">
+                <div id="asidesection" className="w-3/10">
                     {/* aside */}
                     <Aside documentContent={documentContent} />
                 </div>

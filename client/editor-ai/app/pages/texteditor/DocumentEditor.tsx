@@ -112,8 +112,9 @@ const DocumentEditor = ({ documentContent, setDocumentContent,documentId,setDocu
     return (
         <div className='justify-evenly flex-row'>
             <div className="flex-row">
-                {editing && <button onClick={submitNewTitle}>Save New Title</button>}
                 <input className='text-2xl font-bold bg-transparent' placeholder={InitialDocumentName} onChange={handleTitleChange} />
+                {editing && <button onClick={submitNewTitle}>Save New Title</button>}
+
             </div>
             <ReactQuillNoSSR
                 modules={modules}
