@@ -13,19 +13,26 @@ const Aside = ({documentContent,setDocumentContent}:AsideProps) => {
     const [showFilters, setShowFilters] = useState(true);
     const [showSuggestionContainer, setShowSuggestionContainer] = useState(false);
     const [showChatbot, setShowChatbot] = useState(false);
-    const [suggestions, setSuggestions] = useState([]); // Add this state variable to store suggestions
+    const [suggestions, setSuggestions] = useState<Array<{
+        header: string;
+        content: string;
+        incorrectLine: string;
+        correctLine: string;
+      }>>([]);
 
+      
     const handleSubmit = async () => {
-        // Trigger the generation of new suggestions here
-        // You can call the generateSuggestion function or any other logic
         console.log('Generating new suggestions...');
-
-        const newSuggestions= await generateSuggestion(documentContent);
-        console.log(newSuggestions);
-        // setSuggestions(newSuggestions);
-
-
-    };
+      
+        const newSuggestions = await generateSuggestion(documentContent);
+        if (newSuggestions !== null) {
+          setSuggestions(newSuggestions);
+          console.log(newSuggestions);
+        } else {
+          setSuggestions([]); // Set suggestions to an empty array if newSuggestions is null
+          console.log('No suggestions generated.');
+        }
+      };
 
     return (
         <div className='flex flex-col flex-colflex-grow ml-5 p-4' style={{ flexBasis: '30%' }}>

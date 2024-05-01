@@ -73,6 +73,9 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
               </h1>
             </div>
             <p className="font-newsreader flex-1 text-white">{content}</p>
+            <p className="font-newsreader flex-1 text-white">Incorrect line: &quot;{incorrectLine}&quot;</p>
+
+
           </div>
 
           {isClicked && (
