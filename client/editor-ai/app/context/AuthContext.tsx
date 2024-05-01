@@ -5,10 +5,10 @@ import { auth } from '../firebase/firebase';
 import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, updatePassword} from 'firebase/auth';
 interface AuthContextProps {
   user: User | null;
-  signUp: (email: string, password: string, displayName:string) => Promise<any>;
+  signUp: (email: string, password: string, displayName: string) => Promise<any>;
   signIn: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<void>;
-  updateUser: (newDisplayName:string,newPassword:string) => void;
+  updateUser: (newDisplayName: string, newPassword: string) => void;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
