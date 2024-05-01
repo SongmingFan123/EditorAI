@@ -62,24 +62,18 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
   return (
     <div>
       {!showSaveContainer && (
-        <div
-          onClick={() => setIsClicked(true)}
-          className="button-container bg-brand-red rounded-lg p-1 flex-col"
-        >
+        <div onClick={() => setIsClicked(true)} className="button-container bg-brand-red rounded-lg p-2 m-2 flex-col">
           <div className="flex flex-col">
             <div className="flex flex-row justify-between">
-              <h1 className="font-newsreader text-2xl text-white underline">
-                {header}
-              </h1>
+              <h1 className="font-newsreader text-2xl text-white underline">{header}</h1>
             </div>
-            <p className="font-newsreader flex-1 text-white">{content}</p>
-            <p className="font-newsreader flex-1 text-white">Incorrect line: &quot;{incorrectLine}&quot;</p>
-
-
           </div>
 
           {isClicked && (
             <div className="suggestion-actions">
+              <p className="font-newsreader flex-1 text-white">{content}</p>
+              <br />
+              <p className="font-newsreader flex-1 text-white">Incorrect line: &quot;{incorrectLine}&quot;</p>
               <button
                 onClick={handleApplyClick}
                 className="action-button font-poppins text-red-700 rounded-md w-28 h-8 bg-white border border-red-700 m-2"
@@ -103,7 +97,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
         </div>
       )}
 
-      {showSaveContainer && (
+      {/* {showSaveContainer && (
         <div className="button-container flex items-center justify-center p-4 bg-white">
           <p className="text-4xl font-newsreader text-center">Save Your Work</p>
           <div className="button-container">
@@ -112,9 +106,9 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
             <SaveButton text="Save to Google Docs" />
           </div>
         </div>
-      )}
+      )} */}
 
-      {open && (
+      {/* {open && (
         <SaveWorkModal open={open} onClose={() => setOpen(false)}>
           <div className="flex flex-col gap-4">
             <h1 className="text-4xl font-newsreader mb-6 text-bold text-center">
@@ -139,7 +133,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
             </div>
           </div>
         </SaveWorkModal>
-      )}
+      )} */}
     </div>
   );
 };
