@@ -22,7 +22,7 @@ const SocialMediaContainer = ({copy}:SocialMediaSiteProps) => {
     }
 
     return (
-        <div className='bg-white rounded-lg p-2 shadow-md relative m-4'>
+        <div className='bg-white rounded-lg p-2 shadow-md relative m-5'>
             <h2 className="text-2xl font-bold font-poppins mb-4 p-4">Share your content</h2>
             <ul className="space-y-2 justify-evenly flex flex-row">
                 {socialMediaSites.map((site) => (
