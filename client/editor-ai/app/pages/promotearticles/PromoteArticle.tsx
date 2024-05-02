@@ -62,7 +62,7 @@ const PromoteArticle = () => {
             <div className="flex flex-row justify-evenly">
 
                 <div className='w-1/3 flex justify-evenly flex-col'>
-                    <SocialMediaContainer copy={copyText} setCopy={setCopyText}/>
+                    <SocialMediaContainer copy={copyText} />
                     <EnlargedProjectCard
                         id={documentId}
                         title={documentTitle}
@@ -71,7 +71,7 @@ const PromoteArticle = () => {
                     />
                 </div>
                 <div className='w-1/3'>
-                    <CopyEditor documentContent={documentContent} />
+                    <CopyEditor documentContent={documentContent} copyText={copyText} setCopyText={setCopyText} />
                 </div>
             </div>
         </div>
