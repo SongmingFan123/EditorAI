@@ -73,7 +73,7 @@ const CopyEditor: React.FC<CopyEditorProps> = ({
             <div className='shadow-md flex flex-col bg-white rounded-lg p-4 m-4 relative'>
                 <div className='flex flex-row justify-between m-1 p-3'>
                     <h1 className='text-2xl font-bold font-poppins'>EditorAI&apos;s Social Media Copy</h1>
-                    <Image src='/refresh-color.svg' alt="refresh icon" width={40} height={40} onClick={handleRefreshCopy}/>
+                    <Image src='/refresh-color.svg' alt="refresh icon" width={45} height={45} onClick={handleRefreshCopy}/>
                 </div>
 
 
