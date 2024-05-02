@@ -6,6 +6,7 @@ import { useState } from 'react';
 import DeletionModal from './DeletionModal';
 import OpenDocumentModal from './OpenDocumentModal';
 import ProjectItemDisplay from './ProjectItemDisplay';
+import { imageClassification } from '@huggingface/inference';
 
 export interface ProjectItemProps {
   title: string;
@@ -19,6 +20,7 @@ const ProjectItem = ({
   lastModified,
   documentId,
   documentContent
+
 }: ProjectItemProps) => {
   const [deleted, setDeleted] = useState<boolean>(false);
   const router = useRouter();

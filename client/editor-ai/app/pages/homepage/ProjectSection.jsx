@@ -40,7 +40,7 @@ const ProjectSection = ({ title, searchQuery }) => {
 
   return (
     <div className="m-4">
-      <h2 className="text-lg text-gray-700 mb-2">{title}</h2>
+      <h2 className="text-lg text-gray-700">{title}</h2>
       <div className="flex flex-wrap gap-4"> 
       {filteredProjects ? (
         filteredProjects.map((document) => (
