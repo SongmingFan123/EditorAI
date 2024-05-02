@@ -45,9 +45,9 @@ const DocumentCreation: React.FC<Props> = ({ setDocumentName, handleCreateDocume
               placeholder="Enter document name"
               value={documentName}
               onChange={(e) => setDocumentName(e.target.value)}
-              className="focus:outline-none focus:ring-2 focus:ring-red-800 rounded-xl p-3 m-2 bg-white text-lg w-3/4 font-poppins shadow-md"
+              className="focus:outline-none focus:ring-2 focus:ring-red-800 rounded-xl p-3 m-2 bg-white text-lg w-3/4 font-poppins shadow-md p-2"
             />
-              <hr className="border-t-solid border-1 border-grey mb-12" /> 
+              <hr className="border-t-solid border-1 border-grey p-3" /> 
             <div className="flex flex-row justify-center gap-10 ">
               <button onClick={handlePopupSubmit}className=" font-poppins rounded-full border border-neutral-300 py-4 px-10
             bg-main-color hover:bg-red-800 text-white text-lg w-auto" style={{background: 'radial-gradient(50% 50% at 50% 50%, #9F4949 0%, #801212 100%)'}}>
