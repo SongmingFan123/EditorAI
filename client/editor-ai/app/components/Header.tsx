@@ -41,9 +41,9 @@ const Header = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous'/>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
 
-      <nav className='bg-white font-lg fixed w-full z-20 top-0 start-0 border-b py-1 font-newsreader scroll-py-0' style={{height: '120px'}}>
+      <nav className='bg-white font-lg fixed w-full z-20 top-0 start-0 border-b py-1 font-newsreader scroll-py-0' style={{height: '125px'}}>
       <div className="mt-4 max-w-screen-xl flex flex-wrap items-center justify-end mx-auto px-4" style={{ color: '#801212'}}>
-        <h1> <img src="/header.svg"alt="Editor AI Logo"/> </h1>
+        <h1 style={{ marginLeft:'-40px' }}> <img src="/header.svg"alt="Editor AI Logo"/> </h1>
 
 
             {/* user is logged in  */}
@@ -52,16 +52,19 @@ const Header = () => {
            
               {user && (
             <>
+
               <Navigation />
-              <div className="flex md:justify-end">
+              <div className="flex md:justify-end items-center">
+              <span className="p-4 hidden md:block"> Welcome, {user.displayName} </span>
               <button onClick={handleSignOut} className="text-red bg-brand-tan px-2 py-2 rounded-full hover:bg-red-800 hover:text-white">
-                Log Out
+               Log Out
               </button>
               </div>
+
             </>
             )}
             <ul> 
-                <li style={{ display: 'inline', marginRight: '40px' }}>
+                <li style={{ display: 'inline' }}>
                 </li>
               </ul>
             {/* user is not logged in */}

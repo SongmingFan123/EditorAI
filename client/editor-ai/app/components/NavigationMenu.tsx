@@ -10,8 +10,8 @@ const Navigation: React.FC = () => {
   const isActive = (pathname: string) => router.pathname === pathname;
 
   return (
-    <nav className="list-none text-right font-poppins gap-7 ml-auto">
-      <ul className="hidden sm:flex list-none font-poppins">
+    <nav className="list-none text-right font-newsreader gap-7 ml-auto">
+      <ul className="hidden sm:flex list-none font-newsreader">
         {[
           { href: "/pages/homepage", label: "Home" },
           { href: "/pages/texteditor", label: "Upload file" },

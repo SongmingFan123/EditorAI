@@ -120,7 +120,8 @@ const DocumentEditor = ({ documentContent, setDocumentContent,documentId,setDocu
                 value={documentContent}
                 placeholder="write your content ...."
                 onChange={handleProcedureContentChange}
-                className='h-[80vh] rounded-lg'
+                style={{ height: '650px'}} 
+                className='w-full bg-white rounded-lg shadow-md'
             />
         </div>
     );

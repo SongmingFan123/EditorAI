@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>\
           <Header />
-           <div style={{ paddingTop: '70px' }}>  {/* This padding should match or exceed the header's height */}
+           <div style={{ paddingTop: '120px' }}>  {/* This padding should match or exceed the header's height */}
             {children}
           </div>
         </AuthProvider>      

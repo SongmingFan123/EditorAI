@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SaveWorkModal from '@/components/SaveWorkModal';
+import SaveWorkModal from '@/components/CreateDocumentModal';
 import { useRouter } from 'next/router';
 import SearchBar from '@/components/SearchBar';
 import OptionButton from './Options';

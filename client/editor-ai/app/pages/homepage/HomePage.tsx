@@ -37,11 +37,11 @@ const HomePage = () => {
   return (
     <div>
       {/* search bar */}
-      <div className="mt-5 shadow-mb">
+      <div className="mt-5 shadow-mb px-10">
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       </div>
       {/* buttons */}
-      <div className="flex mb-3 gap-6" style={{fontFamily:'Poppins'}}>
+      <div className="flex mb-5 gap-8 px-11" style={{fontFamily:'Poppins'}}>
         <ActionButton onClick={() => setShowPopup(true)} icon="/+.svg"/>
         <UploadButton createDocument={handleCreateDocument} icon="/upload.svg"/>
       </div>
@@ -74,8 +74,9 @@ const HomePage = () => {
 
       {/* document creation popup */}
       {showPopup && <DocumentCreation documentName={documentName} setDocumentName={setDocumentName} handleCreateDocument={handleCreateDocument} setShowPopup={setShowPopup} />}
-
+      <div className="px-6">
       <Divider />
+      </div>
 
       {/* project section */}
       <ProjectSection title={"Projects"} searchQuery={searchQuery} />
