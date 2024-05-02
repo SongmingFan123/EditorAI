@@ -8,7 +8,9 @@ import Image from 'next/image';
 import DocumentCreation from '../homepage/DocumentCreation';
 
 interface CopyEditorProps {
-    documentContent:string
+    documentContent:string;
+    copyText: string;
+    setCopyText: (content: string) => void;
 
 }
 const ReactQuillNoSSR = dynamic(
@@ -18,10 +20,11 @@ const ReactQuillNoSSR = dynamic(
 
 
 const CopyEditor: React.FC<CopyEditorProps> = ({
-    documentContent
+    documentContent,
+    copyText,
+    setCopyText
 }:CopyEditorProps) => {
 
-    const [copyText, setCopyText] = useState<string>("Testing")
     const router = useRouter();
 
     var modules = {
@@ -53,15 +56,12 @@ const CopyEditor: React.FC<CopyEditorProps> = ({
     };
 
     const handleRefreshCopy = async () => {
-        console.log("documentContent", documentContent)
+        console.log("documentContent " + documentContent)
         const res= await generateSocialMediaCopy(documentContent) as string;
         setCopyText(res)
         console.log(res)
     };
 
-    useEffect(() => {
-        handleRefreshCopy();
-    }, []);
 
 
 

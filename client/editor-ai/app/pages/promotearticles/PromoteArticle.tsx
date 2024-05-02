@@ -14,7 +14,7 @@ const PromoteArticle = () => {
     const { id } = useAuth();
     const searchParams = useSearchParams();
     const documentId = searchParams.get('documentid') as string;
-
+    const [copyText, setCopyText] = useState<string>("Click the refresh button to generate a new social media copy.")
     const [documentContent, setDocumentContent] = useState<string>('');
     const [documentTitle, setDocumentTitle] = useState<string>('');
     const [documentLastModified, setDocumentLastModified] = useState<string>('');
@@ -37,12 +37,32 @@ const PromoteArticle = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold text-center m-5">Promote Article</h1>
+            <h1 className="text-3xl text-center m-5">Promote your project: {documentTitle}</h1>
+            <Link href="./homepage" legacyBehavior> 
+                <a className="text-main-color font-bold font-newsreader flex items-center">
+                    <img src="/back.svg" alt="back logo" width={20} height={20}/>
+                </a>
+            </Link>
 
+            {/* layout 1 */}
+            {/* <div className="flex flex-col justify-evenly">
+                <SocialMediaContainer />
+                <div className='flex justify-evenly flex-row'>
+                    <EnlargedProjectCard
+                        id={documentId}
+                        title={documentTitle}
+                        lastModified={documentLastModified}
+                        content={documentContent}
+                    />
+                    <CopyEditor documentContent={documentContent} />
+                </div>
+            </div> */}
+
+            {/* layout 2 */}
             <div className="flex flex-row justify-evenly">
 
                 <div className='w-1/3 flex justify-evenly flex-col'>
-                    <SocialMediaContainer />
+                    <SocialMediaContainer copy={copyText} setCopy={setCopyText}/>
                     <EnlargedProjectCard
                         id={documentId}
                         title={documentTitle}

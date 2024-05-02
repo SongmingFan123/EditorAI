@@ -3,6 +3,7 @@ import { getDocument } from '@/api/document_functions';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { handleClientScriptLoad } from 'next/script';
+import ReactQuill from 'react-quill';
 
 interface ProjectItemProps {
     id: string;
@@ -21,6 +22,8 @@ const EnlargedProjectCard: React.FC<ProjectItemProps> = ({ id, title, lastModifi
 
     const maxCharacters = 200;
 
+    const shortenedContent = content.length > maxCharacters ? `${content.substring(0, maxCharacters)} ...` : content;
+
     return (
         <div className="bg-white rounded-lg shadow-md p-4 relative m-5">
             <div className='flex flex-col'>
@@ -29,7 +32,12 @@ const EnlargedProjectCard: React.FC<ProjectItemProps> = ({ id, title, lastModifi
                     <Image src='/open.jpeg' alt="open icon" width={50} height={50} onClick={editProject}/>
                 </div>
                 <p className="text-gray-500 mb-2">{lastModified}</p>
-                <p className="text-black-500 mb-2">{content.length > maxCharacters ? `${content.substring(0, maxCharacters)} ...` : content}</p>
+                <ReactQuill
+                    value={shortenedContent}
+                    modules={{ toolbar: false }}
+                    readOnly={true}
+                    
+                />            
             </div>
         </div>
     );

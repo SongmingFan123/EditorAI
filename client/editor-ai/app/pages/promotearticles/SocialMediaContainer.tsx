@@ -1,13 +1,25 @@
-import React from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import React, { MouseEvent } from 'react';
+import { FaFacebook, FaTwitter } from 'react-icons/fa';
+import { postToFacebook, postToTwitter } from '@/api/socialmedia_functions';
 
-const SocialMediaContainer: React.FC = () => {
+interface SocialMediaSiteProps {
+    copy:string
+}
+
+const SocialMediaContainer = ({copy}:SocialMediaSiteProps) => {
     const socialMediaSites = [
-        { name: 'Facebook', url: 'https://www.facebook.com', icon: <FaFacebook /> },
-        { name: 'Twitter', url: 'https://www.twitter.com', icon: <FaTwitter /> },
-        // { name: 'Instagram', url: 'https://www.instagram.com', icon: <FaInstagram /> },
-        // { name: 'LinkedIn', url: 'https://www.linkedin.com', icon: <FaLinkedin /> },
+        { name: 'Facebook', url: 'https://www.facebook.com', icon: <FaFacebook />, function: postToFacebook },
+        { name: 'Twitter', url: 'https://www.twitter.com', icon: <FaTwitter />, function: postToTwitter },
     ];
+
+    const handleClick = (site:any) => {
+        console.log(`Clicked ${site.name}`);
+        console.log(`Posting to ${site.url}`);
+        site.function(
+
+        )
+        return true;
+    }
 
     return (
         <div className='bg-white rounded-lg shadow-md p-4 relative m-5'>
@@ -15,10 +27,10 @@ const SocialMediaContainer: React.FC = () => {
             <ul className="space-y-2 justify-evenly flex flex-row">
                 {socialMediaSites.map((site) => (
                     <li key={site.name} className="flex items-center">
-                        <a href={site.url} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+                        <div onClick={() => handleClick(site)}>
                             <span className="text-2xl">{site.icon}</span>
                             <span className="text-2xl">{site.name}</span>
-                        </a>
+                        </div>
                     </li>
                 ))}
             </ul>
