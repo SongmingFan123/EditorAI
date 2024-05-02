@@ -66,7 +66,7 @@ const CopyEditor: React.FC<CopyEditorProps> = ({
             <div className='flex flex-col'>
                 <div className='flex flex-row justify-evenly'>
                     <h1 className='text-2xl'>AI Generated Social Media Copy</h1>
-                    <Image src='/refresh.png' alt="refresh icon" width={100} height={100} onClick={handleRefreshCopy}/>
+                    <img src='/refresh-color.svg' alt="refresh icon" width={100} height={100} onClick={handleRefreshCopy}/>
                 </div>
 
                 <ReactQuillNoSSR

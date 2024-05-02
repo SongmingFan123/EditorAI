@@ -65,23 +65,24 @@ const Chatbot = ({setShowAskAI,documentContent}:ChatbotProps) => {
         ))}
       </div>
       
-      <div className="flex items-center mt-4 shadow-md rounded-lg poppins-thin" >
+      <div className="h-10 flex border-brand-red border-2 rounded-xl items-center mt-4 shadow-md rounded-lg poppins-thin" >
         <input
           type="text"
           placeholder="Type your message..."
           value={inputText}
           onChange={handleInputChange}
-          className="flex-1 p-2 rounded-xl"
+          className="flex-1 p-2 rounded-xl h-8"
           style={{outline: 'none', border: 'none' }}
           onKeyDown={handleKeyDown}
         />
         <button
+        style={{ marginRight: '5px' }}
   onClick={handleSendMessage}
-  className="poppins-thin px-4 py-2 bg-brand-red custom-border text-white rounded-lg shadow-md"
+  type='button'
+  className="w-8 h-8 bg-brand-red text-white rounded-xl shadow-md flex items-center justify-center overflow-hidden p-1"
 >
-  <img src="/chatupload.svg" alt="Chat Upload Button"/>
+  <img src="/chatupload.png" alt="Chat Upload Button" /> 
 </button>
-
         
       </div>
     </div>

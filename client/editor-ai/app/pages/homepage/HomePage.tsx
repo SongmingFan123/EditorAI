@@ -12,6 +12,7 @@ import { handleCreateDocument } from '../../api/document_functions';
 import UploadButton from './UploadButton';
 import DocumentCreation from './DocumentCreation';
 import Divider from '@/components/Divider';
+import PromoteButton from './PromoteButton';
 
 const HomePage = () => {
 
@@ -44,6 +45,7 @@ const HomePage = () => {
       <div className="flex mb-5 gap-8 px-11" style={{fontFamily:'Poppins'}}>
         <ActionButton onClick={() => setShowPopup(true)} icon="/+.svg"/>
         <UploadButton createDocument={handleCreateDocument} icon="/upload.svg"/>
+        <PromoteButton onClick={() => setShowPopup(true)} icon="/promote.svg"/>
       </div>
 
       {/* document modal */}

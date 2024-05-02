@@ -38,20 +38,20 @@ const Aside = ({documentContent,setDocumentContent}:AsideProps) => {
         <div className='flex flex-col flex-colflex-grow ml-5 p-4' style={{ flexBasis: '30%' }}>
             {showFilters ? 
                 <Filters documentContent={documentContent} setShowOptions={setShowFilters} setShowAskAI={setShowChatbot} setShowSuggestions={setShowSuggestionContainer} onSubmit={handleSubmit}/>
-                : <button onClick={() => setShowFilters(true)}>Show Filters</button>
+                : <button onClick={() => setShowFilters(true)}  className="shadow-md mb-4 px-6 py-1 text-lg border-4 border-brand-red text-brand-red bg-white rounded-xl cursor-pointer transition-all duration-300 ease-in-out hover:bg-brand-red hover:text-white">Show Filters </button>
             }
             
             {showSuggestionContainer ? 
                 <SuggestionsContainer setShowSuggestionContainer={setShowSuggestionContainer} suggestions={suggestions} documentContent={documentContent} setDocumentContent={setDocumentContent} />
 
                 // <SuggestionsContainer documentContent={documentContent} setShowSuggestionContainer={setShowSuggestionContainer} setDocumentContent={setDocumentContent}/>
-                : <button onClick={() => setShowSuggestionContainer(true)}>Show Suggestions</button>
+                : <button onClick={() => setShowSuggestionContainer(true)} className="shadow-md mb-4 px-6 py-1 text-lg border-4 border-brand-red text-brand-red bg-white rounded-xl cursor-pointer transition-all duration-300 ease-in-out hover:bg-brand-red hover:text-white">Show Suggestions</button>
             }
             
             {/* chatbot */}
             {showChatbot 
                 ? <Chatbot setShowAskAI={setShowChatbot} documentContent={documentContent} />
-                : <button onClick={() => setShowChatbot(true)}>Show Chatbot</button>
+                : <button onClick={() => setShowChatbot(true)} className="shadow-md mb-4 px-6 py-1 text-lg border-4 border-brand-red text-brand-red bg-white rounded-xl cursor-pointer transition-all duration-300 ease-in-out hover:bg-brand-red hover:text-white">Show Chatbot</button>
             }
         </div>
     );
