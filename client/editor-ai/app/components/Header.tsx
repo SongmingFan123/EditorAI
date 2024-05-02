@@ -51,7 +51,7 @@ const Header = () => {
             <div className="flex justify-end items-center" >
               {/* welcome + name */}
               <div className="flex items-center justify-center gap-2 md:gap-8">
-                <span className="mr-2 mt-1">Welcome, {user.displayName}</span>
+                <span className="mr-2 mt-1">Welcome, {userName}</span>
                 <button onClick={handleSignOut} className="text-white bg-brand-red px-2 py-2 rounded-md hover:bg-red-800">Sign Out</button>
               </div>
               {/* allowed pages */}                  <Navigation></Navigation>

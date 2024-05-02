@@ -40,7 +40,6 @@ const DocumentEditor = ({ documentContent, setDocumentContent,documentId,setDocu
             
             setInitialDocumentName(document.message.Title)
             setCurrentDocumentName(document.message.Title)
-            console.log("test: ", document.message.Content)
             setDocumentContent(document.message.Content)
         }
 
@@ -55,13 +54,14 @@ const DocumentEditor = ({ documentContent, setDocumentContent,documentId,setDocu
         const newTitle = e.target.value;
         setCurrentDocumentName(newTitle);
 
-        if (InitialDocumentName !== newTitle) {
-            setEditing(true);
-            console.log("editing")
-        }
-        else {
+        if (InitialDocumentName.trim() === newTitle.trim()) {
             setEditing(false);
             console.log("not editing")
+        }
+        else {
+            setEditing(true);
+            console.log("editing")
+            
         }
     };
 
@@ -93,8 +93,7 @@ const DocumentEditor = ({ documentContent, setDocumentContent,documentId,setDocu
     ];
 
     const handleProcedureContentChange = async (content: string) => {
-
-        console.log("content---->", content);
+        // console.log("content---->", content);
         setDocumentContent(content);
         await updateDocument(userId,documentId,InitialDocumentName,content);
     };
@@ -111,10 +110,9 @@ const DocumentEditor = ({ documentContent, setDocumentContent,documentId,setDocu
 
     return (
         <div className='justify-evenly flex-row'>
-            <div className="flex-row">
+            <div className="flex-row flex justify-between">
                 <input className='text-2xl font-bold bg-transparent' placeholder={InitialDocumentName} onChange={handleTitleChange} />
-                {editing && <button onClick={submitNewTitle}>Save New Title</button>}
-
+                {editing && <button className="bg-brand-red text-white font-bold py-2 px-4 rounded" onClick={submitNewTitle}>Save New Title</button>}
             </div>
             <ReactQuillNoSSR
                 modules={modules}
