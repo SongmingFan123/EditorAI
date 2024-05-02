@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { Poppins } from 'next/font/google'
 
 const config: Config = {
   content: [
@@ -8,14 +9,27 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        newsreader: ['Newsreader', 'sans-serif']
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      backgroundSize: {
+        '1/6': '16.666667%',
+      },
+      backgroundPosition: {
+        '1/6': '0% 0%',
+      },
       colors: {
-        'brand-red': '#9F4949',
-        'brand-tan': '#F5F0EF'
+        'brand-red': '#801212',
+        'brand-tan': '#F5F0EF',
+        'main-color': '#801212',
+        'login-text': '#31302F',
+
 
       }
     },

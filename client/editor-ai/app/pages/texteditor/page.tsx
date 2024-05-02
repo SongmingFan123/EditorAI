@@ -1,29 +1,31 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 import TextEditor from './TextEditor';
+//import axios from 'axios';
+import AskAIBot from '@/components/SaveWorkModal';
 
-
-const texteditpage = () => {
-  const { user } = useAuthContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (user == null) {
-      router.push("/pages/login"); // Redirect to login page if user is not authenticated
-    }
-  }, [user]);
-
-  const priorityProjects = [{ name: 'Project 1' }, { name: 'Project 2' }];
-  const recentProjects = [{ name: 'Project 3' }, { name: 'Project 4' }];
-
-  return (
-    <div className = "homepage"> 
-        <TextEditor />
-    </div>
-  );
-};
-
-export default texteditpage;
+  
+  const App = () => {
+    const { user } = useAuth();
+    const router = useRouter();
+  
+    useEffect(() => {
+      if (user == null) {
+        router.push("/pages/login"); // Redirect to login page if user is not authenticated
+      }
+    }, [user]);
+  
+    const [showAskAIBot, setShowAskAIBot] = useState(false);
+    
+    return (
+  
+      <div className="w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', height:'100%'}}>
+          <TextEditor /> {/* change this line once the projects page is set up */}
+        </div>
+    );
+  };
+  
+  export default App;

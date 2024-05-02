@@ -9,8 +9,8 @@ First, create virtual environment.
 
 # To Run
 1. Initiate googleCLI, put your service key in your secrets folder
-1. Run directly __main__.py
-
+1. Navigate to /backend/app
+1. run python3 -m flask_app
 
 # Files
 

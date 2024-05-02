@@ -3,7 +3,7 @@ button {
     display: inline-block;
     margin: 1rem;
     padding: 0.5rem 1rem;
-    border: 1px solid #cc0000;
+    border: 1px solid #801212;
     border-radius: 4px;
     background-color: rgb(226, 226, 226);
     color: #000000;
@@ -16,7 +16,7 @@ button {
   }
   
   button:hover {
-    background-color: #cc0000;
+    background-color: #801212;
     color: white;
   }
   
