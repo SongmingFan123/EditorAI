@@ -53,4 +53,3 @@ def make_sns():
         return handle_success(content)
     except Exception as e:
         handle_server_error(e)
-

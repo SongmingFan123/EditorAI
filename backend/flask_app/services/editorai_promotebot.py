@@ -19,7 +19,7 @@ class PromoteBot:
         credential = DefaultAzureCredential()
         vault_url = "https://kagglegemma.vault.azure.net"  # Update with your Key Vault URL
         secret_client = SecretClient(vault_url=vault_url, credential=credential)
-
+        
         #Social media copy 
         self.smc = "" 
 
