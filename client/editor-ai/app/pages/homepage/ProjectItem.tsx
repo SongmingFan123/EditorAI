@@ -74,6 +74,7 @@ const ProjectItem = ({
             showRemoveConfirmation={showRemoveConfirmation}
             handleRemoveClick={handleRemoveClick}
             setShowRemoveConfirmation={setShowRemoveConfirmation}
+            title={title}
           />
           
         </div>
