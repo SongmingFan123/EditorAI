@@ -83,7 +83,9 @@ const HomePage = () => {
       </div>
 
       {/* project section */}
+      <div className='p-4 mr-40 font-newsreader'>
       <ProjectSection title={"Projects"} searchQuery={searchQuery} />
+      </div>
     </div>
     
   );

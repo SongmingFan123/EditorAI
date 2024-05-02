@@ -41,7 +41,7 @@ const Header = () => {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
 
       <nav className='bg-white font-lg fixed w-full z-20 top-0 start-0 border-b py-1 font-newsreader scroll-py-0' style={{height: '125px'}}>
-      <div className="mt-4 max-w-screen-xl flex flex-wrap items-center justify-end mx-auto px-4" style={{ color: '#801212'}}>
+      <div className="mt-4 max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4" style={{ color: '#801212'}}>
         <h1 style={{ marginLeft:'-40px' }}> <img src="/header.svg"alt="Editor AI Logo"/> </h1>
 
 

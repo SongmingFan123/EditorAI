@@ -68,6 +68,7 @@ const Profile = () => {
             <h1 className="text-2xl font-bold font-newsreader">Update Profile</h1>
             {updateError && <p className="text-red-500">Please fill out all fields</p>}
             {updateSuccess && <p className="text-green-500">Profile updated successfully</p>}
+            <div className="mx-auto max-w-md">
             <form onSubmit={handleSubmit}>
                 <div className="mb-10">
                     <label htmlFor="displayName" className="mb-3 block font-medium font-newsreader text-left">Email:</label>
@@ -76,7 +77,7 @@ const Profile = () => {
                         id="displayName"
                         value={email}
                         disabled
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-1/2 md:w-2/3 lg:w-3/4 p-2.5"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-3"
 
                     />
                 </div>
@@ -88,7 +89,7 @@ const Profile = () => {
                         id="displayName"
                         placeholder={currentDisplayName}
                         onChange={handleDisplayNameChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-1/2 md:w-2/3 lg:w-3/4 p-2.5"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-3"
 
                     />
                 </div>
@@ -100,7 +101,7 @@ const Profile = () => {
                         id="password"
                         value={password}
                         onChange={handlePasswordChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-1/2 md:w-2/3 lg:w-3/4 p-2.5"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-3"
 
                     />
                 </div>
@@ -112,6 +113,7 @@ const Profile = () => {
                 </button>
 
             </form>
+            </div>
             </div>
             
 
