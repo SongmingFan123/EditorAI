@@ -8,13 +8,13 @@ import json
 
 # create_app Flask function
 
-def create_app(cred_route=r"", Test=False) -> Flask:
+def create_app(Test=False) -> Flask:
 
     app = Flask(__name__)
     app.config["TESTING"] = Test
 
     # Enable CORS
-    CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+    CORS(app)
 
 
     # Configure CORS settings to allow requests from your Next.js application
