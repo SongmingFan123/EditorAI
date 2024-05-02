@@ -3,6 +3,9 @@
 require('dotenv').config();
 
 module.exports = {
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   async rewrites() {
     return [
       {
