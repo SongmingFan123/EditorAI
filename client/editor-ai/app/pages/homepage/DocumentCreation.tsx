@@ -39,7 +39,7 @@ const DocumentCreation: React.FC<Props> = ({ setDocumentName,handleCreateDocumen
   
   return (
       <div className="bg-slate-200 rounded-xl">
-      <div className="popup-content flex flex-col">
+      <div className="popup-content flex flex-col font-poppins">
         {createDocumentFailed && <h1 className="text-red-500 mb-4">That document name already exists</h1>}
         <>
           <input
@@ -47,18 +47,18 @@ const DocumentCreation: React.FC<Props> = ({ setDocumentName,handleCreateDocumen
             placeholder="Enter document name"
             value={documentName}
             onChange={(e) => setDocumentName(e.target.value)}
-            className="rounded-lg p-2 m-2 bg-transparent"
+            className="rounded-lg p-2 m-2 outline-none border-0 shadow-md"
           />
           <div className='flex flex-row'>
             <button
               onClick={handlePopupSubmit}
-              className="bg-brand-red text-white rounded-full p-2 m-2"
+              className="bg-brand-red text-white rounded-full p-2 m-2 shadow-md"
             >
               Submit
             </button>
             <button
               onClick={handlePopupClose}
-              className="bg-brand-red text-white rounded-full p-2 m-2"
+              className="bg-brand-red text-white rounded-full p-2 m-2 shadow-md"
             >
               Cancel
             </button>

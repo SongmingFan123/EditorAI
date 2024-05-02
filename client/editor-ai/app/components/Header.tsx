@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from 'react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from 'next/navigation'
 import Navigation from './NavigationMenu';
@@ -42,20 +42,23 @@ const Header = () => {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
 
       <nav className='bg-white font-lg fixed w-full z-20 top-0 start-0 border-b py-1 font-newsreader scroll-py-0' style={{height: '120px'}}>
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4" style={{ color: '#801212'}}>
+      <div className="mt-4 max-w-screen-xl flex flex-wrap items-center justify-end mx-auto px-4" style={{ color: '#801212'}}>
         <h1> <img src="/header.svg"alt="Editor AI Logo"/> </h1>
 
 
             {/* user is logged in  */}
-            {user && (
-            <div className="flex justify-end items-center" >
-              {/* welcome + name */}
-              <div className="flex items-center justify-center gap-2 md:gap-8">
-                <span className="mr-2 mt-1">Welcome, {user.displayName}</span>
-                <button onClick={handleSignOut} className="text-white bg-brand-red px-2 py-2 rounded-md hover:bg-red-800">Sign Out</button>
+           
+              {/* allowed pages */}                 
+           
+              {user && (
+            <>
+              <Navigation />
+              <div className="flex md:justify-end">
+              <button onClick={handleSignOut} className="text-red bg-brand-tan px-2 py-2 rounded-full hover:bg-red-800 hover:text-white">
+                Log Out
+              </button>
               </div>
-              {/* allowed pages */}                  <Navigation></Navigation>
-            </div>
+            </>
             )}
             <ul> 
                 <li style={{ display: 'inline', marginRight: '40px' }}>

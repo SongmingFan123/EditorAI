@@ -37,10 +37,11 @@ const HomePage = () => {
   return (
     <div>
       {/* search bar */}
+      <div className="mt-5 shadow-mb">
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-
+      </div>
       {/* buttons */}
-      <div className="flex" style={{fontFamily:'Poppins'}}>
+      <div className="flex mb-3 gap-6" style={{fontFamily:'Poppins'}}>
         <ActionButton onClick={() => setShowPopup(true)} icon="/+.svg"/>
         <UploadButton createDocument={handleCreateDocument} icon="/upload.svg"/>
       </div>

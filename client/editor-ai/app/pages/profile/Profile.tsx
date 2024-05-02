@@ -27,40 +27,40 @@ const Profile = () => {
         <div>
             <h1 className="text-2xl font-bold">Update Profile</h1>
             <form onSubmit={handleSubmit}>
-                <div className="mt-4">
-                    <label htmlFor="displayName" className="block font-medium">Email:</label>
+                <div className="mb-6">
+                    <label htmlFor="displayName" className="block mb-2 text-sm font-medium text-gray-900">Email:</label>
                     <input
                         type="text"
                         id="displayName"
                         value={email}
                         disabled
-                        className="border border-gray-300 rounded-md p-2 mt-1"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                     />
                 </div>
-                <div className="mt-4">
-                    <label htmlFor="displayName" className="block font-medium">Display Name:</label>
+                <div className="mb-6">
+                    <label htmlFor="displayName" className="block mb-2 text-sm font-medium text-gray-900">Display Name:</label>
                     <input
                         type="text"
                         id="displayName"
                         placeholder={currentDisplayName}
                         value={currentDisplayName}
                         onChange={handleDisplayNameChange}
-                        className="border border-gray-300 rounded-md p-2 mt-1"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                     />
                 </div>
-                <div className="mt-4">
-                    <label htmlFor="password" className="block font-medium">New Password:</label>
+                <div className="mb-6">
+                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">New Password:</label>
                     <input
                         type="password"
                         id="password"
                         value={password}
                         onChange={handlePasswordChange}
-                        className="border border-gray-300 rounded-md p-2 mt-1"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                     />
                 </div>
                 <button
                     type="submit"
-                    className="bg-brand-red text-white px-4 py-2 rounded-md mt-4"
+                    className="text-white bg-brand-red hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                 >
                     Update Profile
                 </button>
