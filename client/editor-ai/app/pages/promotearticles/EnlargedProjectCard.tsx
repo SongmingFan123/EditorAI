@@ -28,8 +28,8 @@ const EnlargedProjectCard: React.FC<ProjectItemProps> = ({ id, title, lastModifi
         <div className="bg-white rounded-lg shadow-md p-4 relative m-5">
             <div className='flex flex-col'>
                 <div className='flex flex-row justify-between'>
-                    <h1  className="text-xl font-bold mb-2 cursor-pointer">{title}</h1>
-                    <Image src='/open.jpeg' alt="open icon" width={50} height={50} onClick={editProject}/>
+                    <h1  className="text-xl font-bold font-poppins mb-2 cursor-pointer">{title}</h1>
+                    <Image src='/document-color.svg' alt="open icon" width={50} height={50} onClick={editProject}/>
                 </div>
                 <p className="text-gray-500 mb-2">{lastModified}</p>
                 <ReactQuill

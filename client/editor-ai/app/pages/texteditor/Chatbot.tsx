@@ -46,9 +46,9 @@ const Chatbot = ({setShowAskAI,documentContent}:ChatbotProps) => {
 
   return (
     <div className="h-96 flex flex-col bg-white rounded-xl p-4 shadow-md">
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between p-2">
         <h1 className='font-newsreader text-2xl'>Ask EditorAI</h1>
-        <button className="mb-4 font-bold" onClick={() => setShowAskAI(false)} >X</button>
+        <button className="mb-4s" onClick={() => setShowAskAI(false)} >X</button>
       </div>
       {messages.length>10 && <button onClick={handleResetConversation} > Reset</button>}
       <div className="flex-1 overflow-y-auto">

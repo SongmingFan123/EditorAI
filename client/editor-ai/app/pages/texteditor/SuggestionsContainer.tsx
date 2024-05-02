@@ -34,7 +34,7 @@ const SuggestionsContainer: React.FC<SuggestionsContainerProps> = ({
   return (
     <div>
       <div className="bg-white shadow rounded-lg p-4 mb-4 ">
-      <div className="flex flex-row justify-between font-bold">
+      <div className="flex flex-row justify-between">
         <h1 className="font-newsreader text-2xl">Suggestions</h1>
         <button onClick={() => setShowSuggestionContainer(false)}>X</button>
       </div>

@@ -63,52 +63,57 @@ const Profile = () => {
 
     return (
         <div >
-            <div className='text-center' >
+            <div className="text-center p-10 pt-15 bg-brand-tan min-h-screen" >
 
-            <h1 className="text-2xl font-bold">Update Profile</h1>
+            <h1 className="text-2xl font-bold font-newsreader">Update Profile</h1>
             {updateError && <p className="text-red-500">Please fill out all fields</p>}
             {updateSuccess && <p className="text-green-500">Profile updated successfully</p>}
             <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                    <label htmlFor="displayName" className="block mb-2 text-sm font-medium text-gray-900">Email:</label>
+                <div className="mb-10">
+                    <label htmlFor="displayName" className="mb-3 block font-medium font-newsreader text-left">Email:</label>
                     <input
                         type="text"
                         id="displayName"
                         value={email}
                         disabled
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-1/2 md:w-2/3 lg:w-3/4 p-2.5"
+
                     />
                 </div>
                 {userNameError && <p className="text-red-500">New display name is the same as the current one</p>}
-                <div className="mt-4">
-                    <label htmlFor="displayName" className="block font-medium">Display Name:</label>
+                <div className="mt-10">
+                    <label htmlFor="displayName" className="mb-3  block font-medium font-newsreader text-left">Display Name:</label>
                     <input
                         type="text"
                         id="displayName"
                         placeholder={currentDisplayName}
                         onChange={handleDisplayNameChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-1/2 md:w-2/3 lg:w-3/4 p-2.5"
+
                     />
                 </div>
                 {passwordError && <p className="text-red-500">Password must be at least 6 characters</p>}
-                <div className="mt-4">
-                    <label htmlFor="password" className="block font-medium">New Password:</label>
+                <div className="mt-10">
+                    <label htmlFor="password" className="mb-3  block font-medium font-newsreader text-left">New Password:</label>
                     <input
                         type="password"
                         id="password"
                         value={password}
                         onChange={handlePasswordChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-1/2 md:w-2/3 lg:w-3/4 p-2.5"
+
                     />
                 </div>
                 <button
                     type="submit"
-                    className="text-white bg-brand-red hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                    className="mt-10 shadow-md text-white bg-brand-red hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5"
                 >
                     Update Profile
                 </button>
+
             </form>
             </div>
+            
 
         </div>
     );

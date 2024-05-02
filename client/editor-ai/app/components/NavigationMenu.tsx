@@ -14,7 +14,6 @@ const Navigation: React.FC = () => {
       <ul className="hidden sm:flex list-none font-newsreader">
         {[
           { href: "/pages/homepage", label: "Home" },
-          { href: "/pages/texteditor", label: "Upload file" },
           { href: "/pages/profile", label: "My Profile" }
         ].map(link => (
           <li key={link.href} className="inline-block">

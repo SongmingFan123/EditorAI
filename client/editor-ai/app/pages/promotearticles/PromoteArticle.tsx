@@ -36,13 +36,15 @@ const PromoteArticle = () => {
     // const documentContent ='This is a test document. It is a test document that is being used to test the copy editor. The copy editor is a tool that allows users to generate social media copy for their articles. The copy editor uses an AI model to generate the copy. The AI model is trained on a large dataset of social media posts. The AI model is able to generate high-quality copy that is tailored to the user\'s needs. The copy editor is a powerful tool that can help users save time and effort when promoting their articles on social media.';
 
     return (
-        <div>
-            <h1 className="text-3xl text-center m-5">Promote your project: {documentTitle}</h1>
+        <div className="p-10 bg-brand-tan min-h-screen">
+            <h1 className="text-3xl text-center m-5 mb-2 font-newsreader">Promote your project: {documentTitle}</h1>
+            <div className="flex items-center justify-start mb-5">
             <Link href="./homepage" legacyBehavior> 
-                <a className="text-main-color font-bold font-newsreader flex items-center">
-                    <img src="/back.svg" alt="back logo" width={20} height={20}/>
-                </a>
-            </Link>
+                        <a className="text-main-color font-bold font-newsreader flex items-center">
+                        <img src="/back.svg" alt="logo" width={25} height={25} style={{ marginRight: '10px' , marginTop: '15px', marginBottom:'0px'}}/>
+                        <span className="mt-5 text-2xl font-poppins"> Back </span> </a>
+                    </Link>
+                    </div>
 
             {/* layout 1 */}
             {/* <div className="flex flex-col justify-evenly">
@@ -59,9 +61,9 @@ const PromoteArticle = () => {
             </div> */}
 
             {/* layout 2 */}
-            <div className="flex flex-row justify-evenly">
+            <div className=" flex flex-row justify-between items-start gap-5">
 
-                <div className='w-1/3 flex justify-evenly flex-col'>
+                <div className=' w-4/5 flex justify-evenly flex-col'>
                     <SocialMediaContainer copy={copyText} setCopy={setCopyText}/>
                     <EnlargedProjectCard
                         id={documentId}
@@ -70,7 +72,7 @@ const PromoteArticle = () => {
                         content={documentContent}
                     />
                 </div>
-                <div className='w-1/3'>
+                <div className='w-4/5'>
                     <CopyEditor documentContent={documentContent} />
                 </div>
             </div>

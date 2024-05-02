@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import {useRouter} from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import CreateDocumentModal from '@/components/CreateDocumentModal';
 
 interface Props {
     setDocumentName: (name: string) => void;

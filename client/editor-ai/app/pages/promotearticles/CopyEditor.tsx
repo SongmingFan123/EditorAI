@@ -70,10 +70,10 @@ const CopyEditor: React.FC<CopyEditorProps> = ({
 
     return (
         <div>
-            <div className='flex flex-col bg-white rounded-lg shadow-md p-4 relative'>
-                <div className='flex flex-row justify-between m-1'>
-                    <h1 className='text-2xl font-bold'>EditorAI's Social Media Copy</h1>
-                    <Image src='/refresh.png' alt="refresh icon" width={50} height={50} onClick={handleRefreshCopy} className=''/>
+            <div className='shadow-md flex flex-col bg-white rounded-lg p-4 m-4 relative'>
+                <div className='flex flex-row justify-between m-1 p-3'>
+                    <h1 className='text-2xl font-bold font-poppins'>EditorAI's Social Media Copy</h1>
+                    <Image src='/refresh-color.svg' alt="refresh icon" width={40} height={40} onClick={handleRefreshCopy}/>
                 </div>
 
 
