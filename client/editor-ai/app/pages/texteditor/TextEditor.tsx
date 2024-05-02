@@ -37,11 +37,11 @@ const TextEditor = () => {
     const [documentId, setDocumentId] = useState<string>('');
     const [documentContent, setDocumentContent] = useState<string>('');
 
-  
+    const [useSearch, setUseSearch] = useState(useSearchParams());
+
     
 
     useEffect(() => {
-        const useSearch = useSearchParams();
         const documentId = useSearch.get('documentid') as string;
         setDocumentId(documentId);
 
