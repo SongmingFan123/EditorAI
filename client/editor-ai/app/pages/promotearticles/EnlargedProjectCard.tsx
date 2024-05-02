@@ -19,15 +19,17 @@ const EnlargedProjectCard: React.FC<ProjectItemProps> = ({ id, title, lastModifi
         router.push(`./texteditor/?documentid=${id}`); // Pass documentId instead of key
     };
 
+    const maxCharacters = 200;
+
     return (
-        <div className="bg-white rounded-lg shadow-md p-4 relative">
-            <div>
+        <div className="bg-white rounded-lg shadow-md p-4 relative m-5">
+            <div className='flex flex-col'>
                 <div className='flex flex-row justify-between'>
                     <h1  className="text-xl font-bold mb-2 cursor-pointer">{title}</h1>
-                    <Image src='/open.jpeg' alt="open icon" width={100} height={100} onClick={editProject}/>
+                    <Image src='/open.jpeg' alt="open icon" width={50} height={50} onClick={editProject}/>
                 </div>
                 <p className="text-gray-500 mb-2">{lastModified}</p>
-                <p className="text-black-500 mb-2">{content}</p>
+                <p className="text-black-500 mb-2">{content.length > maxCharacters ? `${content.substring(0, maxCharacters)} ...` : content}</p>
             </div>
         </div>
     );

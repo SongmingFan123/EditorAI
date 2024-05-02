@@ -8,18 +8,24 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import ProjectItem from '../homepage/ProjectItem';
 import CopyEditor from './CopyEditor';
 import Link from 'next/link';
+import SocialMediaContainer from './SocialMediaContainer';
 
 const PromoteArticle = () => {
     const { id } = useAuth();
     const searchParams = useSearchParams();
     const documentId = searchParams.get('documentid') as string;
-    const [document, setDocument] = useState<any>(null);
+
+    const [documentContent, setDocumentContent] = useState<string>('');
+    const [documentTitle, setDocumentTitle] = useState<string>('');
+    const [documentLastModified, setDocumentLastModified] = useState<string>('');
 
     useEffect(() => {
         const fetchDocument = async (documentId: string) => {
             try {
                 const document = await getDocument(id, documentId);
-                setDocument(document);
+                setDocumentContent(document.message.Content);
+                setDocumentTitle(document.message.Title);
+                setDocumentLastModified(document.message.LastModified);
             } catch (error) {
                 console.log("Error fetching document:", error);
             }
@@ -27,27 +33,26 @@ const PromoteArticle = () => {
         fetchDocument(documentId);
     }, []);
 
-    const documentContent ='This is a test document. It is a test document that is being used to test the copy editor. The copy editor is a tool that allows users to generate social media copy for their articles. The copy editor uses an AI model to generate the copy. The AI model is trained on a large dataset of social media posts. The AI model is able to generate high-quality copy that is tailored to the user\'s needs. The copy editor is a powerful tool that can help users save time and effort when promoting their articles on social media.';
-    const documentTitle = 'Test Document';
+    // const documentContent ='This is a test document. It is a test document that is being used to test the copy editor. The copy editor is a tool that allows users to generate social media copy for their articles. The copy editor uses an AI model to generate the copy. The AI model is trained on a large dataset of social media posts. The AI model is able to generate high-quality copy that is tailored to the user\'s needs. The copy editor is a powerful tool that can help users save time and effort when promoting their articles on social media.';
 
     return (
-        <div className="flex flex-row">
-            {/* <Link href="./homepage"> 
-                <a className="text-main-color font-bold font-newsreader flex items-center">
-                    <Image src="/back.svg" alt="logo" width={20} height={20}/>
-                    <span> Back </span> 
-                </a>
-            </Link> */}
-            <div className="w-1/2">
-                <EnlargedProjectCard
-                    id={documentId}
-                    title={documentTitle}
-                    lastModified={document?.message.LastModified}
-                    content={documentContent}
-                />
-            </div>
-            <div className="w-1/2">
-                <CopyEditor documentContent={document?.message.Content} />
+        <div>
+            <h1 className="text-3xl font-bold text-center m-5">Promote Article</h1>
+
+            <div className="flex flex-row justify-evenly">
+
+                <div className='w-1/3 flex justify-evenly flex-col'>
+                    <SocialMediaContainer />
+                    <EnlargedProjectCard
+                        id={documentId}
+                        title={documentTitle}
+                        lastModified={documentLastModified}
+                        content={documentContent}
+                    />
+                </div>
+                <div className='w-1/3'>
+                    <CopyEditor documentContent={documentContent} />
+                </div>
             </div>
         </div>
     );
