@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -8,12 +10,11 @@ const Navigation: React.FC = () => {
   const isActive = (pathname: string) => (router as any).pathname === pathname;
 
   return (
-    <nav>
-      <ul className="list-none text-right font-poppins mt-5 ml-auto">
+    <nav className="list-none text-right font-newsreader gap-7 ml-auto">
+      <ul className="hidden sm:flex list-none font-newsreader">
         {[
-          { href: "/pages/homepage", label: "Home Page" },
-          { href: "/pages/texteditor", label: "Text Editor" },
-          { href: "/pages/profile", label: "Profile" }
+          { href: "/pages/homepage", label: "Home" },
+          { href: "/pages/profile", label: "My Profile" }
         ].map(link => (
           <li key={link.href} className="inline-block">
             <Link href={link.href} legacyBehavior={true}>

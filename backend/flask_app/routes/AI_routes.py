@@ -33,16 +33,15 @@ def generate_source():
 @bp.route('/summarize', methods=['POST'])
 @cross_origin
 def summarize_article():
-    pass
-    # try:
-    #     AIconfig = editorai_chatbot()
+    try:
+        AIconfig = editorai_chatbot()
 
-    #     data = request.json
-    #     content = AIconfig.summarize_article(data["document"])
-    #     if(not content):
-    #         return requestHandler.handle_server_error
-    #     return handle_success(content)
-    # except Exception as e:
-    #     handle_server_error(e)
+        data = request.json
+        content = AIconfig.summarize_article(data["document"])
+        if(not content):
+            return requestHandler.handle_server_error
+        return handle_success(content)
+    except Exception as e:
+        handle_server_error(e)
 
 

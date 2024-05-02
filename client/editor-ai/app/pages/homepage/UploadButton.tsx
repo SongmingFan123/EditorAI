@@ -2,6 +2,7 @@
 
 import React, { useRef, ChangeEvent } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 type UploadButtonProps = {
     createDocument: (userId: string, fileName: string, fileContent: string) => void;
@@ -13,6 +14,8 @@ function UploadButton({ createDocument, icon }: UploadButtonProps) {
     const userId = user?.uid as string;
     const inputFileRef = useRef<HTMLInputElement>(null);
 
+    const router = useRouter();
+
 
 const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -23,7 +26,10 @@ const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
             console.log("User ID: ", userId);
             console.log("File Name: ", fileName);
             console.log("File Content: ", fileContent);
-            createDocument(userId, fileName, fileContent);
+            const documentId = await createDocument(userId, fileName, fileContent);
+            console.log('DocumentId:', documentId);
+
+            router.push(`/pages/texteditor?documentid=${documentId}`)
         } catch (error) {
             console.error('Error reading file content:', error);
         }

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import TextEditor from './TextEditor';
 //import axios from 'axios';
-import AskAIBot from '@/components/SaveWorkModal';
+import AskAIBot from '@/components/CreateDocumentModal';
 
   
   const App = () => {
@@ -21,8 +21,7 @@ import AskAIBot from '@/components/SaveWorkModal';
     const [showAskAIBot, setShowAskAIBot] = useState(false);
     
     return (
-  
-      <div className="w-screen" style={{ backgroundColor: '#F5F0EF', width: '100%', height:'100%'}}>
+      <div className="w-full bg-brand-tan" style={{ backgroundColor: '#F5F0EF', width: '100%',  height: '100%', margin:'0rem'}}>
           <TextEditor /> {/* change this line once the projects page is set up */}
         </div>
     );
