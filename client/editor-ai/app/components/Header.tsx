@@ -13,8 +13,7 @@ import Navigation from './NavigationMenu';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // @ts-ignore
-  const { user } = useAuth();
-  const userName = user?.displayName
+  const { user,displayName } = useAuth();
   const auth = getAuth();
   const router = useRouter();
 
@@ -51,7 +50,7 @@ const Header = () => {
             <div className="flex justify-end items-center" >
               {/* welcome + name */}
               <div className="flex items-center justify-center gap-2 md:gap-8">
-                <span className="mr-2 mt-1">Welcome, {userName}</span>
+                <span className="mr-2 mt-1">Welcome, {displayName}</span>
                 <button onClick={handleSignOut} className="text-white bg-brand-red px-2 py-2 rounded-md hover:bg-red-800">Sign Out</button>
               </div>
               {/* allowed pages */}                  <Navigation></Navigation>

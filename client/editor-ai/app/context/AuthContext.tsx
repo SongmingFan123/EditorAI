@@ -9,6 +9,8 @@ interface AuthContextProps {
   signIn: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<void>;
   updateUser: (newDisplayName: string, newPassword: string) => void;
+  displayName: string;
+  id: string;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -97,7 +99,9 @@ const signIn = async (email: string, password: string) => {
     signUp,
     signIn,
     signOut,
-    updateUser
+    updateUser,
+    displayName: user?.displayName || '',
+    id: user?.uid || ''
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
