@@ -17,4 +17,4 @@ import Profile from './Profile';
     );
   };
   
-  export default App;
+export default App;

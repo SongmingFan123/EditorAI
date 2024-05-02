@@ -13,8 +13,7 @@ import Navigation from './NavigationMenu';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // @ts-ignore
-  const { user } = useAuth();
-  const userName = user?.displayName
+  const { user,displayName } = useAuth();
   const auth = getAuth();
   const router = useRouter();
 

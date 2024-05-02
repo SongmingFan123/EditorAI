@@ -45,7 +45,7 @@ const Chatbot = ({setShowAskAI,documentContent}:ChatbotProps) => {
   };
 
   return (
-    <div className="h-96 flex flex-col bg-gray-100 rounded p-4">
+    <div className="h-96 flex flex-col bg-white rounded-xl p-4 shadow-md">
       <div className="flex flex-row justify-between">
         <h1 className='font-newsreader text-2xl'>Ask EditorAI</h1>
         <button className="mb-4 font-bold" onClick={() => setShowAskAI(false)} >X</button>
@@ -55,31 +55,33 @@ const Chatbot = ({setShowAskAI,documentContent}:ChatbotProps) => {
         {messages.map((message) => (
           message.author === 'editorai' 
           ?
-            <div key={message.id} className="p-2 mb-2 bg-white rounded shadow">
+            <div key={message.id} className="p-2 mb-2 bg-brand-red rounded-xl shadow text-white poppins-thin">
               {message.text}
             </div>
           :
-            <div key={message.id} className="p-2 mb-2 bg-brand-red text-white rounded shadow">
+            <div key={message.id} className="p-2 mb-2 bg-brand-tan text-brand-red rounded-xl shadow text-white poppins-thin">
               {message.text}
             </div>
         ))}
       </div>
       
-      <div className="flex items-center mt-4">
+      <div className="flex items-center mt-4 shadow-md rounded-lg poppins-thin" >
         <input
           type="text"
           placeholder="Type your message..."
           value={inputText}
           onChange={handleInputChange}
-          className="flex-1 rounded-l p-2"
+          className="flex-1 p-2 rounded-xl"
+          style={{outline: 'none', border: 'none' }}
           onKeyDown={handleKeyDown}
         />
         <button
-          onClick={handleSendMessage}
-          className="px-4 py-2 bg-brand-red text-white rounded-r"
-        >
-          Send
-        </button>
+  onClick={handleSendMessage}
+  className="poppins-thin px-4 py-2 bg-brand-red custom-border text-white rounded-lg shadow-md"
+>
+  <img src="/chatupload.svg" alt="Chat Upload Button"/>
+</button>
+
         
       </div>
     </div>

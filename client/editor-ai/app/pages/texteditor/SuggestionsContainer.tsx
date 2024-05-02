@@ -38,7 +38,8 @@ const SuggestionsContainer: React.FC<SuggestionsContainerProps> = ({
         <button onClick={() => setShowSuggestionContainer(false)}>X</button>
       </div>
       <div>
-        {suggestions.map((suggestion, index) => (
+        {suggestions ?
+        suggestions.map((suggestion, index) => (
           <SuggestionBox
             key={index}
             documentContent={documentContent}
@@ -48,7 +49,12 @@ const SuggestionsContainer: React.FC<SuggestionsContainerProps> = ({
             incorrectLine={suggestion.incorrectLine}
             correctLine={suggestion.correctLine}
           />
-        ))}
+        ))
+        : <div >
+            <h1 className='font-newsreader'>No suggestions available</h1>
+        </div>
+    
+    }
       </div>
     </div>
   );
