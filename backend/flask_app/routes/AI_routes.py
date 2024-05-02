@@ -45,4 +45,3 @@ def summarize_article():
     # except Exception as e:
     #     handle_server_error(e)
 
-
