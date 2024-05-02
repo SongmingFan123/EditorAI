@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import {useRouter} from 'next/navigation';
 import { generateSocialMediaCopy } from '@/api/handle_ai';
 import Image from 'next/image';
+import DocumentCreation from '../homepage/DocumentCreation';
 
 interface CopyEditorProps {
-    documentContent:string
+    documentContent:string;
+    copyText: string;
+    setCopyText: (content: string) => void;
+
 }
 const ReactQuillNoSSR = dynamic(
     () => import('react-quill'), 
@@ -16,10 +20,11 @@ const ReactQuillNoSSR = dynamic(
 
 
 const CopyEditor: React.FC<CopyEditorProps> = ({
-    
-}) => {
+    documentContent,
+    copyText,
+    setCopyText
+}:CopyEditorProps) => {
 
-    const [copyText, setCopyText] = useState<string>("Testing")
     const router = useRouter();
 
     var modules = {
@@ -51,7 +56,8 @@ const CopyEditor: React.FC<CopyEditorProps> = ({
     };
 
     const handleRefreshCopy = async () => {
-        const res= await generateSocialMediaCopy(copyText) as string;
+        console.log("documentContent " + documentContent)
+        const res= await generateSocialMediaCopy(documentContent) as string;
         setCopyText(res)
         console.log(res)
     };
@@ -61,21 +67,23 @@ const CopyEditor: React.FC<CopyEditorProps> = ({
 
 
 
+
     return (
         <div>
-            <div className='flex flex-col'>
-                <div className='flex flex-row justify-evenly'>
-                    <h1 className='text-2xl'>AI Generated Social Media Copy</h1>
-                    <img src='/refresh-color.svg' alt="refresh icon" width={100} height={100} onClick={handleRefreshCopy}/>
+            <div className='flex flex-col bg-white rounded-lg shadow-md p-4 relative'>
+                <div className='flex flex-row justify-between m-1'>
+                    <h1 className='text-2xl font-bold'>EditorAI's Social Media Copy</h1>
+                    <Image src='/refresh.png' alt="refresh icon" width={50} height={50} onClick={handleRefreshCopy} className=''/>
                 </div>
+
 
                 <ReactQuillNoSSR
                     modules={modules}
                     formats={formats}
                     value={copyText}
-                    placeholder={copyText}
+                    placeholder={"Generate social media copy here..."}
                     onChange={handleCopyContentChange}
-                    className='h-[80vh] rounded-lg bg-white p-4'
+                    
                 />
                 
 

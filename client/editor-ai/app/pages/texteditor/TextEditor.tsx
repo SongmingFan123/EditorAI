@@ -16,8 +16,13 @@ const TextEditor = () => {
 
     return (
         <div>
+<<<<<<< HEAD
             <div className="flex flex-row p-10 bg-brand-tan min-h-screen">
                 <div id='editorsection' className="flex-grow md:ml-5 pr-20">
+=======
+            <div className="flex flex-row">
+                <div id='editorsection' className="flex flex-col basis-2/3">
+>>>>>>> remotes/origin/implementing-ai-branch
                     {/* back button */}
                     <Link href="./homepage" legacyBehavior> 
                         <a className="text-main-color font-bold font-newsreader flex items-center">
@@ -36,7 +41,11 @@ const TextEditor = () => {
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <div id="asidesection" className="w-1/4 min-w-[300px]">
+=======
+                <div id="asidesection" className="basis-1/3">
+>>>>>>> remotes/origin/implementing-ai-branch
                     {/* aside */}
                     <Aside documentContent={documentContent} setDocumentContent={setDocumentContent} />
                 </div>
