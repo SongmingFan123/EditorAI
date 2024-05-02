@@ -1,4 +1,4 @@
-from app import create_app
+from flask_app import create_app
 import pytest
 import random
 import threading
@@ -302,3 +302,10 @@ class Test_document_management():
 
         # Assert all results are True (i.e., all tests passed)
         assert all(result for result, msg in test_results), "\n".join(msg for result, msg in test_results if not result)
+
+
+
+
+# ----------------------------------------
+#  AI TESTING STUFF
+# ----------------------------------------

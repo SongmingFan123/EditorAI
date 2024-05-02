@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..services import editorai_chatbot
+# from ..services import editorai_chatbot
 from ..utils import *
 from flask_cors import cross_origin, CORS
 
@@ -8,44 +8,40 @@ CORS(bp)
 
 @bp.route('/generateTitle', methods=['POST'])
 @cross_origin()
-def suggest_title():
+def generate_title():
     """ """
-    try:
-        AIconfig = editorai_chatbot()
-        data = request.json
-        content = AIconfig.create_title(data["document"])
-        if(not content):
-            return requestHandler.handle_server_error
-        return handle_success(content)
-    except Exception as e:
-         handle_server_error(e)
+    pass
+    # try:
+    #     AIconfig = editorai_chatbot()
+    #     data = request.json
+    #     content = AIconfig.create_title(data["document"])
+    #     if(not content):
+    #         return requestHandler.handle_server_error
+    #     return handle_success(content)
+    # except Exception as e:
+    #      handle_server_error(e)
+
+
+@bp.route('/generateSource', methods=['POST'])
+@cross_origin
+def generate_source():
+    """ """
+    pass
+
+
 
 @bp.route('/summarize', methods=['POST'])
 @cross_origin
 def summarize_article():
-    try:
-        AIconfig = editorai_chatbot()
+    pass
+    # try:
+    #     AIconfig = editorai_chatbot()
 
-        data = request.json
-        content = AIconfig.summarize_article(data["document"])
-        if(not content):
-            return requestHandler.handle_server_error
-        return handle_success(content)
-    except Exception as e:
-        handle_server_error(e)
+    #     data = request.json
+    #     content = AIconfig.summarize_article(data["document"])
+    #     if(not content):
+    #         return requestHandler.handle_server_error
+    #     return handle_success(content)
+    # except Exception as e:
+    #     handle_server_error(e)
 
-@bp.route('/sns', methods=['POST'])
-@cross_origin
-def make_sns():
-    try:
-        AIconfig = editorai_chatbot()
-
-        data = request.json
-        content = AIconfig.create_social_media_copy(data["document"])
-        if(not content):
-            return requestHandler.handle_server_error
-        return handle_success(content)
-    except Exception as e:
-        handle_server_error(e)
-
-    return content

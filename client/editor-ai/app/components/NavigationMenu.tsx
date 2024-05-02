@@ -7,7 +7,7 @@ import React from 'react';
 const Navigation: React.FC = () => {
   const router = useRouter();
 
-  const isActive = (pathname: string) => router.pathname === pathname;
+  const isActive = (pathname: string) => (router as any).pathname === pathname;
 
   return (
     <nav className="list-none text-right font-newsreader gap-7 ml-auto">

@@ -28,6 +28,9 @@ def create_app(cred_route=r"", Test=False) -> Flask:
     
 
     routes.register_blueprints(app)
+    @app.route('/')
+    def health():
+        return "Hello World", 200
 
 
     return app
