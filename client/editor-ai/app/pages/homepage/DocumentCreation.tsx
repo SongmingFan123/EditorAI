@@ -32,10 +32,11 @@ const DocumentCreation: React.FC<Props> = ({ setDocumentName, handleCreateDocume
       router.push(`/pages/texteditor?documentid=${documentId}`);
     }
   };
-
+  
   return (
     <div className="absolute top-0 left-0 w-full h-full bg-gray-700 bg-opacity-50 flex items-center justify-center">
-      <div className="bg-brand-tan p-8 rounded-xl w-full max-w-2xl shadow-lg w-96" style={{ minHeight: '40vh' }}>
+      <div className="bg-brand-tan p-8 rounded-xl w-full max-w-2xl shadow-lg w-96" style={{ minHeight: '40vh', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+      border: '1px solid rgba(255, 255, 255, 0.4)'}}>
         <div className="popup-content flex flex-col items-center justify-center space-y-4">
           {createDocumentFailed && <h1 className="text-red-500 mb-4">That document name already exists</h1>}
           <>
