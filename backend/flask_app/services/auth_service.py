@@ -1,10 +1,11 @@
-from firebase_admin import firestore
+from firebase_admin import credentials, auth
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 
 
 class auth_service:
 
     def __init__(self):
-        self.db = firestore.client()
+        pass
 
     def add_new_user(self, userInfo: dict):
         pass
