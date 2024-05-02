@@ -4,12 +4,13 @@ import keras
 import keras_nlp
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
+import requests
 
 
 class PromoteBot:
-  def __init__(self):
+
+    def __init__(self):
         # Initialize models
-        
 
         self.copy_model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
 
@@ -39,16 +40,15 @@ class PromoteBot:
         os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
 
 
-  def create_social_media_copy(self, article):
+    def create_social_media_copy(self, article):
         input_text = f"Craft a social media transcript for the following text that is both engaging, with emojis and Emphasizes the core message of the article, Keep the tone positive and relatable. : {article}"
         social_media_copy = self.copy_model.generate(input_text, max_length=300)
-        self.smc = social_media_copy
+        return social_media_copy
        
 
 # Posting the social media copy to SM NEED Spark Tokens for social medai routes
 
-
-      def post_to_facebook(self, social_media_copy ):
+    def post_to_facebook(self, social_media_copy: str) -> "tuple[bool, str]":
         # Facebook API 
         url = "https://graph.facebook.com/v12.0/me/feed"
 
@@ -65,18 +65,19 @@ class PromoteBot:
             response = requests.post(url, params=params)
             response.raise_for_status()  
             post_id = response.json().get("id")
-            return f"Post created successfully! Post ID: {post_id}"
+            return True, post_id
         
         except requests.exceptions.HTTPError as err:
             # HTTP error 
-            return f"Error creating post: {err}"
+            return False, str(err)
 
-        except Exception as e:
+        except Exception as err:
             # Other errors 
-            return f"An error occurred: {e}"
+            return False, str(err)
 
 
-    def post_to_twitter(self, social_media_copy):
+    def post_to_twitter(self, social_media_copy: str) -> "tuple[bool, str]":
+
         # Twitter API 
         url = "https://api.twitter.com/2/tweets"
 
@@ -100,72 +101,57 @@ class PromoteBot:
             tweet_data = response.json()["data"]
             tweet_id = tweet_data["id"]
             tweet_text = tweet_data["text"]
-            
-            return f"Tweet posted successfully! Tweet ID: {tweet_id}, Text: {tweet_text}"
+
+            print("this is tweet_text", tweet_text) # for testing
+
+            return True, tweet_id
         
         except requests.exceptions.HTTPError as err:
             # HTTP error  
-            return f"Error posting tweet: {err}"
+            return False, err
 
-        except Exception as e:
+        except Exception as err:
             # Other errors  
-            return f"An error occurred: {e}"
+            return False, err
 
+    # IN THE FUTURE 
+        # def conversational_style(self, article):
+        #     input_text = (
+        #         'Revise the original text to enhance its conversational and engaging tone '
+        #         'while maintaining its original meaning. Ensure that the meaning of the '
+        #         'text remains intact and that no additional or inaccurate information '
+        #         'is added. Here is the original text: ' + article
+        #     )
+        #     outputs = self.model.generate(input_text, max_length=500)
+        #     return outputs
 
-  def process_social_request(self, option_text, social_media_copy):
-        if option_button == 'Twitter':
-            #Login
+        # def data_driven_style(self, article):
+        #     input_text = (
+        #         'Revise the original text to enhance its emphasis on the data provided '
+        #         'in the original text, making it data-driven and analytical in its '
+        #         'approach to interpreting the data within the context of the article\'s main points. '
+        #         'Ensure that the meaning of the text remains intact and that no additional '
+        #         'or inaccurate information is added. Here is the original text: ' + article
+        #     )
+        #     outputs = self.model.generate(input_text, max_length=500)
+        #     return outputs   
 
-            #Post to twitter
-            post_to_twitter(self.smc)
-            pass
-        elif option_button == 'Facebook':
-            #Login
+        # def make_stylistic_changes(self, article_text):
+        #     print("Stylistic options:")
+        #     print("1: Conversational and Engaging")
+        #     print("2: Data-driven and Analytical")
 
-            #Post to twitter
-            post_to_facebook(self, self.smc):
-            pass
-        else:
-            return "Invalid option selected. Please select Twitter, Facebook, or Instagram."
+        #     choice = input("Enter your choice: ")
 
-# IN THE FUTURE 
-    # def conversational_style(self, article):
-    #     input_text = (
-    #         'Revise the original text to enhance its conversational and engaging tone '
-    #         'while maintaining its original meaning. Ensure that the meaning of the '
-    #         'text remains intact and that no additional or inaccurate information '
-    #         'is added. Here is the original text: ' + article
-    #     )
-    #     outputs = self.model.generate(input_text, max_length=500)
-    #     return outputs
+        #     if choice == "1":
+        #         article = self.conversational_style(article_text)
+        #         social_copy = self.create_social_media_copy(article)
+        #         self.smc = social_media_copy
+                
+        #     elif choice == "2":
+        #         article = self.data_driven_style(article_text)
+        #         return  social_copy = self.create_social_media_copy(article)
+        #         self.smc = social_media_copy
 
-    # def data_driven_style(self, article):
-    #     input_text = (
-    #         'Revise the original text to enhance its emphasis on the data provided '
-    #         'in the original text, making it data-driven and analytical in its '
-    #         'approach to interpreting the data within the context of the article\'s main points. '
-    #         'Ensure that the meaning of the text remains intact and that no additional '
-    #         'or inaccurate information is added. Here is the original text: ' + article
-    #     )
-    #     outputs = self.model.generate(input_text, max_length=500)
-    #     return outputs   
-
-    # def make_stylistic_changes(self, article_text):
-    #     print("Stylistic options:")
-    #     print("1: Conversational and Engaging")
-    #     print("2: Data-driven and Analytical")
-
-    #     choice = input("Enter your choice: ")
-
-    #     if choice == "1":
-    #         article = self.conversational_style(article_text)
-    #         social_copy = self.create_social_media_copy(article)
-    #         self.smc = social_media_copy
-             
-    #     elif choice == "2":
-    #         article = self.data_driven_style(article_text)
-    #         return  social_copy = self.create_social_media_copy(article)
-    #         self.smc = social_media_copy
-
-    #     else:
-    #         return "Invalid choice. Please try again."
+        #     else:
+        #         return "Invalid choice. Please try again."

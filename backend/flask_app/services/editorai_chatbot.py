@@ -6,22 +6,20 @@ from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
 
 class EditorAIChatbot:
+    
     def __init__(self):
         # Initialize models
 
-        self. article_headline = ""
-        self. generate_source = ""
-        self. revised_article = ""
+        self.article_headline = ""
+        self.generate_source = ""
+        self.revised_article = ""
 
         self.model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
-
 
         # Set environment variables
         credential = DefaultAzureCredential()
         vault_url = "https://kagglegemma.vault.azure.net"   
         secret_client = SecretClient(vault_url=vault_url, credential=credential)
-
-
 
         try:
            
@@ -35,7 +33,9 @@ class EditorAIChatbot:
             # Set environment variables
             os.environ["KAGGLE_USERNAME"] = self.username_secret
             os.environ["KAGGLE_KEY"] = self.api_key_secret
+
         except Exception as e:
+
             print("Error:", e)
             os.environ["KAGGLE_USERNAME"] = "your_username"
             os.environ["KAGGLE_KEY"] = "your_key"
@@ -46,18 +46,21 @@ class EditorAIChatbot:
     def create_headline(self, article):
         input_text = f"Create a title for this text based on the original text. Original Text: {article}"
         outputs = self.model.generate(input_text, max_length=50, num_return_sequences=1)
-        self. article_headline = output
+        self.article_headline = outputs
         return outputs
+    
 
-#Function that checks the article for grammar and spelling errors and fixes them
+    #Function that checks the article for grammar and spelling errors and fixes them
     def grammar_check(self, article):
         input_text = ('Revise the original text to correct any grammatical and spelling errors, '
       'ensuring that the meaning of the text remains intact and that no additional '
             'or inaccurate information is added. Here is the original text: ' + article)
 
         outputs = self.model.generate(input_text, max_length=500, num_return_sequences=1)
-        self. revised_article = output
-        return output
+        self.revised_article = outputs
+        return outputs
+    
+
     #Finds the topics of the article 
     def summarize_article(self, article):
         input_text = ('Summarize the original text in two words or less,'
@@ -65,7 +68,9 @@ class EditorAIChatbot:
             'or inaccurate information added. Here is the original text: ' + article)
         outputs = self.model.generate(input_text, max_length=10) #max length of research ai api
         return outputs
-# Function that uses the found topics to find scholarly articles (through API)  related to their article
+    
+
+    # Function that uses the found topics to find scholarly articles (through API)  related to their article
     def generate_source(self, article):
         summary = self.summarize_article(article)
         #semanticscholar api
