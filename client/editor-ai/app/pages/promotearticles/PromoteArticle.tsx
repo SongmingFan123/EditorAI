@@ -63,8 +63,8 @@ const PromoteArticle = () => {
             {/* layout 2 */}
             <div className=" flex flex-row justify-between items-start gap-5">
 
-                <div className=' w-4/5 flex justify-evenly flex-col'>
-                    <SocialMediaContainer copy={copyText} setCopy={setCopyText}/>
+                <div className='w-1/3 flex justify-evenly flex-col'>
+                    <SocialMediaContainer copy={copyText} />
                     <EnlargedProjectCard
                         id={documentId}
                         title={documentTitle}
@@ -72,8 +72,8 @@ const PromoteArticle = () => {
                         content={documentContent}
                     />
                 </div>
-                <div className='w-4/5'>
-                    <CopyEditor documentContent={documentContent} />
+                <div className='w-1/3'>
+                    <CopyEditor documentContent={documentContent} copyText={copyText} setCopyText={setCopyText} />
                 </div>
             </div>
         </div>

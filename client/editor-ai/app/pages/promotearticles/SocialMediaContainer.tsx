@@ -15,22 +15,26 @@ const SocialMediaContainer = ({copy}:SocialMediaSiteProps) => {
     const handleClick = (site:any) => {
         console.log(`Clicked ${site.name}`);
         console.log(`Posting to ${site.url}`);
-        site.function(
+        // site.function(
 
-        )
+        // )
         return true;
     }
 
     return (
-        <div className='bg-white rounded-lg p-2 shadow-md relative m-5'>
-            <h2 className="text-2xl font-bold font-poppins mb-4 p-4">Share your content</h2>
+        <div className='bg-white rounded-lg shadow-md p-4 relative m-4'>
+            <h2 className="text-2xl font-bold mb-4">Share your content</h2>
             <ul className="space-y-2 justify-evenly flex flex-row">
                 {socialMediaSites.map((site) => (
                     <li key={site.name} className="flex items-center">
-                        <div onClick={() => handleClick(site)}>
+                        <a href={site.url}>
                             <span className="text-2xl">{site.icon}</span>
                             <span className="text-2xl">{site.name}</span>
-                        </div>
+                        </a>
+                        {/* <div onClick={() => handleClick(site)}>
+                            <span className="text-2xl">{site.icon}</span>
+                            <span className="text-2xl">{site.name}</span>
+                        </div> */}
                     </li>
                 ))}
             </ul>
