@@ -8,10 +8,12 @@ const Profile = () => {
     const { user,updateUser } = useAuth();
     const email = user?.email as string;
     const currentDisplayName = user?.displayName as string;
+    const [updateError, setUpdateError] = useState(false);
     
 
     const handleDisplayNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDisplayName(e.target.value);
+        const newDisplayName = e.target.value;
+        setDisplayName(newDisplayName);
     };
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,12 +22,21 @@ const Profile = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        updateUser(displayName, password);
+        if (displayName === '' || password === '') {
+            setUpdateError(true);
+        }
+        else {
+            setUpdateError(false);
+            updateUser(displayName, password);
+        }
     };
 
     return (
-        <div>
+        <div >
+            <div className='text-center' >
+
             <h1 className="text-2xl font-bold">Update Profile</h1>
+            {updateError && <p className="text-red-500">Please fill out all fields</p>}
             <form onSubmit={handleSubmit}>
                 <div className="mb-6">
                     <label htmlFor="displayName" className="block mb-2 text-sm font-medium text-gray-900">Email:</label>
@@ -43,7 +54,6 @@ const Profile = () => {
                         type="text"
                         id="displayName"
                         placeholder={currentDisplayName}
-                        value={currentDisplayName}
                         onChange={handleDisplayNameChange}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                     />
@@ -65,6 +75,8 @@ const Profile = () => {
                     Update Profile
                 </button>
             </form>
+            </div>
+
         </div>
     );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import SuggestionBox from './SuggestionBox';
-import { generateSuggestion } from '../../api/handle_ai'; // Import the generateSuggestion function
 
 interface SuggestionsContainerProps {
     setShowSuggestionContainer: (showSuggestionContainer: boolean) => void;
@@ -23,7 +22,7 @@ const SuggestionsContainer: React.FC<SuggestionsContainerProps> = ({
     suggestions
 }) => {
 
-    
+
   const handleApply = () => {
     console.log('Apply clicked');
   };

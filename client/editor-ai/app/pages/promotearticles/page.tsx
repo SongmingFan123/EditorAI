@@ -1,32 +1,10 @@
-import Header from '../../components/Header';
-//import PromoteArticle from "./PromoteArticle";
-import Head from 'next/head';
+import PromoteArticle from './PromoteArticle'
 
-// Inside your component or page
-
-
-function App() {
+const App = () => {
   return (
-
-    <main>
-      <Head>
-       <link rel="preconnect" href="https://fonts.googleapis.com" />
-       <link rel="preconnect" href="https://fonts.gstatic.com"/>
-       <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
-        rel="stylesheet"
-       />
-      </Head>
-      {/* <PromoteArticle /> */}
-      <div>
-        <button>Button 1</button>
-        <button>Button 2</button>
-        <button>Button 3</button>
-        <button>Button 4</button>
-      </div>
-    </main>
-
-  );
+    <div>
+      <PromoteArticle />
+    </div>
+  )
 }
 
-export default App;
