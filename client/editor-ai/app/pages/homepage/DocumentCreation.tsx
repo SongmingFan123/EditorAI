@@ -34,24 +34,27 @@ const DocumentCreation: React.FC<Props> = ({ setDocumentName, handleCreateDocume
   };
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-        <div className="popup-content flex flex-col">
+    <div className="absolute top-0 left-0 w-full h-full bg-gray-700 bg-opacity-50 flex items-center justify-center">
+      <div className="bg-brand-tan p-8 rounded-xl w-full max-w-2xl shadow-lg w-96" style={{ minHeight: '40vh' }}>
+        <div className="popup-content flex flex-col items-center justify-center space-y-4">
           {createDocumentFailed && <h1 className="text-red-500 mb-4">That document name already exists</h1>}
           <>
+          <h1 className="text-4xl font-newsreader mb-6">Create Document</h1>
             <input
               type="text"
               placeholder="Enter document name"
               value={documentName}
               onChange={(e) => setDocumentName(e.target.value)}
-              className="rounded-lg p-2 m-2 bg-transparent"
+              className="focus:outline-none focus:ring-2 focus:ring-red-800 rounded-xl p-3 m-2 bg-white text-lg w-3/4 font-poppins shadow-md"
             />
-            <div className="flex flex-row">
-              <button onClick={handlePopupSubmit} className="bg-brand-red text-white rounded-full p-2 m-2">
+              <hr className="border-t-solid border-1 border-grey mb-12" /> 
+            <div className="flex flex-row justify-center gap-10 ">
+              <button onClick={handlePopupSubmit}className=" font-poppins rounded-full border border-neutral-300 py-4 px-10
+            bg-main-color hover:bg-red-800 text-white text-lg w-auto" style={{background: 'radial-gradient(50% 50% at 50% 50%, #9F4949 0%, #801212 100%)'}}>
                 Submit
               </button>
-              <button onClick={handlePopupClose} className="bg-brand-red text-white rounded-full p-2 m-2">
-                Cancel
+              <button onClick={handlePopupClose}className="font-poppins rounded-full border border-neutral-300 py-4 px-10
+            bg-main-color hover:bg-red-800 text-white text-lg w-auto " style={{background: 'radial-gradient(50% 50% at 50% 50%, #9F4949 0%, #801212 100%)'}}> Cancel
               </button>
             </div>
           </>

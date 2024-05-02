@@ -24,10 +24,10 @@ const OpenDocumentModal: React.FC<OpenDocumentModalProps> = ({
     return (
         <>
             {showOpenConfirmation && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg w-96">
                         <button
-                            className="font-bold top-2 right-2 text-x"
+                            className="font-bold top-2 right-2 text-x text-black"
                             onClick={handleClose}
                         >
                             X

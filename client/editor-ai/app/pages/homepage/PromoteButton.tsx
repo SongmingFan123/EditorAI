@@ -25,7 +25,7 @@ const PromoteButton = ({ onClick, icon}: PromoteButtonProps) => {
       <input
       />
         <button onClick={onClick} className={buttonClasses}>
-        {icon && <img src="/promote.svg" className="icon-class mb-8" alt="icon" style={{ width: '26px', height: '26px'}} />}
+        {icon && <img src="/promote.svg" className="icon-class mb-8" alt="icon" style={{ width: '34px', height: '34px'}} />}
         Promote Document
         </button>
 
