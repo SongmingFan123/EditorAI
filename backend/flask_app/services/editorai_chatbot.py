@@ -48,16 +48,59 @@ class EditorAIChatbot:
         outputs = self.model.generate(input_text, max_length=50, num_return_sequences=1)
         self. article_headline = output
         return outputs
+        
+        #Helper function to create description of grammar correct
+     def analyze_correction(self, original, revised):
 
-#Function that checks the article for grammar and spelling errors and fixes them
+        input_text = ('Given the original sentence and its corrected version, provide a brief reason for the correction, 
+        'focusing on spelling and grammar. Limit the explanation to 5 words or fewer.'
+                          ' Original Sentence: [+' revised '+] and the Corrected Sentence: [' + original +'] ' )
+        
+            input_ids = self.tokenizer(input_text, return_tensors="pt").input_ids.to(self.model.device)
+            outputs = self.model.generate(input_ids=input_ids, max_length=128, num_return_sequences=1)
+            correction_reason = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+            return correction_reason 
+
+#Fixes the article speeling and grammar errors
     def grammar_check(self, article):
-        input_text = ('Revise the original text to correct any grammatical and spelling errors, '
-      'ensuring that the meaning of the text remains intact and that no additional '
-            'or inaccurate information is added. Here is the original text: ' + article)
 
-        outputs = self.model.generate(input_text, max_length=500, num_return_sequences=1)
-        self. revised_article = output
-        return output
+        sentences = article.split('. ')
+        corrected_sentences = []
+        correction_reasons = []
+        #To keep track of which sentence should be replaced
+        article_index = 0
+        
+
+        for sentence in sentences:
+            # Prepare the input for the model
+            input_text = ('Revise the original sentence to correct any grammatical and spelling errors, '
+                          'ensuring that the meaning of the text remains intact. and that no additional '
+                      'or inaccurate information is added. Here is the original sentence: ' + sentence)
+            input_ids = self.tokenizer(input_text, return_tensors="pt").input_ids.to(self.model.device)
+            outputs = self.model.generate(input_ids=input_ids, max_length=128, num_return_sequences=1)
+            revised_sentence = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+            #Find and add corrected reason to list
+            correction_reason = self.analyze_correction(sentence, revised_sentence)
+            correction_reasons.append(correction_reason)
+
+
+            # Store the corrected sentences and the index of the original sentence
+            corrected_sentences.append([revised_sentence,article_index])
+
+            article_index += 1
+
+
+          
+
+        # Combine the data in a format suitable for frontend transfer
+        result_data = {
+            "corrected_sentences": corrected_sentences,
+            "corrections_description": correction_reasons
+        }
+        return result_data
+
+
     #Finds the topics of the article 
     def summarize_article(self, article):
         input_text = ('Summarize the original text in two words or less,'
