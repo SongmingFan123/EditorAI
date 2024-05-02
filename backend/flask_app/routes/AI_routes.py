@@ -3,8 +3,8 @@ from flask import Blueprint, request
 from ..utils import *
 from flask_cors import cross_origin, CORS
 
-# bp = Blueprint('AI', __name__)
-# CORS(bp)
+bp = Blueprint('AI', __name__)
+CORS(bp)
 
 @bp.route('/generateTitle', methods=['POST'])
 @cross_origin()
