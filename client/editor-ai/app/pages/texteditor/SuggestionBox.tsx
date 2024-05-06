@@ -76,22 +76,24 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
               <p className="font-newsreader flex-1 text-white">Incorrect line: &quot;{incorrectLine}&quot;</p>
               <button
                 onClick={handleApplyClick}
-                className="action-button font-poppins text-red-700 rounded-md w-28 h-8 bg-white border border-red-700 m-2"
+                className="action-button text-sm font-poppins text-brand-red rounded-md w-24 h-8 bg-white shadow-md m-2"
               >
                 Apply
               </button>
               <button
-                className="close-button font-poppins text-red-700 rounded-md w-28 h-8 bg-white border border-red-700 m-2"
+                className="close-button font-poppins text-sm text-brand-red rounded-md w-24 h-8 bg-white shadow-md m-2"
                 onClick={handleClose}
               >
                 Ignore
               </button>
+              <div className="flex justify-center w-full">
               <button
                 onClick={handleShowAskAI}
-                className="action-button font-poppins text-red-700 rounded-md w-64 h-16 bg-white border-2 border-red-700"
+                className="action-button font-poppins text-brand-red rounded-md w-52 h-14 bg-white shadow-md"
               >
                 Ask AI
               </button>
+              </div>
             </div>
           )}
         </div>
