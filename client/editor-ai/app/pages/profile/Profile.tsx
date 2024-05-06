@@ -68,9 +68,9 @@ const Profile = () => {
             <h1 className="text-2xl font-bold font-newsreader">Update Profile</h1>
             {updateError && <p className="text-red-500">Please fill out all fields</p>}
             {updateSuccess && <p className="text-green-500">Profile updated successfully</p>}
-            <div className="mx-auto max-w-md">
+            <div className="mx-auto max-w-md mt-10 border-4 rounded-xl">
             <form onSubmit={handleSubmit}>
-                <div className="mb-10">
+                <div className="mb-10 mt-10">
                     <label htmlFor="displayName" className="mb-3 block font-medium font-newsreader text-left">Email:</label>
                     <input
                         type="text"
@@ -107,7 +107,7 @@ const Profile = () => {
                 </div>
                 <button
                     type="submit"
-                    className="mt-10 shadow-md text-white bg-brand-red hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5"
+                    className="mt-10 mb-6 shadow-md text-white bg-brand-red hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5"
                 >
                     Update Profile
                 </button>

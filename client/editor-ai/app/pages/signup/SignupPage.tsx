@@ -41,7 +41,7 @@ const SignupPage = () => {
         <h1 className="text-2xl text-center mb-6 font-newsreader font-bold"  style={{
           //position: 'absolute', 
           top: '283px', left: '540px', width: '210px', fontSize: '48px', lineHeight: '48px', color: '#31302F', fontWeight: '700', border: '0.69x solid #31302F'}}>Editor AI</h1>
-        <form onSubmit={handleForm} className="w-full flex flex-col items-center">
+        <form onSubmit={handleForm} className="w-full flex flex-col bg-brand-tan items-center">
           <div className="mb-4">
           {signupFailed && <p className="text-red-500 mb-4">{"Signup failed please try again"}</p>}
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px' }}></div>

@@ -45,7 +45,7 @@ const HomePage = () => {
       <div className="flex mb-5 gap-10 px-11" style={{fontFamily:'Poppins'}}>
         <ActionButton onClick={() => setShowPopup(true)} icon="/+.svg"/>
         <UploadButton createDocument={handleCreateDocument} icon="/upload.svg"/>
-        <PromoteButton onClick={handlePromoteArticleModal} icon="/promote.svg"/>
+        {/*<PromoteButton onClick={handlePromoteArticleModal} icon="/promote.svg"/>*/}
       </div>
 
       {/* document modal */}

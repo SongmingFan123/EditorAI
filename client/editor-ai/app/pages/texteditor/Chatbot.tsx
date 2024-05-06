@@ -59,7 +59,7 @@ const Chatbot = ({setShowAskAI,documentContent}:ChatbotProps) => {
               {message.text}
             </div>
           :
-            <div key={message.id} className="p-2 mb-2 bg-brand-tan text-brand-red rounded-xl shadow text-white poppins-thin">
+            <div key={message.id} className="p-2 mb-2 bg-brand-tan text-brand-red rounded-xl shadow text-brand-red poppins-thin">
               {message.text}
             </div>
         ))}

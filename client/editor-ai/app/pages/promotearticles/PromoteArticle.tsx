@@ -37,7 +37,7 @@ const PromoteArticle = () => {
 
     return (
         <div className="p-10 bg-brand-tan min-h-screen">
-            <h1 className="text-3xl text-center m-5 mb-2 font-newsreader">Promote your project: {documentTitle}</h1>
+            <h1 className="text-3xl text-center m-5 mb-2 font-newsreader">Promote your Project: {documentTitle}</h1>
             <div className="flex items-center justify-start mb-5">
             <Link href="./homepage" legacyBehavior> 
                         <a className="text-main-color font-bold font-newsreader flex items-center">
