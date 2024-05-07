@@ -1,3 +1,4 @@
+"use client"
 import PromoteArticle from './PromoteArticle'
 
 const App = () => {
