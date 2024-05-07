@@ -31,10 +31,6 @@ const SocialMediaContainer = ({copy}:SocialMediaSiteProps) => {
                             <span className="text-2xl">{site.icon}</span>
                             <span className="text-2xl">{site.name}</span>
                         </a>
-                        {/* <div onClick={() => handleClick(site)}>
-                            <span className="text-2xl">{site.icon}</span>
-                            <span className="text-2xl">{site.name}</span>
-                        </div> */}
                     </li>
                 ))}
             </ul>
