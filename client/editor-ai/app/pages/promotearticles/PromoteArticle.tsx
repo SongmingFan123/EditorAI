@@ -22,6 +22,8 @@ const PromoteArticle = () => {
     useEffect(() => {
         const fetchDocument = async (documentId: string) => {
             try {
+                console.log(" qwerasfdzxcv")
+
                 const document = await getDocument(id, documentId);
                 setDocumentContent(document.message.Content);
                 setDocumentTitle(document.message.Title);
