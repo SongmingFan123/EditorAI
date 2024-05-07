@@ -27,7 +27,7 @@ const PromoteArticle = () => {
                 setDocumentTitle(document.message.Title);
                 setDocumentLastModified(document.message.LastModified);
             } catch (error) {
-                console.log("Error fetching document:", error);
+                console.error("Error fetching document:", error);
             }
         };
         fetchDocument(documentId);

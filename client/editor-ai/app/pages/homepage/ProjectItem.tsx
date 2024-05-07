@@ -31,18 +31,15 @@ const ProjectItem = ({
   const [showOpenConfirmation, setShowOpenConfirmation] = useState<boolean>(false);
 
   const editProject = () => {
-    console.log(`Navigating to project: ${title}`);
     router.push(`./texteditor/?documentid=${documentId}`); // Pass documentId instead of key
   };
 
   const promoteProject = () => {
-    console.log(`Promoting project: ${title}`);
     router.push(`./promotearticles/?documentid=${documentId}`); 
   }
 
 
   const handleRemoveClick = async () => {
-    console.log(`Removing project: ${title}`);
     setDeleted(true);
     await handleRemoveDocument(userId, documentId); // Pass documentId instead of key
   };

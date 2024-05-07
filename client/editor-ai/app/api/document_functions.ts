@@ -6,8 +6,6 @@ export const handleCreateDocument = async (userId: string, documentName: string,
         document: documentContent,
     });
 
-    console.log('Document data:', documentData);
-
     try {
         const response = await fetch(`https://se-editor-ai-production.up.railway.app/documents/create`, {
             method: 'POST',
@@ -18,17 +16,14 @@ export const handleCreateDocument = async (userId: string, documentName: string,
             body: documentData,
         });
 
-        console.log('Response:', response);
-
         if (response.status !== 200) {
             return null;
         }
         else {
             const data = await response.json();
-            console.log('Data:', data);
 
             const documentId = data.data
-            console.log('Document ID:', documentId);
+
 
             return documentId
         }
@@ -39,7 +34,6 @@ export const handleCreateDocument = async (userId: string, documentName: string,
 };
 
 export const getDocuments = async (userId: string) => {
-    console.log(`Getting documents for user: ${userId}`);
     try {
         const response = await fetch(`https://se-editor-ai-production.up.railway.app/documents/getall/${userId}`, {
         // const response = await fetch(`https://se-editor-ai-production.up.railway.app/documents/getall/${userId}`, {
@@ -50,12 +44,12 @@ export const getDocuments = async (userId: string) => {
             }
         });
 
-        // console.log('Response:', response);
+
 
         const data = await response.json();
 
         // const documents = getDocuments(userId);
-        // console.log('Data:', data);
+
 
         return data
 
@@ -77,8 +71,6 @@ export const updateDocument = async (
             "document_id": documentId,
             "new_document": new_document
         })
-
-        // console.log('Body:', body);
     
         try {
             const response = await fetch(`https://se-editor-ai-production.up.railway.app/documents/update`, {
@@ -90,11 +82,9 @@ export const updateDocument = async (
                 body: body
             });
 
-            console.log('Response:', response);
+
             const data = await response.json();
-            console.log(data)
-    
-    
+
         } catch (error) {
             console.error('Error getting documents:', error);
             throw error;
@@ -111,11 +101,10 @@ export const getDocument = async (userId: string, documentId: string) => {
             }
         });
 
-        // console.log('Response:', response);
 
         const data = await response.json();
 
-        // console.log('Data:', data);
+
         return data;
 
     } catch (error) {
@@ -134,11 +123,8 @@ export const handleRemoveDocument = async (userId: string, documentId: string) =
             }
         });
 
-        console.log('Response:', response);
-
         const data = await response.json();
 
-        console.log('Data:', data);
         return data;
 
     } catch (error) {

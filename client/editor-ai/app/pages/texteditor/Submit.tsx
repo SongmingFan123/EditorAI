@@ -17,7 +17,6 @@ const SubmitButton = ({ text, onClick}: SubmitButtonProps) => {
       if (onClick){
         onClick()
       }
-      console.log("clicked");
     };
   
   

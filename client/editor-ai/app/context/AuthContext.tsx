@@ -34,7 +34,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       await updateProfile(user, {
         displayName: displayName
       });
-      console.log('Display name updated successfully');
     } catch (error) {
       console.error('Error updating display name:', error);
     }
@@ -44,7 +43,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   async function updateUserPassword(user:User, newPassword:string) {
     try {
       await updatePassword(user, newPassword);
-      console.log('Password updated successfully');
     } catch (error) {
       console.error('Error updating password:', error);
     }
@@ -66,8 +64,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         await updateProfile(user, {
           displayName: displayName
         });
-
-        console.log("Sign up successful:", user);
         return true;
     } catch (error) {
         // Handle sign up error
@@ -80,8 +76,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 const signIn = async (email: string, password: string) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        // Handle successful sign in
-        console.log("Sign in successful:", userCredential.user);
         return userCredential;
     } catch (error) {
         // Handle sign in error
