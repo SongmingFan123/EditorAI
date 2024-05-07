@@ -14,7 +14,7 @@ def create_app(cred_route=json.loads(os.getenv('FIREBASE_CREDENTIALS')), Test=Fa
     app.config["TESTING"] = Test
 
     # Enable CORS
-    CORS(app, resources={r"/*": {"origins": "https://se-editor-ai-client-production.up.railway.app/"}})
+    CORS(app, resources={r"/*": {"origins": "*"}})
 
 
     # Configure CORS settings to allow requests from your Next.js application
