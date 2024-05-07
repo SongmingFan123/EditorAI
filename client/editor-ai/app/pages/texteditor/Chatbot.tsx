@@ -6,6 +6,12 @@ interface ChatbotProps {
     documentContent: string;
 };
 
+interface Message {
+  id: number;
+  author: string;
+  text: string;
+}
+
 const Chatbot = ({setShowAskAI,documentContent}:ChatbotProps) => {
   const [messages, setMessages] = useState([
     { id: 1, author:"editorai",text: "Hi there! I'm EditorAI. How can I assist you today?" },
@@ -25,10 +31,12 @@ const Chatbot = ({setShowAskAI,documentContent}:ChatbotProps) => {
     // Generate answer using the LLM
     const context = 'This is the document the user is asking about for context: ' + documentContent;
     const answer = await generateAnswer(inputText, context);
-    
+    const answerText = answer || "Sorry, I couldn't generate a response.";
+
     // Add the generated answer to the messages
-    const answerMessage = { id: messages.length + 2, author:'editorai',text: answer };
+    const answerMessage: Message = { id: messages.length + 2, author: 'editorai', text: answerText };
     setMessages([...messages, newMessage, answerMessage]);
+    
   };
 
   const handleResetConversation = () => {
