@@ -19,12 +19,9 @@ def create_app(cred_route=json.loads(os.getenv('FIREBASE_CREDENTIALS')), Test=Fa
 
     # Configure CORS settings to allow requests from your Next.js application
     app.config['CORS_HEADERS'] = 'Content-Type'
-    # app.config['CORS_ORIGINS'] = ['http://localhost:3000']
-    app.config['CORS_ORIGINS'] = ['https://se-editor-ai-client-production.up.railway.app/']
+    app.config['CORS_ORIGINS'] = ['https://se-editor-ai-client-production.up.railway.app', 'http://localhost:3000']
 
     cred = credentials.Certificate(cred_route)
-    # cred = credentials.Certificate(json.loads(os.getenv('FIREBASE_CREDENTIALS')))
-
     firebase_admin.initialize_app(cred)
     
 
