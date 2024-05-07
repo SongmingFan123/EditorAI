@@ -1,7 +1,7 @@
 from flask import Flask
 from .document_routes import bp as doc_bp
-from .AI_routes import bp as AI_bp
-from .promotion_routes import bp as promotion_bp
+# from .AI_routes import bp as AI_bp
+# from .promotion_routes import bp as promotion_bp
 
 # Here lies all the routes that are needed for this backend to operate (authentication, document)
 
