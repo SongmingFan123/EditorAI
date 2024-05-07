@@ -1,7 +1,3 @@
-# pip install azure-identity
-# pip install --upgrade keras-nlp
-# pip install azure-keyvault-secrets
-
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration
 import os
 import keras
@@ -11,9 +7,6 @@ from azure.keyvault.secrets import SecretClient
 
 class AskEditorAIChatbot:
     def __init__(self):
-        # Initialize models
-        self.model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
-
 
         # Set environment variables
         credential = DefaultAzureCredential()
@@ -21,24 +14,27 @@ class AskEditorAIChatbot:
         secret_client = SecretClient(vault_url=vault_url, credential=credential)
 
         try:
-          
+            self.huggingface_token = secret_client.get_secret("huggingfacetoken").value
 
-             #Kaggle  username and API key  
-            self.username_secret = secret_client.get_secret("kaggle-username").value
-            self.api_key_secret = secret_client.get_secret("kaggle-api-key").value
-
-            # Set environment variables
-            os.environ["KAGGLE_USERNAME"] = self.username_secret
-            os.environ["KAGGLE_KEY"] = self.api_key_secret
+            
         except Exception as e:
             print("Error:", e)
-            os.environ["KAGGLE_USERNAME"] = "your_username"
-            os.environ["KAGGLE_KEY"] = "your_key"
+            os.environ["HUGGINGFACE_TOKEN"] = "your_huggingfacetoken"
+        try:
+            self.tokenizer = LlamaTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B", huggingface_token=huggingface_token, pad_token="<pad>")
+            # Add padding token
+            self.tokenizer.add_special_tokens({"pad_token": "<pad>"})
 
-        os.environ["KERAS_BACKEND"] = "jax"
-        os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
+            # Load model
+            self.model = LlamaForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B", huggingface_token=huggingface_token)
+
+        except Exception as e:
+            print("An error occurred while loading the model and tokenizer:", e)
+        
 
     def respond_to_user(self, input):
         user_input = input("Tell me more... ")
-        outputs = self.model.generate(user_input, max_length=75, num_return_sequences=1)
-        return outputs
+        inputs = self.tokenizer(user_input, return_tensors="pt", padding="max_length", truncation=True, max_length=512)
+        outputs = self.model.generate(input_ids=inputs.input_ids, attention_mask=inputs.attention_mask, max_length=75, num_return_sequences=1)
+        generated_ai = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        return  generated_ai
