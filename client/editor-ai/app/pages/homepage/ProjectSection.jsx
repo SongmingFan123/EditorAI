@@ -9,16 +9,22 @@ const ProjectSection = ({ title, searchQuery }) => {
 
   const [projects, setProjects] = useState(null);
 
+    
+
   useEffect(() => {
     const fetchProjects = async () => {
-      try {
         const response = await getDocuments(userId);
-        console.log(response)
-        console.log('Response:', response.message); // Check the response structure
-        setProjects(response.message);
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      }
+
+        if (response.message=="not found") {
+          console.log("No projects found matching the search query.");
+          return;
+        }
+        else {
+          // setProjectCount(response.message.length);
+          console.log('Response:', response); // Check the response structure
+          setProjects(response.message);
+        }
+
     };
 
     if (!projects) {
@@ -26,16 +32,18 @@ const ProjectSection = ({ title, searchQuery }) => {
     }
   }, []); // useEffect will run when userId changes
 
-  const handleClicked = () => {
-    console.log(projects[0]["Title"]);
-  }
+
+  const filteredProjects = projects ? projects.filter((project) => {
+    return project.Title.toLowerCase().includes(searchQuery.toLowerCase());
+  }) : [];
+  
 
   return (
     <div className="m-4">
-      <h2 className="text-lg text-gray-700 mb-2">{title}</h2>
+      <h2 className="text-lg text-gray-700">{title}</h2>
       <div className="flex flex-wrap gap-4"> 
-      {projects && projects.length > 0 ? (
-        projects.map((document) => (
+      {filteredProjects ? (
+        filteredProjects.map((document) => (
           <ProjectItem
             key={document.id}
             title={document.Title}

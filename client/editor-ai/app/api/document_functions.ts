@@ -20,12 +20,18 @@ export const handleCreateDocument = async (userId: string, documentName: string,
 
         console.log('Response:', response);
 
-        const data = await response.json();
-        console.log('Data:', data);
+        if (response.status !== 200) {
+            return null;
+        }
+        else {
+            const data = await response.json();
+            console.log('Data:', data);
 
-        const status = response.ok;
+            const documentId = data.data
+            console.log('Document ID:', documentId);
 
-        return status
+            return documentId
+        }
     } catch (error) {
         console.error('Error creating document:', error);
         throw error;
@@ -36,6 +42,7 @@ export const getDocuments = async (userId: string) => {
     console.log(`Getting documents for user: ${userId}`);
     try {
         const response = await fetch(`https://se-editor-ai-production.up.railway.app/documents/getall/${userId}`, {
+        // const response = await fetch(`https://se-editor-ai-production.up.railway.app/documents/getall/${userId}`, {
             method: 'GET',
             mode: 'cors',
             headers: {
@@ -83,7 +90,7 @@ export const updateDocument = async (
                 body: body
             });
 
-            // console.log('Response:', response);
+            console.log('Response:', response);
             const data = await response.json();
             console.log(data)
     

@@ -20,9 +20,12 @@
 }
 
 body {
-  color: black; 
-  padding: 1rem;
-  font-family: 'Poppins', sans-serif;
+  margin: -19px 0 0 0; /*-19px here to remove white space on the very top of the page*/
+  width: 100%;  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: -25px;
 }
 
 @layer utilities {
@@ -30,11 +33,20 @@ body {
     text-wrap: balance;
   }
 }
-
 .font-poppins {
-  font-family: var(--font-poppins);
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.fullBackground {
+  background-color: #F5F0EF; 
+  min-height: 100vh;
+}
 
-  /*font-family: 'Poppins', sans-serif;*/
+.poppins-thin {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
 .font-newsreader {
@@ -72,4 +84,13 @@ body {
   border-radius: 20px;
   padding: 5px;
 }
-  
+
+.ql-editor {
+  background-color: white !important;
+}
+
+form {
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 4px;
+  }

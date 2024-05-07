@@ -6,22 +6,20 @@ from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
 
 class EditorAIChatbot:
+    
     def __init__(self):
         # Initialize models
 
-        self. article_headline = ""
-        self. generate_source = ""
-        self. revised_article = ""
+        self.article_headline = ""
+        self.generate_source = ""
+        self.revised_article = ""
 
         self.model = keras_nlp.models.GemmaCausalLM.from_preset("gemma_2b_en")
-
 
         # Set environment variables
         credential = DefaultAzureCredential()
         vault_url = "https://kagglegemma.vault.azure.net"   
         secret_client = SecretClient(vault_url=vault_url, credential=credential)
-
-
 
         try:
            
@@ -35,7 +33,9 @@ class EditorAIChatbot:
             # Set environment variables
             os.environ["KAGGLE_USERNAME"] = self.username_secret
             os.environ["KAGGLE_KEY"] = self.api_key_secret
+
         except Exception as e:
+
             print("Error:", e)
             os.environ["KAGGLE_USERNAME"] = "your_username"
             os.environ["KAGGLE_KEY"] = "your_key"
@@ -46,7 +46,7 @@ class EditorAIChatbot:
     def create_headline(self, article):
         input_text = f"Create a title for this text based on the original text. Original Text: {article}"
         outputs = self.model.generate(input_text, max_length=50, num_return_sequences=1)
-        self. article_headline = output
+        self.article_headline = outputs
         return outputs
         
         #Helper function to create description of grammar correct
@@ -61,7 +61,8 @@ class EditorAIChatbot:
             correction_reason = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
             return correction_reason 
 
-#Fixes the article speeling and grammar errors
+          
+    #Fixes the article speeling and grammar errors
     def grammar_check(self, article):
 
         sentences = article.split('. ')
@@ -108,7 +109,9 @@ class EditorAIChatbot:
             'or inaccurate information added. Here is the original text: ' + article)
         outputs = self.model.generate(input_text, max_length=10) #max length of research ai api
         return outputs
-# Function that uses the found topics to find scholarly articles (through API)  related to their article
+    
+
+    # Function that uses the found topics to find scholarly articles (through API)  related to their article
     def generate_source(self, article):
         summary = self.summarize_article(article)
         #semanticscholar api
@@ -139,44 +142,4 @@ class EditorAIChatbot:
             print("An error occurred:", e)
 
     
-    # # For Testing but will be aligned to buttons on the frontend 
-    # def process_user_request(self, option, article_text):
-    #     if option == "create headline":
-    #         return self.create_headline(article_text)
-    #     elif option == "grammar check":
-    #         return self.grammar_check(article_text)
-    #     elif option == "generate source":
-    #         return self.generate_source(article_text)
-    #     elif option == "AP Style check":
-    #         pass
-    #     else:
-    #         return "Option not recognized. Please try again."
-
-
-    # def chatbot_main(self):
-    #     print("1. Grammar/Spell Check")
-    #     print("2. Create Headline")
-    #     print("3. Generate New Source")
-    #     print("4. AP Style Check - not functional")
-  
-
-    #     option_selected = input("Enter your choice: ")
-    #     options = {
-    #         "1": "grammar check",
-    #         "grammar check": "grammar check",
-    #         "2": "create headline",
-    #         "create headline": "create headline",
-    #         "3": "generate  source",
-    #        "generate source" : "generate source",
-    #         "4": "make ap style changes",
-    #         "make ap style changes" :"make ap style changes",
-      
-    #     }
-
-    #     option_text = options.get(option_selected, "")
-    #     if not option_text:
-    #         print("Invalid option selected. Please restart the chatbot and select a valid option.")
-    #         return
-       
-       
        
