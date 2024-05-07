@@ -4,6 +4,8 @@ Editor Ai is the all-in-one AI powered editing tool that accelerates and improve
 
 ## Project Technical Architecture ##
 
+
+
 ### Tech stack ###
 
 Frontend: Next.js, Tailwind CSS, Typescript 
