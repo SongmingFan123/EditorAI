@@ -1,6 +1,5 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration
 import os
-import keras
 import keras_nlp
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
@@ -46,8 +45,7 @@ class PromoteBot:
         return social_media_copy
        
 
-# Posting the social media copy to SM NEED Spark Tokens for social medai routes
-
+    # Posting the social media copy to SM NEED Spark Tokens for social medai routes
     def post_to_facebook(self, social_media_copy: str) -> "tuple[bool, str]":
         # Facebook API 
         url = "https://graph.facebook.com/v12.0/me/feed"

@@ -11,8 +11,8 @@ CORS(bp)
 @bp.route('/sns/generate', methods=['POST'])
 @cross_origin
 def make_sns():
-        """
-        Posts given document to facebook.
+    """
+        Generates social networking service contents given 
         Input:           
             document: The content of the document
     """
