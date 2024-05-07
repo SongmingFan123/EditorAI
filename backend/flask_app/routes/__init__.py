@@ -9,5 +9,5 @@ from .promotion_routes import bp as promotion_bp
 """A function to register all the blueprints."""
 def register_blueprints(app: Flask):
     app.register_blueprint(doc_bp, url_prefix='/documents')
-    # app.register_blueprint(AI_bp, url_prefix='/AI')
+    app.register_blueprint(AI_bp, url_prefix='/AI')
     app.register_blueprint(promotion_bp, url_prefix='/promotion')

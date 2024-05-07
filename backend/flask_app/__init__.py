@@ -8,7 +8,7 @@ import json
 
 # create_app Flask function
 
-def create_app(Test=False) -> Flask:
+def create_app(cred_route=json.loads(os.getenv('FIREBASE_CREDENTIALS')), Test=False) -> Flask:
 
     app = Flask(__name__)
     app.config["TESTING"] = Test
@@ -21,7 +21,7 @@ def create_app(Test=False) -> Flask:
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config['CORS_ORIGINS'] = ['http://localhost:3000']
 
-    cred = credentials.Certificate(json.loads(os.getenv('FIREBASE_CREDENTIALS')))
+    cred = credentials.Certificate(cred_route)
     # cred = credentials.Certificate(json.loads(os.getenv('FIREBASE_CREDENTIALS')))
 
     firebase_admin.initialize_app(cred)
