@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useEffect, useState } from 'react';
 import EnlargedProjectCard from './EnlargedProjectCard';
 import { useAuth } from '@/context/AuthContext';
@@ -22,9 +20,10 @@ const PromoteArticle = () => {
     useEffect(() => {
         const fetchDocument = async (documentId: string) => {
             try {
-                console.log(" qwerasfdzxcv")
-
                 const document = await getDocument(id, documentId);
+                if(!document) {
+                    return;
+                }
                 setDocumentContent(document.message.Content);
                 setDocumentTitle(document.message.Title);
                 setDocumentLastModified(document.message.LastModified);
