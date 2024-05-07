@@ -5,7 +5,8 @@ from flask_app import create_app
 
 if __name__ == '__main__':
     app = create_app(
-        cred_route="./secrets/firebase_secret.json"
+        cred_route="./route/to/secrets.json",
+        Test=True
     )
 
     app.run(

@@ -11,6 +11,11 @@ CORS(bp)
 @bp.route('/sns/generate', methods=['POST'])
 @cross_origin
 def make_sns():
+    """
+        Generates social networking service contents given 
+        Input:           
+            document: The content of the document
+    """
     try:
         AIconfig = editorai_promotebot()
 
@@ -26,7 +31,12 @@ def make_sns():
 
 @bp.route('/sns/facebook', methods=['POST'])
 @cross_origin
-def make_sns():
+def post_facebook():
+    """
+        Posts given document to facebook.
+        Input:           
+            document: The content of the document
+    """
     try:
         AIconfig = editorai_promotebot()
 
@@ -42,10 +52,14 @@ def make_sns():
 
 @bp.route('/sns/twitter', methods=['POST'])
 @cross_origin
-def make_sns():
+def post_twitter():
+    """
+        Posts given document to twitter.
+        Input:           
+            document: The content of the document
+    """
     try:
         AIconfig = editorai_promotebot()
-
         data = request.json
         is_success, content = AIconfig.post_to_twitter(data["document"])
         if(not is_success):

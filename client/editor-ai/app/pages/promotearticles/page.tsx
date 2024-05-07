@@ -1,9 +1,11 @@
-import PromoteArticle from './PromoteArticle'
+"use client"
+// import PromoteArticle from './PromoteArticle'
 
 const App = () => {
   return (
     <div>
-      <PromoteArticle />
+      {/* <PromoteArticle /> */}
+      hello world
     </div>
   )
 }

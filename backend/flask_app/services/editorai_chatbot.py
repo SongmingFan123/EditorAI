@@ -1,6 +1,5 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration
 import os
-import keras
 import keras_nlp
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient

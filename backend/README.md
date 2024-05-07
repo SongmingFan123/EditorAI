@@ -1,4 +1,17 @@
+# Editor-AI: An AI integrated editing tool for hyperlocal journalists
+
+
+## Table of Contents
+1. [Description](#description)
+2. [Getting Started](#getting-started)
+3. [Usage](#usage)
+4. [Contributing](#contributing)
+5. [License](#license)
+6. [Contact](#contact)
+
 # Setting up Flask environment
+
+
 
 First, create virtual environment.
 1. `pip install virtualenv`
@@ -24,5 +37,5 @@ First, create virtual environment.
     Utility functions/classes that act as helper functions
 
 
-# Documentation
+# API Documentation link:
 https://app.swaggerhub.com/apis-docs/JunsunYoon/Editor-AI/1.0.0

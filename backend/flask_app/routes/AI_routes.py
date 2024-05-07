@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-# from ..services import editorai_chatbot
+from ..services import editorai_chatbot
 from ..utils import *
 from flask_cors import cross_origin, CORS
 
@@ -11,37 +11,44 @@ CORS(bp)
 def generate_title():
     """ """
     pass
-    # try:
-    #     AIconfig = editorai_chatbot()
-    #     data = request.json
-    #     content = AIconfig.create_title(data["document"])
-    #     if(not content):
-    #         return requestHandler.handle_server_error
-    #     return handle_success(content)
-    # except Exception as e:
-    #      handle_server_error(e)
+    try:
+        AIconfig = editorai_chatbot()
+        data = request.json
+        content = AIconfig.create_title(data["document"])
+        if(not content):
+            return requestHandler.handle_server_error
+        return handle_success(content)
+    except Exception as e:
+         handle_server_error(e)
 
 
 @bp.route('/generateSource', methods=['POST'])
 @cross_origin
 def generate_source():
     """ """
-    pass
+    try:
+        AIconfig = editorai_chatbot()
+        data = request.json
+        content = AIconfig.generate_source(data["document"])
+        if(not content):
+            return requestHandler.handle_server_error
+        return handle_success(content)
+    except Exception as e:
+            handle_server_error(e)
 
 
 
 @bp.route('/summarize', methods=['POST'])
 @cross_origin
 def summarize_article():
-    pass
-    # try:
-    #     AIconfig = editorai_chatbot()
+    try:
+        AIconfig = editorai_chatbot()
 
-    #     data = request.json
-    #     content = AIconfig.summarize_article(data["document"])
-    #     if(not content):
-    #         return requestHandler.handle_server_error
-    #     return handle_success(content)
-    # except Exception as e:
-    #     handle_server_error(e)
+        data = request.json
+        content = AIconfig.summarize_article(data["document"])
+        if(not content):
+            return requestHandler.handle_server_error
+        return handle_success(content)
+    except Exception as e:
+        handle_server_error(e)
 
