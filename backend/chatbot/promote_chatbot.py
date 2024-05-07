@@ -23,9 +23,7 @@ class PromoteBot:
             self.huggingface_token = secret_client.get_secret("huggingfacetoken").value
         except Exception as e:
             print("An error occurred while loading Azure Secrets:", e)
-            
-        os.environ["KERAS_BACKEND"] = "jax"
-        os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.9"
+  
 
 
         #META Llama3 model
