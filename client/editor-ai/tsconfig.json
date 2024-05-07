@@ -27,7 +27,7 @@
       "@api":["./api/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/admin/page.jsx", "app/context/AuthContext.tsx", "app/components/Header.tsx","app/context/AuthContext.tsx", "app/pages/texteditor/page.jsx"], 
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/admin/page.jsx", "app/context/AuthContext.tsx", "app/components/Header.tsx","app/context/AuthContext.tsx", "app/pages/texteditor/page.jsx", "babel.config.js"], 
 
   "exclude": ["node_modules"]
 }

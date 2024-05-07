@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import SaveWorkModal from '@/components/CreateDocumentModal';
 import { useRouter } from 'next/router';
-import SearchBar from '@/components/SearchBar';
 import OptionButton from './Options';
 import SaveButton from './SaveFile';
 
@@ -99,43 +98,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
         </div>
       )}
 
-      {/* {showSaveContainer && (
-        <div className="button-container flex items-center justify-center p-4 bg-white">
-          <p className="text-4xl font-newsreader text-center">Save Your Work</p>
-          <div className="button-container">
-            <SaveButton text="Save to Editor AI" onClick={handleOpenModal} />
-            <SaveButton text="Download as..." />
-            <SaveButton text="Save to Google Docs" />
-          </div>
-        </div>
-      )} */}
 
-      {/* {open && (
-        <SaveWorkModal open={open} onClose={() => setOpen(false)}>
-          <div className="flex flex-col gap-4">
-            <h1 className="text-4xl font-newsreader mb-6 text-bold text-center">
-              Save to Editor AI
-            </h1>
-            <hr className="border-t-solid border-1 border-grey" />
-            <div className="flex flex-row justify-center">
-              <p>
-                Title:
-                <SearchBar />
-              </p>
-              <p>
-                Tags:
-                <SearchBar />
-              </p>
-              <button
-                style={{ backgroundColor: '#801212', margin: '5px' }}
-                className="action-button"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </SaveWorkModal>
-      )} */}
     </div>
   );
 };

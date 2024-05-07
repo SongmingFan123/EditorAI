@@ -5,14 +5,14 @@ import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import ProjectSection from './ProjectSection';
 import SearchBar from './SearchBar';
-import ActionButton from './ActionButton';
+import ActionButton from '../../components/ActionButton';
 import DocumentModal from '../../components/DocumentModal';
 import { useRouter } from 'next/navigation';
 import { handleCreateDocument } from '../../api/document_functions';
 import UploadButton from './UploadButton';
 import DocumentCreation from './DocumentCreation';
 import Divider from '@/components/Divider';
-import PromoteButton from './PromoteButton';
+import PromoteButton from '../../components/PromoteButton';
 
 const HomePage = () => {
 
@@ -47,34 +47,6 @@ const HomePage = () => {
         <UploadButton createDocument={handleCreateDocument} icon="/upload.svg"/>
         {/*<PromoteButton onClick={handlePromoteArticleModal} icon="/promote.svg"/>*/}
       </div>
-
-      {/* document modal */}
-      { <DocumentModal open={open} onClose={()=> setOpen(false)}> 
-          <div className="flex flex-col gap-4" > 
-          <h1 className="text-4xl font-newsreader mb-6">What would you like help with?</h1>
-        <hr className="border-t-solid border-1 border-grey" /> 
-        <div className="flex flex-row justify-center"> 
-          <button 
-            className="border border-neutral-300 py-1.5 px-10 
-            bg-main-color hover:bg-red-800 text-white "
-            onClick={handleEditArticleModal}
-          > 
-            Edit an article 
-          </button>
-          <button 
-            className="border border-neutral-300 rounded-lg py-1.5 px-10 
-            bg-main-color hover:bg-red-800 text-white text-xl "
-            onClick={() => setOpen(false)}
-          > 
-      
-            Promote an article 
-
-          </button>
-        </div>
-        </div> 
-      </DocumentModal> }
-
-      {/* document creation popup */}
       <div className='p-8'>
       {showPopup && <DocumentCreation documentName={documentName} setDocumentName={setDocumentName} handleCreateDocument={handleCreateDocument} setShowPopup={setShowPopup} />}
       </div>
