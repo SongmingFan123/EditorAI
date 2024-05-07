@@ -48,7 +48,7 @@ const LoginPage = () => {
           top: '283px', left: '540px', width: '210px', fontSize: '48px', lineHeight: '48px', color: '#31302F', fontWeight: '700', border: '0.69x solid #31302F'}}>
           Editor AI</h1>
         {loginFailed && <p className="text-red-500 mb-4">{"Login failed please try again"}</p>}
-        <form onSubmit={handleForm} className="w-full flex flex-col items-center">
+        <form onSubmit={handleForm} className="w-full flex flex-col bg-brand-tan items-center">
           <div className="mb-4">
           <div style={{ height: '0.69px', background: 'rgba(49, 48, 47, 1)', width: '100%', position: 'relative', top: '50px'}}></div>
             <input
@@ -97,7 +97,7 @@ const LoginPage = () => {
 
           </div> 
           <button
-             className="bg-main-color text-white px-4 py-2 hover:bg-blue-600 items-center"   style={{
+             className="bg-main-color text-white px-4 py-2 hover:bg-red-800 items-center"   style={{
               width: '252px',
               height: '54px',
               fontFamily: 'poppins', // Corrected from 'font'

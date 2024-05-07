@@ -12,6 +12,7 @@ import { handleCreateDocument } from '../../api/document_functions';
 import UploadButton from './UploadButton';
 import DocumentCreation from './DocumentCreation';
 import Divider from '@/components/Divider';
+import PromoteButton from './PromoteButton';
 
 const HomePage = () => {
 
@@ -37,12 +38,14 @@ const HomePage = () => {
   return (
     <div>
       {/* search bar */}
+      <div className="mt-5 px-10">
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-
+      </div>
       {/* buttons */}
-      <div className="flex" style={{fontFamily:'Poppins'}}>
+      <div className="flex mb-5 gap-10 px-11" style={{fontFamily:'Poppins'}}>
         <ActionButton onClick={() => setShowPopup(true)} icon="/+.svg"/>
         <UploadButton createDocument={handleCreateDocument} icon="/upload.svg"/>
+        {/*<PromoteButton onClick={handlePromoteArticleModal} icon="/promote.svg"/>*/}
       </div>
 
       {/* document modal */}
@@ -72,12 +75,17 @@ const HomePage = () => {
       </DocumentModal> }
 
       {/* document creation popup */}
+      <div className='p-8'>
       {showPopup && <DocumentCreation documentName={documentName} setDocumentName={setDocumentName} handleCreateDocument={handleCreateDocument} setShowPopup={setShowPopup} />}
-
+      </div>
+      <div className="px-6">
       <Divider />
+      </div>
 
       {/* project section */}
+      <div className='p-4 mr-40 font-newsreader'>
       <ProjectSection title={"Projects"} searchQuery={searchQuery} />
+      </div>
     </div>
     
   );

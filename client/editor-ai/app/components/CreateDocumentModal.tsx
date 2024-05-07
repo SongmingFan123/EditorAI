@@ -10,7 +10,7 @@ type modalTypes = {
     children: React.ReactNode;
 };
 
-const SaveWorkModal: React.FC<modalTypes> = ({open, onClose, children}) => {
+const CreateDocumentModal: React.FC<modalTypes> = ({open, onClose, children}) => {
     return(
     <div
         className={`fixed inset-0 flex justify-center items-center 
@@ -48,4 +48,4 @@ const SaveWorkModal: React.FC<modalTypes> = ({open, onClose, children}) => {
     );
 };
 
-export default SaveWorkModal;
+export default CreateDocumentModal;

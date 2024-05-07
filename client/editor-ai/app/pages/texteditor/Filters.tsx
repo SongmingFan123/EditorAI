@@ -25,19 +25,26 @@ const Filters: React.FC<FiltersProps> = ({documentContent, setShowOptions, setSh
 
     
     return (
-        <div>
-            <p style={{ fontSize: '28px', fontFamily: 'Newsreader', textAlign: 'center' }}>I need help with:</p>
+        <div className=' flex-grow mr-5 p-5 pb-5'style={{ flexBasis: '30%'}}>
+            <p style={{ marginTop: '30px', marginBottom: '10px',fontSize: '28px', fontFamily: 'Newsreader', textAlign: 'center' }}>I need help with:</p>
             {showFilters ? (
-                <div className="button-container">
+                <>
+                <div className="button-container flex flex-col items-center">
                     <OptionButton text="Grammar/Spell Check" />
                     <OptionButton text="Generate New Source(s)" />
                     <OptionButton text="Create Headline" />
                     <OptionButton text="AP Style Check" />
                     <SubmitButton text="Submit" onClick={handleSubmit} />
                 </div>
+                </>
             ) : (
-                <button onClick={handleToggleFilters}>Show Filters</button>
+
+                <div className="flex justify-center mt-4">
+                <button onClick={handleToggleFilters} className="button-container bg-blue-500 font-poppins custon-border border-4 px-4 py-2 bg-brand-red text-white rounded-r shadow-md">
+                Show Filters</button>
+                </div>
             )}
+            
         </div>
     );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import SuggestionBox from './SuggestionBox';
-import { generateSuggestion } from '../../api/handle_ai'; // Import the generateSuggestion function
 
 interface SuggestionsContainerProps {
     setShowSuggestionContainer: (showSuggestionContainer: boolean) => void;
@@ -23,7 +22,7 @@ const SuggestionsContainer: React.FC<SuggestionsContainerProps> = ({
     suggestions
 }) => {
 
-    
+
   const handleApply = () => {
     console.log('Apply clicked');
   };
@@ -34,12 +33,14 @@ const SuggestionsContainer: React.FC<SuggestionsContainerProps> = ({
 
   return (
     <div>
-      <div className="flex flex-row justify-between font-bold">
+      <div className="bg-white shadow rounded-lg p-4 mb-4 ">
+      <div className="flex flex-row justify-between">
         <h1 className="font-newsreader text-2xl">Suggestions</h1>
         <button onClick={() => setShowSuggestionContainer(false)}>X</button>
       </div>
       <div>
-        {suggestions.map((suggestion, index) => (
+        {suggestions ?
+        suggestions.map((suggestion, index) => (
           <SuggestionBox
             key={index}
             documentContent={documentContent}
@@ -49,8 +50,14 @@ const SuggestionsContainer: React.FC<SuggestionsContainerProps> = ({
             incorrectLine={suggestion.incorrectLine}
             correctLine={suggestion.correctLine}
           />
-        ))}
+        ))
+        : <div >
+            <h1 className='font-newsreader'>No suggestions available</h1>
+        </div>
+    
+    }
       </div>
+    </div>
     </div>
   );
 };
