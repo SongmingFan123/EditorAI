@@ -1,4 +1,3 @@
-import { Poppins } from "next/font/google";
 import React, { useRef } from "react";
 
 

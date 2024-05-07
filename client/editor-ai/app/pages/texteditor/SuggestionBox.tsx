@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import OptionButton from './Options';
 import SaveButton from './SaveFile';
 
+// implemented multiple suggestions container because of unclear user interaction when following high fildelity frames
+
 interface SuggestionBoxProps {
   header: string;
   content: string;

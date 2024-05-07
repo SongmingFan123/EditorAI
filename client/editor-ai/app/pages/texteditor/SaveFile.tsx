@@ -1,6 +1,4 @@
 'use client';
-
-import { Newsreader } from "next/font/google";
 import React, { useState, useRef } from "react";
 
 
