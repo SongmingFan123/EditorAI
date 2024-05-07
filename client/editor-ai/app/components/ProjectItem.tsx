@@ -1,5 +1,5 @@
-import React from 'react';
-import '../styles/ProjectItem.css';
+import React from "react";
+import "../styles/ProjectItem.css";
 
 // Define the structure of the project prop
 interface Project {

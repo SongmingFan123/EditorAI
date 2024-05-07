@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import SaveWorkModal from '@/components/CreateDocumentModal';
-import { useRouter } from 'next/router';
-import OptionButton from './Options';
-import SaveButton from './SaveFile';
+import React, { useState } from "react";
+import SaveWorkModal from "@/components/CreateDocumentModal";
+import { useRouter } from "next/router";
+import OptionButton from "./Options";
+import SaveButton from "./SaveFile";
 
-// implemented multiple suggestions container because of unclear user interaction when following high fildelity frames
+// unclear user interaction when following the high fildelity frames so we created multiple suggestions container so it would logically make sense when interacting with chatbot
 
 interface SuggestionBoxProps {
   header: string;
@@ -13,7 +13,7 @@ interface SuggestionBoxProps {
   incorrectLine?: string;
   correctLine?: string;
   documentContent: string;
-  setDocumentContent: (content: string) => void;  
+  setDocumentContent: (content: string) => void;
 }
 
 const SuggestionBox: React.FC<SuggestionBoxProps> = ({
@@ -23,7 +23,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
   incorrectLine,
   correctLine,
   documentContent,
-  setDocumentContent
+  setDocumentContent,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [showSaveContainer, setShowSaveContainer] = useState(false);
@@ -36,7 +36,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
 
   const handleApplyClick = () => {
     if (incorrectLine && correctLine) {
-      const regex = new RegExp(incorrectLine, 'g');
+      const regex = new RegExp(incorrectLine, "g");
       const newContent = documentContent.replace(regex, correctLine);
       setDocumentContent(newContent);
       setIsVisible(false); // Set isVisible to false when handleApplyClick is called
@@ -47,9 +47,7 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
     setOpen(true); // Open the modal
   };
 
-  const handleShowAskAI = () => {
-
-  };
+  const handleShowAskAI = () => {};
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
     setIsClicked(false);
@@ -63,10 +61,15 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
   return (
     <div>
       {!showSaveContainer && (
-        <div onClick={() => setIsClicked(true)} className="button-container bg-brand-red rounded-lg p-2 m-2 flex-col">
+        <div
+          onClick={() => setIsClicked(true)}
+          className="button-container bg-brand-red rounded-lg p-2 m-2 flex-col"
+        >
           <div className="flex flex-col">
             <div className="flex flex-row justify-between">
-              <h1 className="font-newsreader text-2xl text-white underline">{header}</h1>
+              <h1 className="font-newsreader text-2xl text-white underline">
+                {header}
+              </h1>
             </div>
           </div>
 
@@ -74,7 +77,9 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
             <div className="suggestion-actions">
               <p className="font-newsreader flex-1 text-white">{content}</p>
               <br />
-              <p className="font-newsreader flex-1 text-white">Incorrect line: &quot;{incorrectLine}&quot;</p>
+              <p className="font-newsreader flex-1 text-white">
+                Incorrect line: &quot;{incorrectLine}&quot;
+              </p>
               <button
                 onClick={handleApplyClick}
                 className="action-button text-sm font-poppins text-brand-red rounded-md w-24 h-8 bg-white shadow-md m-2"
@@ -88,19 +93,17 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({
                 Ignore
               </button>
               <div className="flex justify-center w-full">
-              <button
-                onClick={handleShowAskAI}
-                className="action-button font-poppins text-brand-red rounded-md w-52 h-14 bg-white shadow-md"
-              >
-                Ask AI
-              </button>
+                <button
+                  onClick={handleShowAskAI}
+                  className="action-button font-poppins text-brand-red rounded-md w-52 h-14 bg-white shadow-md"
+                >
+                  Ask AI
+                </button>
               </div>
             </div>
           )}
         </div>
       )}
-
-
     </div>
   );
 };

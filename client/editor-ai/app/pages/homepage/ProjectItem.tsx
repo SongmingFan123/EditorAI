@@ -1,43 +1,43 @@
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import { handleRemoveDocument } from '../../api/document_functions';
-import { useAuth } from '../../context/AuthContext';
-import { useState } from 'react';
-import DeletionModal from './DeletionModal';
-import OpenDocumentModal from './OpenDocumentModal';
-import ProjectItemDisplay from './ProjectItemDisplay';
-import { imageClassification } from '@huggingface/inference';
+import React from "react";
+import { useRouter } from "next/navigation";
+import { handleRemoveDocument } from "../../api/document_functions";
+import { useAuth } from "../../context/AuthContext";
+import { useState } from "react";
+import DeletionModal from "./DeletionModal";
+import OpenDocumentModal from "./OpenDocumentModal";
+import ProjectItemDisplay from "./ProjectItemDisplay";
+import { imageClassification } from "@huggingface/inference";
 
 export interface ProjectItemProps {
   title: string;
   lastModified: string;
-  documentId: string; 
-  documentContent:string
+  documentId: string;
+  documentContent: string;
 }
 
 const ProjectItem = ({
   title,
   lastModified,
   documentId,
-  documentContent
-
+  documentContent,
 }: ProjectItemProps) => {
   const [deleted, setDeleted] = useState<boolean>(false);
   const router = useRouter();
   const { user } = useAuth();
   const userId = user?.uid as string;
 
-  const [showRemoveConfirmation, setShowRemoveConfirmation] = useState<boolean>(false);
-  const [showOpenConfirmation, setShowOpenConfirmation] = useState<boolean>(false);
+  const [showRemoveConfirmation, setShowRemoveConfirmation] =
+    useState<boolean>(false);
+  const [showOpenConfirmation, setShowOpenConfirmation] =
+    useState<boolean>(false);
 
   const editProject = () => {
     router.push(`./texteditor/?documentid=${documentId}`); // Pass documentId instead of key
   };
 
   const promoteProject = () => {
-    router.push(`./promotearticles/?documentid=${documentId}`); 
-  }
-
+    router.push(`./promotearticles/?documentid=${documentId}`);
+  };
 
   const handleRemoveClick = async () => {
     setDeleted(true);
@@ -48,7 +48,6 @@ const ProjectItem = ({
     <>
       {!deleted && (
         <div className="w-64 bg-white rounded-lg shadow-md p-4 relative">
-
           <ProjectItemDisplay
             title={title}
             lastModified={lastModified}
@@ -57,7 +56,6 @@ const ProjectItem = ({
             setShowRemoveConfirmation={setShowRemoveConfirmation}
           />
 
-
           <OpenDocumentModal
             title={title}
             showOpenConfirmation={showOpenConfirmation}
@@ -65,7 +63,6 @@ const ProjectItem = ({
             editProject={editProject}
             promoteProject={promoteProject}
           />
-          
 
           <DeletionModal
             showRemoveConfirmation={showRemoveConfirmation}
@@ -73,7 +70,6 @@ const ProjectItem = ({
             setShowRemoveConfirmation={setShowRemoveConfirmation}
             title={title}
           />
-          
         </div>
       )}
     </>

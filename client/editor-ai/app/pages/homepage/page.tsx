@@ -1,9 +1,9 @@
-"use client"
+"use client";
 // Assuming ProjectSection accepts a prop structure like this:
-import React, { useEffect } from 'react';
-import HomePage from './HomePage';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '../../context/AuthContext';
+import React, { useEffect } from "react";
+import HomePage from "./HomePage";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 
 const Home: React.FC = () => {
   const { user } = useAuth();
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   }, [user, router]);
 
   return (
-    <div className="homepage"> 
+    <div className="homepage">
       {user && <HomePage />} {/* Render HomePage only if user is signed in */}
     </div>
   );

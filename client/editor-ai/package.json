@@ -51,10 +51,12 @@
     "jest-environment-jsdom": "^29.7.0",
     "node-loader": "^2.0.0",
     "postcss": "^8",
+    "prettier": "^3.2.5",
     "tailwindcss": "^3.3.0",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.5"
   },
   "jest": {
-    "testEnvironment": "jsdom"}
+    "testEnvironment": "jsdom"
+  }
 }

@@ -1,5 +1,5 @@
 name: Archive Repository into Release v1.0
-on: 
+on:
   push:
     tags:
       - "spark-archive-*"
