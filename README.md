@@ -100,8 +100,12 @@ se-editor-ai
 - Text Editor Page: Certain functionalities on the text editor page are experiencing unclear interactions and may behave inconsistently.
   
 - Promote Page: There is an issue preventing the deployment of promotions from the promote page.
+
+- Components: We first modeled the frontend display after the figma high fidelity frames, but because there were unclear UX designs that redirected us to redesigning some of the user interactions. There are a few components that are made to replicate the styling and user interaction provided on the high fidelity frames. However, because we redesigned it without communicating with the UX team, the components remain there for future work.
   
 ## Status ##
+
+- Login Page and Sign up Page
 
 ## Future Work ##
 
