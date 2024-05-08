@@ -49,16 +49,16 @@ class EditorAIChatbot:
         return outputs
         
         #Helper function to create description of grammar correct
-     def analyze_correction(self, original, revised):
+    def analyze_correction(self, original, revised):
 
-        input_text = ('Given the original sentence and its corrected version, provide a brief reason for the correction, 
-        'focusing on spelling and grammar. Limit the explanation to 5 words or fewer.'
-                          ' Original Sentence: [+' revised '+] and the Corrected Sentence: [' + original +'] ' )
+        input_text = 'Given the original sentence and its corrected version, provide a brief reason for the correction, \
+            focusing on spelling and grammar. Limit the explanation to 5 words or fewer. \
+                Original Sentence: [' + revised + '] and the Corrected Sentence: [' + original +'] '
         
-            input_ids = self.tokenizer(input_text, return_tensors="pt").input_ids.to(self.model.device)
-            outputs = self.model.generate(input_ids=input_ids, max_length=128, num_return_sequences=1)
-            correction_reason = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-            return correction_reason 
+        input_ids = self.tokenizer(input_text, return_tensors="pt").input_ids.to(self.model.device)
+        outputs = self.model.generate(input_ids=input_ids, max_length=128, num_return_sequences=1)
+        correction_reason = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        return correction_reason 
 
           
     #Fixes the article speeling and grammar errors
