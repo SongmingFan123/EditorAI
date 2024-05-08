@@ -43,6 +43,11 @@ pnpm dev
 bun dev
 ```
 
+Deploying application locally with command:
+```bash
+npm build 
+```
+
 ## Testing ##
 
 Unit tests on the backend
@@ -52,6 +57,11 @@ Unit tests on the front end were created with the React-Test Library and Jest Li
 To run the tests on the frontend, navigate to ```\client\editor-ai\app``` and execute the following command:
 ```bash
 npm test
+```
+
+To run a specific test:
+```bash
+npm test test/filename.test.tsx
 ```
 
 ## Project Directory Structure ##
