@@ -57,18 +57,29 @@ This is the general project directory structure for Editor AI:
 
 se-editor-ai
    * backend
-       - backend files
+       - chatbot
+       - env
+       - flask_app
+       - tests
    * client
       - editor-ai
+         - .firebase
+         - public
          - app
-            -  frontend files
+            -  admin
+            -  api
+            -  components
+            -  context
+            -  firebase
+            -  pages
+            -  styles
     
   
 - ```/client/editor-ai/app/api ``` contains the api calls made for handling documents, ai suggestions, and social media copies
   
 - ```/client/editor-ai/app/components ``` contains the resusable components used in the application
   
-- -```/client/editor-ai/app/context ``` contains code for user authentication
+- ```/client/editor-ai/app/context ``` contains code for user authentication
   
 - ```/client/editor-ai/app/firebase ``` contains firebase database connections hosted on Railway
   
