@@ -111,6 +111,8 @@ se-editor-ai
             -  firebase
             -  pages
             -  styles
+          
+Refer to the README.md in```client/backend ```for more detailed documentation. 
     
 - ```/backend/chatbot ``` contains the code for chat bot and ai suggestions
 
