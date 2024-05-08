@@ -169,3 +169,5 @@ Refer to the README.md in```client/backend ```for more detailed documentation.
 - Database: Authenticating users in the front end instead of backend. 
 
 - AI Development: Connecting the chat bot and ai suggestions from the backend instead of using Hugging Face models in the front end.
+
+- Deployment: Transfer all deployment to Railway from Vercel.
