@@ -93,11 +93,11 @@ se-editor-ai
   
 - ```/client/editor-ai/backend/tests ``` contains unit tests for backend
   
-## Known Bugs/ Issues ##
+## Known Bugs and Issues ##
 
 - Main Page: Reloading the main page multiple times occasionally redirects users to the login page.
   
-- Text Editor Page: Certain functionalities on the text editor page are experiencing unclear interactions and may behave inconsistently.
+- Text Editor Page: Certain functionalities on the text editor page are experiencing unclear interactions and may behave inconsistently. This is specifically for 4 options that are first displayed when redirected to text editor page.
   
 - Promote Page: There is an issue preventing the deployment of promotions from the promote page. Running ```npm run build ``` will display the page without errors, but not during deployment.
 
