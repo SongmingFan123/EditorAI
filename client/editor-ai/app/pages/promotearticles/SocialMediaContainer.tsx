@@ -1,3 +1,5 @@
+"use client" 
+
 import React from 'react';
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
 import { postToFacebook, postToTwitter } from '@/api/socialmedia_functions';

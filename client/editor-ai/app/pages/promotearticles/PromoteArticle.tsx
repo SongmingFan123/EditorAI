@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 import EnlargedProjectCard from './EnlargedProjectCard'
 import { useAuth } from '@/context/AuthContext';
@@ -15,26 +17,26 @@ const PromoteArticle = () => {
     const [documentContent, setDocumentContent] = useState<string>('');
     const [documentTitle, setDocumentTitle] = useState<string>('');
     const [documentLastModified, setDocumentLastModified] = useState<string>('');
+    const [isClient, setIsClient] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchDocument = async (documentId: string) => {
-            try {
-                const document = await getDocument(id, documentId);
-                if(!document) {
-                    return;
-                }
-                else {
-                    setDocumentContent(document.message.Content);
-                    setDocumentTitle(document.message.Title);
-                    setDocumentLastModified(document.message.LastModified);
-                }
-
-            } catch (error) {
-                console.log("Error fetching document:", error);
+          try {
+            const document = await getDocument(id, documentId);
+            if (!document) {
+              return;
+            } else {
+              setDocumentContent(document.message.Content);
+              setDocumentTitle(document.message.Title);
+              setDocumentLastModified(document.message.LastModified);
+              setIsClient(true);
             }
+          } catch (error) {
+            console.log("Error fetching document:", error);
+          }
         };
         fetchDocument(documentId);
-    }, []);
+      }, []);
 
     return (
         <div className="p-10 bg-brand-tan min-h-screen">
@@ -48,7 +50,7 @@ const PromoteArticle = () => {
                     </div>
 
             {/* layout 2 */}
-            <div className=" flex flex-row justify-between items-start gap-5">
+            {isClient && (<div className=" flex flex-row justify-between items-start gap-5">
 
                 <div className='w-4/5 flex justify-evenly flex-col'>
                     <SocialMediaContainer copy={copyText} />
@@ -62,7 +64,7 @@ const PromoteArticle = () => {
                 <div className='w-4/5'>
                     <CopyEditor documentContent={documentContent} copyText={copyText} setCopyText={setCopyText} />
                 </div>
-            </div>
+            </div>)}
         </div>
     );
     

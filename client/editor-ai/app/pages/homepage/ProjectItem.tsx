@@ -6,7 +6,6 @@ import { useState } from 'react';
 import DeletionModal from './DeletionModal';
 import OpenDocumentModal from './OpenDocumentModal';
 import ProjectItemDisplay from './ProjectItemDisplay';
-import { imageClassification } from '@huggingface/inference';
 
 export interface ProjectItemProps {
   title: string;
@@ -15,12 +14,16 @@ export interface ProjectItemProps {
   documentContent:string
 }
 
+/**
+ * Represents a project item component.
+ * @param {ProjectItemProps} props - The props for the ProjectItem component.
+ * @returns {JSX.Element} The rendered ProjectItem component.
+ */
 const ProjectItem = ({
   title,
   lastModified,
   documentId,
   documentContent
-
 }: ProjectItemProps) => {
   const [deleted, setDeleted] = useState<boolean>(false);
   const router = useRouter();
@@ -30,17 +33,29 @@ const ProjectItem = ({
   const [showRemoveConfirmation, setShowRemoveConfirmation] = useState<boolean>(false);
   const [showOpenConfirmation, setShowOpenConfirmation] = useState<boolean>(false);
 
+  /**
+   * Function to navigate to the project's text editor.
+   * @remarks
+   * This function logs the project title and navigates to the text editor page with the specified document ID.
+   */
   const editProject = () => {
     console.log(`Navigating to project: ${title}`);
     router.push(`./texteditor/?documentid=${documentId}`); // Pass documentId instead of key
   };
 
+  /**
+   * Promotes the project and navigates to the "promotearticles" page with the document ID as a query parameter.
+   */
   const promoteProject = () => {
     console.log(`Promoting project: ${title}`);
-    router.push(`./promotearticles/?documentid=${documentId}`); 
+    router.push(`./promotearticles/?documentid=${documentId}`);
   }
 
 
+  /**
+   * Handles the click event when the remove button is clicked.
+   * Sets the deleted state to true and removes the document with the specified documentId.
+   */
   const handleRemoveClick = async () => {
     console.log(`Removing project: ${title}`);
     setDeleted(true);
