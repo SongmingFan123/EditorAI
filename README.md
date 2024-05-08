@@ -71,13 +71,7 @@ This is the general project directory structure for Editor AI:
           - .firebase
           - public
           - app
-            * admin
-            * api
-            * components
-            * context
-            * firebase
-            * pages
-            * styles
+                - frontend files
     
   
 - ```/client/editor-ai/app/api ``` contains the api calls made for handling documents, ai suggestions, and social media copies
