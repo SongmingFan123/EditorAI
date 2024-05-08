@@ -2,6 +2,7 @@ from firebase_admin import credentials, auth
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 
 
+""" TODO: """
 class auth_service:
 
     def __init__(self):

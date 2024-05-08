@@ -12,3 +12,9 @@ Suggest and generate headlines
 Propose new content ideas and sources that could improve an article. 
 Suggest and generate copy for social media posts.
 
+<<<<<<< HEAD
+=======
+All Pull Requests must follow the Pull Request Template, with a title formatted like such `[Project Name]: <Descriptive Title>`
+
+# Project description
+>>>>>>> a6f80d62b86fefad2b31b7ad7d81e982e30d319d

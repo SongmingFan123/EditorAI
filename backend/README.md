@@ -6,9 +6,9 @@
 2. [Getting Started](#getting-started)
 3. [Files](#files)
 4. [Testing](#testing)
-4. [API Documentation](#API)
+4. [API Documentation](#API-documentation)
 5. [Future Work](#future-work)
-6. [Contact Info](#contact)
+6. [Contact Info](#contact-info)
 
 # Description:
 This is the documentations for the backend side of Editor-AI.
