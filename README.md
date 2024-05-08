@@ -121,7 +121,7 @@ se-editor-ai
   
 - Text Editor Suggestions: We aim to implement context-aware suggestions within the text editor to assist users in creating content more efficiently.
   
-- Integration with External Services: Google Docsa and Wordpress for content mangament could be integrated iinto Editor AI.
+- Integration with External Services: Google Docs and Wordpress for content mangament could be integrated into Editor AI.
 
 - Authentication: Adding Google authentication to streamline the login process and enhance security.
 
