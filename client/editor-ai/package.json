@@ -38,7 +38,7 @@
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
     "@testing-library/jest-dom": "^6.4.5",
-    "@testing-library/react": "^15.0.6",
+    "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20",
@@ -54,9 +54,7 @@
     "prettier": "^3.2.5",
     "tailwindcss": "^3.3.0",
     "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
-  },
-  "jest": {
-    "testEnvironment": "jsdom"
   }
 }
