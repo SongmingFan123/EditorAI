@@ -68,7 +68,7 @@ This is the general project directory structure for Editor AI:
         - tests
   * frontend
         * editor-ai
-          - .firebase
+    - .firebase
           - public
           - app
                 - frontend files
