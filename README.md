@@ -65,7 +65,7 @@ npm test
 
 To run a specific test:
 ```bash
-npm test __tests__/filename.test.tsx
+npm test __tests__/filename.test.js
 ```
 
 ## Project Directory Structure ##
