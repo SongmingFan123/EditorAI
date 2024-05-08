@@ -99,4 +99,15 @@ se-editor-ai
 
 ## Future Work ##
 
+- Text Editor Page and Home Page: Functionalities can be redesiged for the user experience to enhance user interaction on the text editor page and home page.
+  
+- Database: Additional user information can be stored in the database to provide more comprehensive user profiles.
+  
+- Promote Articles Page: Future updates will integrate the promote articles page with social media platforms to streamline content sharing.
+  
+- Text Editor Suggestions: We aim to implement context-aware suggestions within the text editor to assist users in creating content more efficiently.
+  
+- Integration with External Services: Google Docsa and Wordpress for content mangament could be integrated iinto Editor AI.
+
+- Authentication: Adding Google authentication to streamline the login process and enhance security.
 
