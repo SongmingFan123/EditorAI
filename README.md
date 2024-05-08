@@ -16,18 +16,21 @@ Editor Ai is the all-in-one AI powered editing tool that accelerates and improve
 
 # Instructions on Getting Started #
 
-## Prerequisites and Configuration ##
-
-
 
 ## How to Run ##
 
 Frontend: Navigate to ```\client\editor-ai\app```
 
+Install dependencies with command:
 ```bash
 npm install
+```
+
+Running application locally with command:
+```bash
 npm run dev
 ```
+
 First, run the development server:
 
 ```bash
@@ -42,8 +45,14 @@ bun dev
 
 ## Testing ##
 
+Unit tests on the backend
 
+Unit tests on the front end were created with the React-Test Library and Jest Library.
 
+To run the tests on the frontend, navigate to ```\client\editor-ai\app``` and execute the following command:
+```bash
+npm test
+```
 
 ## Project Directory Structure ##
 
