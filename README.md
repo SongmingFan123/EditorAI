@@ -112,7 +112,7 @@ se-editor-ai
   
 ## Known Bugs and Issues ##
 
-- Main Page: Reloading the main page multiple times occasionally redirects users to the login page. The page also relo
+- Main Page: Reloading the main page multiple times occasionally redirects users to the login page. The page also will sometime refresh to the login page even though the user is signed in and the login page includes the header with the user's email which is a bug we did not fix in time. 
   
 - Text Editor Page: Certain functionalities on the text editor page are experiencing unclear interactions and may behave inconsistently. This is specifically for 4 options that are first displayed when redirected to text editor page.
   
