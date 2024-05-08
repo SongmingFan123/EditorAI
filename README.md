@@ -3,7 +3,8 @@
 Editor Ai is the all-in-one AI powered editing tool that accelerates and improves editing workflow for hyperlocal journalists. It aims to provide AI powered suggestions and an AI Chat Bot, correct grammer and syntax, and offer AP Style Book writing formating. The targeted users are hyperlocal journalists who want an efficient and easy workflow for creating, editing, and promoting their articles on different platforms.
 
 ## Project Technical Architecture ##
-![image](https://github.com/BU-Spark/se-editor-ai/blob/95187b236236a97b655318310058f02a53686fee/technical_architecture.drawio.xml )
+![Technical Architecture Diagram](technical_architecture.drawio (1).png)
+
 ### Tech stack ###
 
 Frontend: Next.js, Tailwind CSS, Typescript 
