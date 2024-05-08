@@ -58,14 +58,14 @@ Unit tests on the backend, execute commands:
 
 Unit tests on the front end were created with the React Testing Library and Jest Library.
 
-To run the tests on the frontend, navigate to ```\client\editor-ai\app``` and execute the following command:
+To run the tests on the frontend, navigate to ```\client\editor-ai``` and execute the following command:
 ```bash
 npm test
 ```
 
 To run a specific test:
 ```bash
-npm test test/filename.test.tsx
+npm test __tests__/filename.test.tsx
 ```
 
 ## Project Directory Structure ##
