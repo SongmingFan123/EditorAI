@@ -7,17 +7,12 @@ Editor Ai is the all-in-one AI powered editing tool that accelerates and improve
 
 ### Tech stack ###
 
-Frontend: Next.js, Tailwind CSS, Typescript 
-
-Backend: Python (Flask) 
-
-Database: Firebase
-
-AI Development: Hugging Face, Gemma
-
-Deployment: Vercel & Railway
-
-DevOps Tools: Git
+- Frontend: Next.js, Tailwind CSS, Typescript
+- Backend: Python (Flask)
+- Database: Firebase
+- AI Development: Hugging Face, Gemma
+- Deployment: Vercel & Railway
+- DevOps Tools: Git
 
 # Instructions on Getting Started #
 
