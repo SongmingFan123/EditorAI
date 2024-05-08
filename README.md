@@ -105,7 +105,11 @@ se-editor-ai
   
 ## Status ##
 
-- Login Page and Sign up Page
+- Login Page and Sign up Page: User can create an account through an email and password or sign in with a previously created account.
+- Home Page:
+- Text Editor Page:
+- Promote Articles Page:
+- Profile Page:
 
 ## Future Work ##
 
