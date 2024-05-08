@@ -15,7 +15,7 @@ def create_app(cred_route="", Test=False) -> Flask:
     app.config["TESTING"] = Test
 
     # Enable CORS
-    CORS(app, resources={r"/*": {"origins": "*"}})
+    CORS(app, resources={r"/*": {"origins": "*"}}) 
 
 
     # Configure CORS settings to allow requests from your Next.js application

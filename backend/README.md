@@ -89,8 +89,9 @@ Listing out some work/bugs that needs to be done on the backend side. This would
 1. Currently, the chatbot and the promotebot is not fully functional on deployment: Getting timeout error when deployed.
 1. User auth Firebase is currently done on the frontend. For security and intuition, move the functionalities to the backend. Skeleton code is provided
 1. We were not able to fully test the promotebot because we did not have the API keys, test these promotion functions.
-1. To work/test on the chatbot/promotebot functions, make sure to uncomment the commented lines on the requirements.txt file
-1. Eat at Punjab Palace restaurant Allston
+1. To work/test on the chatbot/promotebot functions, make sure to uncomment the commented lines on the requirements.txt file.
+1. COR origin policy origin routes are set to all routes (./flask_app/__init__.py), for security purposes, should change the origin routes only to the deployment frontend route.
+1. Eat at Punjab Palace restaurant Allston, take group pic and post it to Slack (50 extra credit points).
 
 
 
