@@ -16,6 +16,7 @@ Editor Ai is the all-in-one AI powered editing tool that accelerates and improve
 
 # Instructions on Getting Started #
 
+Before starting, need to be installed.
 
 ## How to Run ##
 
