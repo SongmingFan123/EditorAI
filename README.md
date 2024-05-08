@@ -12,9 +12,12 @@ Suggest and generate headlines
 Propose new content ideas and sources that could improve an article. 
 Suggest and generate copy for social media posts.
 
-<<<<<<< HEAD
-=======
+
+# TEMPLATE-base-repo
+
+# Add Users
+To add yourself to the repository, open a Pull Request modifying `COLLABORATORS`, entering your GitHub username in a newline.
+
 All Pull Requests must follow the Pull Request Template, with a title formatted like such `[Project Name]: <Descriptive Title>`
 
 # Project description
->>>>>>> a6f80d62b86fefad2b31b7ad7d81e982e30d319d
