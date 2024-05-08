@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
 import { postToFacebook, postToTwitter } from '@/api/socialmedia_functions';
 
@@ -11,15 +11,6 @@ const SocialMediaContainer = ({copy}:SocialMediaSiteProps) => {
         { name: 'Facebook', url: 'https://www.facebook.com', icon: <FaFacebook />, function: postToFacebook },
         { name: 'Twitter', url: 'https://www.twitter.com', icon: <FaTwitter />, function: postToTwitter },
     ];
-
-    const handleClick = (site:any) => {
-        console.log(`Clicked ${site.name}`);
-        console.log(`Posting to ${site.url}`);
-        // site.function(
-
-        // )
-        return true;
-    }
 
     return (
         <div className='bg-white rounded-lg shadow-md p-4 relative m-4'>

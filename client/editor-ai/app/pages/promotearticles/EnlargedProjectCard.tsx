@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { getDocument } from '@/api/document_functions';
+import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { handleClientScriptLoad } from 'next/script';
 import ReactQuill from 'react-quill';
 
 interface ProjectItemProps {
@@ -17,7 +15,7 @@ const EnlargedProjectCard: React.FC<ProjectItemProps> = ({ id, title, lastModifi
     const router = useRouter();
 
     const editProject = () => {
-        router.push(`./texteditor/?documentid=${id}`); // Pass documentId instead of key
+        router.push(`./texteditor/?documentid=${id}`); // Pass documentId 
     };
 
     const maxCharacters = 200;

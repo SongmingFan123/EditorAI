@@ -19,6 +19,14 @@ const ReactQuillNoSSR = dynamic(
 );
 
 
+/**
+ * CopyEditor component for generating social media copy.
+ * @param {Object} props - The component props.
+ * @param {string} props.documentContent - The content of the document.
+ * @param {string} props.copyText - The generated social media copy.
+ * @param {Function} props.setCopyText - The function to update the generated social media copy.
+ * @returns {JSX.Element} The CopyEditor component.
+ */
 const CopyEditor: React.FC<CopyEditorProps> = ({
     documentContent,
     copyText,
@@ -51,22 +59,25 @@ const CopyEditor: React.FC<CopyEditorProps> = ({
         "link", "image", "align", "size",
     ];
 
+    /**
+     * Handles the change in copy content.
+     * @param {string} content - The new copy content.
+     * @returns {Promise<void>}
+     */
     const handleCopyContentChange = async (content: string) => {
         setCopyText(content);
     };
 
+    /**
+     * Handles the refresh of the generated social media copy.
+     * @returns {Promise<void>}
+     */
     const handleRefreshCopy = async () => {
         console.log("documentContent " + documentContent)
         const res= await generateSocialMediaCopy(documentContent) as string;
         setCopyText(res)
         console.log(res)
     };
-
-
-
-
-
-
 
     return (
         <div>
@@ -76,17 +87,13 @@ const CopyEditor: React.FC<CopyEditorProps> = ({
                     <Image src='/refresh-color.svg' alt="refresh icon" width={45} height={45} onClick={handleRefreshCopy}/>
                 </div>
 
-
                 <ReactQuillNoSSR
                     modules={modules}
                     formats={formats}
                     value={copyText}
                     placeholder={"Generate social media copy here..."}
                     onChange={handleCopyContentChange}
-                    
                 />
-                
-
             </div>
         </div>
     );

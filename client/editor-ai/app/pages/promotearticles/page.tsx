@@ -1,11 +1,10 @@
 "use client"
-// import PromoteArticle from './PromoteArticle'
+import PromoteArticle from './PromoteArticle'
 
 const App = () => {
   return (
     <div>
-      {/* <PromoteArticle /> */}
-      hello world
+      <PromoteArticle />
     </div>
   )
 }
