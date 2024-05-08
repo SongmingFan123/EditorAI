@@ -60,13 +60,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 This is the general project directory structure for Editor AI:
 
-* se-editor-ai
-    * backend
-        - backend files
-    * client
-        - editor-ai
-           - app
-              -  frontend files
+se-editor-ai
+   * backend
+       - backend files
+   * client
+      - editor-ai
+         - app
+            -  frontend files
     
   
 - ```/client/editor-ai/app/api ``` contains the api calls made for handling documents, ai suggestions, and social media copies
