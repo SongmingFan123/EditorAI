@@ -4,7 +4,7 @@ Editor Ai is the all-in-one AI powered editing tool that accelerates and improve
 
 ## Project Technical Architecture ##
 
-
+![image](technical_architecture.drawio (1).png)
 
 ### Tech stack ###
 
