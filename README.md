@@ -55,6 +55,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Project Directory Structure ##
 
+To access components, you can go to ```/client/editor-ai/app/components ```.
 
 
 
