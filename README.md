@@ -166,3 +166,6 @@ Refer to the README.md in```client/backend ```for more detailed documentation.
 
 - Authentication: Adding Google authentication to streamline the login process and enhance security.
 
+- Database: Authenticating users in the front end instead of backend. 
+
+- AI Development: Connecting the chat bot and ai suggestions from the backend instead of using Hugging Face models in the front end.
