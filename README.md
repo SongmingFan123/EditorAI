@@ -158,9 +158,9 @@ Refer to the README.md in```client/backend ```for more detailed documentation.
   
 - Database: Additional user information can be stored in the database to provide more comprehensive user profiles.
   
-- Promote Articles Page: Future updates will integrate the promote articles page with social media platforms to streamline content sharing.
+- Promote Articles Page: Integrate the promote articles page with social media platforms to streamline content sharing.
   
-- Text Editor Suggestions: We aim to implement context-aware suggestions within the text editor to assist users in creating content more efficiently.
+- Text Editor Suggestions: Implement context-aware suggestions within the text editor to assist users in creating content more efficiently.
   
 - Integration with External Services: Google Docs and Wordpress for content mangament could be integrated into Editor AI.
 
