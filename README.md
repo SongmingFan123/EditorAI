@@ -112,7 +112,8 @@ se-editor-ai
             -  pages
             -  styles
     
-  
+- ```/backend/chatbot ``` contains the code for chat bot and ai suggestions
+
 - ```/client/editor-ai/app/api ``` contains the api calls made for handling documents, ai suggestions, and social media copies
   
 - ```/client/editor-ai/app/components ``` contains the resusable components used in the application
