@@ -46,7 +46,7 @@ bun dev
 
 Deploying application locally with command:
 ```bash
-npm build 
+npm run build 
 ```
 
 ## Testing ##
