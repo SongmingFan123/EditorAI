@@ -301,12 +301,3 @@ class Test_document_management():
 
         # Assert all results are True (i.e., all tests passed)
         assert all(result for result, msg in test_results), "\n".join(msg for result, msg in test_results if not result)
-
-
-
-
-# ----------------------------------------
-#  AI TESTING STUFF
-# ----------------------------------------
-
-

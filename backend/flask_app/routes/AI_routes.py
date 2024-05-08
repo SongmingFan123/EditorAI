@@ -10,7 +10,6 @@ CORS(bp)
 @cross_origin()
 def generate_title():
     """ """
-    pass
     try:
         AIconfig = editorai_chatbot()
         data = request.json
