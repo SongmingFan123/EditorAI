@@ -99,17 +99,17 @@ se-editor-ai
   
 - Text Editor Page: Certain functionalities on the text editor page are experiencing unclear interactions and may behave inconsistently.
   
-- Promote Page: There is an issue preventing the deployment of promotions from the promote page.
+- Promote Page: There is an issue preventing the deployment of promotions from the promote page. Running ```npm run build ``` will display the page without errors, but not during deployment.
 
 - Components: We first modeled the frontend display after the figma high fidelity frames, but because there were unclear UX designs that redirected us to redesigning some of the user interactions. There are a few components that are made to replicate the styling and user interaction provided on the high fidelity frames. However, because we redesigned it without communicating with the UX team, the components remain there for future work.
   
 ## Status ##
 
 - Login Page and Sign up Page: User can create an account through an email and password or sign in with a previously created account.
-- Home Page:
+- Home Page: All previously created project items are displayed here along with the option to create a new document, upload a local document, and query previously created documents. There is a promote article option that was suggested by the client. The promota article requires a document input to generate a social media copy. but currently does not have a input article selection before redirecting to the promote articles page with the social media copy. The user can create a document by selecting 'Create Document' component which will provide a pop up for the user to enter the new document's title or to cancel and exit out. Selecting an existing project item will pop up two selections of 'edit an article' and 'promote an article' which will either redirect to the text editor page or the promote articles page.
 - Text Editor Page:
-- Promote Articles Page:
-- Profile Page:
+- Promote Articles Page: Given a project item (document), a social media copy can be generated on this page with links (currently not working) to social media platforms such as Twitter and Facebook. User is given the option to redirect back to the currently working project item.  
+- Profile Page: Contains basic user information such as email and password. The user can update their password on this page.
 
 ## Future Work ##
 
