@@ -60,30 +60,24 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 This is the general project directory structure for Editor AI:
 
-```
 * se-editor-ai
-
     * backend
-      
         - chatbot
         - env
         - flask_app
         - tests
-          
   * frontend
-    
         * editor-ai
-    
           - .firebase
           - public
           - app
-            - admin
-            - api
-            - components
-            - context
-            - firebase
-            - pages
-            - styles ```
+            * admin
+            * api
+            * components
+            * context
+            * firebase
+            * pages
+            * styles
     
   
 - ```/client/editor-ai/app/api ``` contains the api calls made for handling documents, ai suggestions, and social media copies
