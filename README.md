@@ -19,9 +19,6 @@ Deployment: Vercel & Railway
 
 DevOps Tools: Git
 
-
-3rd party services/APIs, if any
-
 # Instructions on Getting Started #
 
 ## Prerequisites and Configuration ##
