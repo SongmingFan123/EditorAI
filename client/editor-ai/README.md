@@ -27,7 +27,7 @@ First, install dependencies.
 1. Navigate to `client/se-editor/app/__tests__
 
 # Testing:
-To perform unit tests:
+Tests are named after the existing files. To perform unit tests:
 1. Navigate to `client/se-editor/app/__tests__`
 1. Run `npm test` to run all tests OR run `npm test test_file.test.js` to run specific test
 
