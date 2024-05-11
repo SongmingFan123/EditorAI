@@ -59,23 +59,23 @@ To perform unit tests:
 
 ### Components
   - ActionButton.tsx
-      - 
+      - Button for creating adDocument used in `Homepage.tsx`
   - CreateDocumentModal.tsx
-    - 
+    - Popup for creating a document used in `Homepage.tsx`
   - Divider.tsx
-    - 
+    - Reusable Divider for all the pages 
   - DocumentModal.tsx
-    - 
+    - Resuable Popup (with high filderlity frame styling) that was disregarded becaue of redesigning `Homepage.tsx`
   - Header.tsx
-    - 
+    - Resuable Header with navigation menu
   - Navigationmenu.tsx
-    - 
+    - Navigation menu used in `Header.tsx`
   - ProjectItem.tsx
-    - 
-  - ProjectSection.tsx
-    - 
+    - Document icon display for any existing project items in `Homepage.tsx`
+  - ProjectSection.tsx 
+    - Displays all all existing project items (documents) in `Homepage.tsx`
   - PromoteButton.tsx
-    - 
+    - Button used for redirecting to the promote articles page for social media copies 
   - ProtectedRoute.tsx
     - 
 
@@ -96,15 +96,15 @@ To perform unit tests:
     - ProjectSection.jsx
       - 
     - SearchBar.tsx
-      - 
+      - Code for search bar used for querying existing project items (document)
     - UploadButton.tsx
       - 
   - login
     - LoginPage.tsx
-      - 
+      - Consists of code for creating login page
   - profile
     - Profile.tsx
-      - 
+      - Consists of code for viewing and updating profile and user information
   - promotearticles
     - CopyEditor.tsx
       - 
@@ -116,7 +116,7 @@ To perform unit tests:
       - 
   - signup
     - SignupPage.tsx
-      - 
+      - Consists of code for creating signup page
   - texteditor
     - Aside.tsx
       - 
@@ -139,7 +139,7 @@ To perform unit tests:
     - SuggestionsContainer.tsx
       - 
     - TextEditor.tsx
-      - 
+      - Consists of code for displaying the text editor
       
 
 
