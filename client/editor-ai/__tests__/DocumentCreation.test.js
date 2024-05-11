@@ -1,15 +1,11 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import DocumentCreation from "app/pages/homepage/DocumentCreation"; // Adjust the path as necessary
-import { useRouter } from "next/navigation"; // Corrected import path
+import DocumentCreation from "app/pages/homepage/DocumentCreation"; 
+import { useRouter } from "next/navigation"; 
 import { useAuth } from "app/context/AuthContext";
-import userEvent from '@testing-library/user-event';
 
 
-
-
-// Properly mock useRouter and useAuth at the top level
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn()
 }));
@@ -25,7 +21,6 @@ describe("DocumentCreation", () => {
   const mockSetShowPopup = jest.fn();
 
   beforeEach(() => {
-    // Setup useRouter and useAuth mock implementations
     useRouter.mockImplementation(() => ({
       push: mockPush
     }));
@@ -38,7 +33,7 @@ describe("DocumentCreation", () => {
         setDocumentName={mockSetDocumentName}
         handleCreateDocument={mockHandleCreateDocument}
         setShowPopup={mockSetShowPopup}
-        documentName="" // This can be dynamic if your tests require different initial values
+        documentName=""
       />
     );
   });
@@ -54,7 +49,7 @@ describe("DocumentCreation", () => {
   
   it("handles document creation failure", async () => {
     fireEvent.change(screen.getByPlaceholderText("Enter document name"), { target: { value: 'Existing Document' } });
-    mockHandleCreateDocument.mockResolvedValue(null); // Simulate document creation failure
+    mockHandleCreateDocument.mockResolvedValue(null); 
     fireEvent.click(screen.getByText("Submit"));
 
     await waitFor(() => {

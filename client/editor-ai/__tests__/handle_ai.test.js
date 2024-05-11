@@ -1,9 +1,8 @@
-// Importing necessary functions and mock utilities
 import {
     generateAnswer,
     generateSuggestion,
     generateSocialMediaCopy
-  } from 'app/api/handle_ai'; // Make sure the path matches your project structure
+  } from 'app/api/handle_ai';
 
   const { textGeneration } = require('@huggingface/inference');
 
@@ -12,15 +11,12 @@ import {
   }));  
   
 
-
-
-  
   describe('Text Generator Service', () => {
     let hfToken;
 
     beforeEach(() => {
         jest.clearAllMocks();
-        hfToken = 'fake-hf-token'; // Directly set the token here to avoid potential hoisting issues
+        hfToken = 'fake-hf-token'; 
         process.env.NEXT_PUBLIC_HF_ACCESS_TOKEN = hfToken; 
     });
 

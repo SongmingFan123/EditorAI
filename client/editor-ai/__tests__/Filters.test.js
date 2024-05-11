@@ -1,11 +1,9 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Filters from "app/pages/texteditor/Filters"; // Update the path as needed
-import OptionButton from "app/pages/texteditor/Options"; // Update the path as needed
-import SubmitButton from "app/pages/texteditor/Filters"; // Update the path as needed
+import Filters from "app/pages/texteditor/Filters";
 
-// Filters Test
+
 describe("Filters", () => {
     const mockSetShowOptions = jest.fn();
     const mockSetShowAskAI = jest.fn();

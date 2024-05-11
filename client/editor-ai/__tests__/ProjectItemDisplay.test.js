@@ -20,19 +20,15 @@ describe('ProjectItemDisplay component', () => {
       />
     );
 
-    // Check if title and lastModified are rendered
     expect(getByText(title)).toBeInTheDocument();
     expect(getByText(lastModified)).toBeInTheDocument();
 
-    // Check if the X button is rendered
     const removeButton = getByText('X');
     expect(removeButton).toBeInTheDocument();
 
-    // Click the X button and check if setShowRemoveConfirmation is called
     fireEvent.click(removeButton);
     expect(setShowRemoveConfirmation).toHaveBeenCalledWith(true);
 
-    // Click the title and check if setshowOpenConfirmation is called
     fireEvent.click(getByText(title));
     expect(setshowOpenConfirmation).toHaveBeenCalledWith(true);
   });

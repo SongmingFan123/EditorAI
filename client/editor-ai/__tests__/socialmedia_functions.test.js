@@ -1,11 +1,7 @@
-import { postToFacebook, postToTwitter } from 'app/api/socialmedia_functions'; // Adjust the import path accordingly
-
-// Mocking fetch globally
 global.fetch = jest.fn();
 
 beforeEach(() => {
     jest.clearAllMocks();
-    // Reset fetch mock to a default state
     fetch.mockReset();
   });
 
@@ -33,7 +29,7 @@ describe('Social Media Posting Functions', () => {
   const postToTwitter = async (content) => {
     try {
       const response = await fetch(
-        `https://se-editor-ai-production.up.railway.app/promotion/sns/twitter/${content}`, // Corrected the variable here
+        `https://se-editor-ai-production.up.railway.app/promotion/sns/twitter/${content}`, 
         {
           method: "POST",
           mode: "cors",
@@ -54,7 +50,7 @@ describe('Social Media Posting Functions', () => {
 
   it('should throw an error when fetch fails', async () => {
     const mockContent = "Sample content for Facebook";
-    fetch.mockRejectedValue(new Error("Network error")); // Use mockRejectedValue for clearer intent
+    fetch.mockRejectedValue(new Error("Network error")); 
   
     await expect(postToFacebook(mockContent)).rejects.toThrow("Network error");
   });
