@@ -4,10 +4,10 @@
 ## Table of Contents
 1. [Description](#description)
 2. [Getting Started](#getting-started)
-3. [Files and Components](#files)
-4. [Testing](#testing)
-5. [Future Work](#future-work)
-6. [Contact Info](#contact-info)
+3. [General File Information](#general-file-information)
+4. [Files and Components](#files-and-components)
+6. [Future Work](#future-work)
+7. [Contact Info](#contact-info)
 
 # Description:
 This is the documentations for the backend side of Editor-AI.
