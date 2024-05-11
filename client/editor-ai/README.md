@@ -10,8 +10,7 @@
 7. [Contact Info](#contact-info)
 
 # Description:
-This is the documentations for the backend side of Editor-AI.
-Using Flask as middleware; Firebase Firestore is used for data storage; Kaggle for the language models
+This is the documentations for the frontend side of Editor-AI.
 
 # Getting Started:
 
@@ -62,49 +61,85 @@ To perform unit tests:
   - ActionButton.tsx
       - 
   - CreateDocumentModal.tsx
+    - 
   - Divider.tsx
+    - 
   - DocumentModal.tsx
+    - 
   - Header.tsx
+    - 
   - Navigationmenu.tsx
+    - 
   - ProjectItem.tsx
+    - 
   - ProjectSection.tsx
+    - 
   - PromoteButton.tsx
+    - 
   - ProtectedRoute.tsx
+    - 
 
 ### Pages
   - homepage
     - DeletionModal.tsx
+      - 
     - DocumentCreation.tsx
+      - 
     - Homepage.tsx
+      -   
     - OpenDocumentModal.tsx
+      - 
     - ProjectItem.tsx
+      - 
     - ProjectItemDisplay.tsx
+      - 
     - ProjectSection.jsx
+      - 
     - SearchBar.tsx
-    - UploadButton.tsx 
+      - 
+    - UploadButton.tsx
+      - 
   - login
-    - LoginPage.tsx 
+    - LoginPage.tsx
+      - 
   - profile
-    - Profile.tsx 
+    - Profile.tsx
+      - 
   - promotearticles
     - CopyEditor.tsx
+      - 
     - EnlargedProjectCard.tsx
+      - 
     - PromoteArticle.tsx
+      - 
     - SocialMediaContainer.tsx
+      - 
   - signup
     - SignupPage.tsx
+      - 
   - texteditor
     - Aside.tsx
+      - 
     - Chatbot.tsx
+      - 
     - DocumentEditor.tsx
+      - 
     - Filters.tsx
+      - 
     - Options.tsx
+      - 
     - SaveFile.tsx
+      - 
     - SaveYourWork.tsx
+      - 
     - Submit.tsx
+      - 
     - SuggestionBox.tsx
+      - 
     - SuggestionsContainer.tsx
+      - 
     - TextEditor.tsx
+      - 
       
 
 
@@ -114,6 +149,8 @@ Listing out some work/bugs that needs to be done on the frontend side. This woul
 2. Redo the UX design so it follows the client's requirements and is more logical (the high fidelity frames have confusing user interactions)
 3. adding a chat history for each document
 4. updating the UX & UI to look better
+5. Transfer Authentication to the backend
+6. Remove AI models in frontend and incoporate AI routes from backend instead
 
 
 # Contact Info
