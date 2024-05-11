@@ -1,5 +1,7 @@
 # Project Overview Description # 
 
+Refer to ```\client\editor-ai\README.md``` and ```\backend\README.md``` for more detailed documentation for front end and back end
+
 # Editor AI
 
 Throughout the spring 2024 semester, our team has been building EditorAI. We hope work continues on this project in the future so that hyperlocal journalists are best equipt with tools to create high quality content.
