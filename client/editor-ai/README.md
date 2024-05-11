@@ -26,7 +26,7 @@ First, install dependencies.
 ## To build for testing
 1. Navigate to `client/se-editor/app/__tests__
 
-2. # Testing:
+# Testing:
 To perform unit tests:
 1. Navigate to `client/se-editor/app/__tests__`
 1. Run `npm test` to run all tests OR run `npm test test_file.test.js` to run specific test
