@@ -1,3 +1,42 @@
+# Editor-AI: An AI integrated editing tool for hyperlocal journalists
+
+
+## Table of Contents
+1. [Description](#description)
+2. [Getting Started](#getting-started)
+3. [Files and Components](#files)
+4. [Testing](#testing)
+5. [Future Work](#future-work)
+6. [Contact Info](#contact-info)
+
+# Description:
+This is the documentations for the backend side of Editor-AI.
+Using Flask as middleware; Firebase Firestore is used for data storage; Kaggle for the language models
+
+# Getting Started:
+
+## To Run locally
+First, install dependencies.
+1. `npm install`
+2. `npm run dev`
+
+## Deployment
+1. `npm install`
+2. `npm run build`
+
+## To build for testing
+1. Navigate to `client/se-editor/app/__tests__
+
+2. # Testing:
+To perform unit tests:
+1. Navigate to `client/se-editor/app/__tests__`
+1. Run `npm test` to run all tests OR run `npm test test_file.test.js` to run specific test
+
+## CI/CD pipeline
+1. Refer to Railway document: https://railway.app/new/template/zUcpux
+1. It is connected to dev branch GitHub
+
+# General File Information
 
 - ```/client/editor-ai/app/api ``` contains the api calls made for handling documents, ai suggestions, and social media copies
   
@@ -17,8 +56,11 @@
   
 - ```/client/editor-ai/backend/tests ``` contains unit tests for backend
 
+# Files and Components:
+
 Components 
   - ActionButton.tsx
+      - 
   - CreateDocumentModal.tsx
   - Divider.tsx
   - DocumentModal.tsx
@@ -63,3 +105,26 @@ Pages
     - SuggestionBox.tsx
     - SuggestionsContainer.tsx
     - TextEditor.tsx
+      
+
+
+# Future Work:
+Listing out some work/bugs that needs to be done on the frontend side. This would be nice to get started with the project.
+1. Fixing the bugs when refreshing all the pages
+2. Redo the UX design so it follows the client's requirements and is more logical (the high fidelity frames have confusing user interactions)
+3. adding a chat history for each document
+4. updating the UX & UI to look better
+
+
+# Contact Info
+## Junsun (Lucas) Yoon:
+### email: lyoon02@bu.edu
+
+## Tia Hannah:
+### email: thannah@bu.edu
+
+## Benjamin Gardiner 
+### email: bengard@bu.edu
+
+## Mary Ann Nguyen
+### email: nhnguyren@bu.edu
