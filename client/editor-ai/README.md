@@ -58,7 +58,7 @@ To perform unit tests:
 
 # Files and Components:
 
-Components 
+### Components
   - ActionButton.tsx
       - 
   - CreateDocumentModal.tsx
@@ -71,7 +71,7 @@ Components
   - PromoteButton.tsx
   - ProtectedRoute.tsx
 
-Pages
+### Pages
   - homepage
     - DeletionModal.tsx
     - DocumentCreation.tsx
