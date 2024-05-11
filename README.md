@@ -100,24 +100,9 @@ se-editor-ai
             -  pages
             -  styles
     
-  
-- ```/client/editor-ai/app/api ``` contains the api calls made for handling documents, ai suggestions, and social media copies
-  
-- ```/client/editor-ai/app/components ``` contains the resusable components used in the application
-  
-- ```/client/editor-ai/app/context ``` contains code for user authentication
-  
-- ```/client/editor-ai/app/firebase ``` contains firebase database connections hosted on Railway
-  
-- ```/client/editor-ai/app/pages ``` contains frontend code for all the pages
-  
-- ```/client/editor-ai/app/styles ``` contains all the styles used in the frontend
-  
-- ```/client/editor-ai/backend/chatbot ``` contains code for ai suggestions and chat bot
-  
-- ```/client/editor-ai/backend/flask_app ``` contains all routes for application
-  
-- ```/client/editor-ai/backend/tests ``` contains unit tests for backend
+Navigate to ```/client/editor-ai/README.md``` for more detailed documentation for code for the frontend. 
+
+Navigate to ```/backend/README.md``` for more detailed documentation for code for the frontend.
   
 ## Known Bugs and Issues ##
 
