@@ -1,6 +1,6 @@
 # Project Overview Description # 
 
-Refer to ```\client\editor-ai\README.md``` and ```\backend\README.md``` for more detailed documentation for front end and back end
+This is the main README.md for the project. Refer to ```\client\editor-ai\README.md``` and ```\backend\README.md``` for more detailed documentation for front end and back end.
 
 # Editor AI
 
