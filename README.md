@@ -1,6 +1,19 @@
 # Project Overview Description # 
 
-Editor Ai is the all-in-one AI powered editing tool that accelerates and improves editing workflow for hyperlocal journalists. It aims to provide AI powered suggestions and an AI Chat Bot, correct grammer and syntax, and offer AP Style Book writing formating. The targeted users are hyperlocal journalists who want an efficient and easy workflow for creating, editing, and promoting their articles on different platforms.
+# Editor AI
+
+Throughout the spring 2024 semester, our team has been building EditorAI. We hope work continues on this project in the future so that hyperlocal journalists are best equipt with tools to create high quality content.
+
+## Description: 
+A project aimed at aiding hyper-local news sites. This tool is meant to assist busy editors who are often working solo or with a limited staff producing news. Control should always rest with the editorial staff. The bot should make helpful suggestions that the staff can either accept or reject and to should fit comfortably into their workflow.
+
+## This chatbot is designed to: 
+Detect and correct grammar and spelling
+Edit stories to comply with the AP style
+Suggest and generate headlines
+Propose new content ideas and sources that could improve an article. 
+Suggest and generate copy for social media posts.
+
 
 ## Project Technical Architecture ##
 ![image](https://github.com/BU-Spark/se-editor-ai/blob/implemnting-ai-styles/technical_architecture.drawio%20(1).png?raw=true)
@@ -99,10 +112,11 @@ se-editor-ai
             -  firebase
             -  pages
             -  styles
-    
+          
 Navigate to ```/client/editor-ai/README.md``` for more detailed documentation for code for the frontend. 
 
 Navigate to ```/backend/README.md``` for more detailed documentation for code for the frontend.
+  
   
 ## Known Bugs and Issues ##
 
@@ -128,11 +142,17 @@ Navigate to ```/backend/README.md``` for more detailed documentation for code fo
   
 - Database: Additional user information can be stored in the database to provide more comprehensive user profiles.
   
-- Promote Articles Page: Future updates will integrate the promote articles page with social media platforms to streamline content sharing.
+- Promote Articles Page: Integrate the promote articles page with social media platforms to streamline content sharing.
   
-- Text Editor Suggestions: We aim to implement context-aware suggestions within the text editor to assist users in creating content more efficiently.
+- Text Editor Suggestions: Implement context-aware suggestions within the text editor to assist users in creating content more efficiently.
   
 - Integration with External Services: Google Docs and Wordpress for content mangament could be integrated into Editor AI.
 
 - Authentication: Adding Google authentication to streamline the login process and enhance security.
+
+- Database: Authenticating users in the front end instead of backend. 
+
+- AI Development: Connecting the chat bot and ai suggestions from the backend instead of using Hugging Face models in the front end.
+
+- Deployment: Transfer all deployment to Railway from Vercel.
 
