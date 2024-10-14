@@ -26,7 +26,7 @@ export const generateAnswer = async (question: string, context: string): Promise
 };
 
 export const generateSuggestion = async (documentContent: string): Promise<Array<{ header: string; content: string; incorrectLine: string; correctLine: string }> | null> => {
-    const question = 'Please provide 3-4 suggestions for improving the following text. For each suggestion, include the incorrect line, the corrected line, and a brief explanation. Format your response as a JSON array, where each suggestion is an object with "header", "content", "incorrectLine", and "correctLine" properties.';
+    const question = 'Please provide 3-4 grammar suggestions for improving the following text. For each suggestion, include the incorrect line, the corrected line, and a brief explanation. Format your response as a JSON array, where each suggestion is an object with "header", "content", "incorrectLine", and "correctLine" properties.';
     const inputText = `context: ${context} question: ${question}\ndocument: ${documentContent}\nsuggestions:`;
   
     const res = await textGeneration({
@@ -56,6 +56,27 @@ export const generateSuggestion = async (documentContent: string): Promise<Array
       return null;
     }
   }
+
+  export const generateSummary = async (documentContent: string): Promise<string | null> => {
+    const question = 'Please provide a concise summary of the following text. The summary should capture the main points and be no more than 3-4 sentences.';
+    const inputText = `context: ${context} question: ${question}\ndocument: ${documentContent}\nsummary:`;
+
+    const res = await textGeneration({
+        accessToken: hfToken,
+        model: modelName,
+        inputs: inputText,
+        parameters: {
+            max_new_tokens: 500,
+            return_full_text: false    
+        },
+    });
+
+    const generatedText = res.generated_text;
+
+    console.log('Generated summary:', generatedText);
+
+    return generatedText;
+};
 
   export const generateSocialMediaCopy = async (document:string): Promise<string | null> => {
     const randomSeed = Math.random().toString(36).substring(7);
