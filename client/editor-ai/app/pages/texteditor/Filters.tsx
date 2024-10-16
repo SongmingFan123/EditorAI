@@ -1,50 +1,50 @@
 import React, { useState } from 'react';
 import OptionButton from './Options';
-import SubmitButton from './Submit';
 
 interface FiltersProps {
     documentContent: string;
     setShowOptions: (showOptions: boolean) => void;
     setShowAskAI: (showAskAI: boolean) => void;
     setShowSuggestions: (showSuggestions: boolean) => void;
-    onSubmit: () => void;
+    onGrammarCheck: () => void;
+    onGenerateSources: () => void;
+    onCreateHeadline: () => void;
+    onAPStyleCheck: () => void;
 }
 
-const Filters: React.FC<FiltersProps> = ({documentContent, setShowOptions, setShowAskAI, setShowSuggestions, onSubmit}: FiltersProps) => {    const [showFilters, setShowFilters] = useState(true);
-
-    const handleSubmit = async () => {
-        setShowOptions(false);
-        setShowAskAI(true);
-        setShowSuggestions(true);
-        onSubmit(); // Call the onSubmit prop
-    };
+const Filters: React.FC<FiltersProps> = ({
+    documentContent,
+    setShowOptions,
+    setShowAskAI,
+    setShowSuggestions,
+    onGrammarCheck,
+    onGenerateSources,
+    onCreateHeadline,
+    onAPStyleCheck
+}) => {
+    const [showFilters, setShowFilters] = useState(true);
 
     const handleToggleFilters = () => {
         setShowFilters(!showFilters);
     };
 
-    
     return (
-        <div className=' flex-grow mr-5 p-5 pb-5'style={{ flexBasis: '30%'}}>
-            <p style={{ marginTop: '30px', marginBottom: '10px',fontSize: '28px', fontFamily: 'Newsreader', textAlign: 'center' }}>I need help with:</p>
+        <div className='flex-grow mr-5 p-5 pb-5' style={{ flexBasis: '30%' }}>
+            <p className='mt-8 mb-2 text-2xl font-newsreader text-center'>I need help with:</p>
             {showFilters ? (
-                <>
                 <div className="button-container flex flex-col items-center">
-                    <OptionButton text="Grammar/Spell Check" />
-                    <OptionButton text="Generate New Source(s)" />
-                    <OptionButton text="Create Headline" />
-                    <OptionButton text="AP Style Check" />
-                    <SubmitButton text="Submit" onClick={handleSubmit} />
+                    <OptionButton text="Grammar/Spell Check" onClick={onGrammarCheck} />
+                    <OptionButton text="Generate New Source(s)" onClick={onGenerateSources} />
+                    <OptionButton text="Create Headline" onClick={onCreateHeadline} />
+                    <OptionButton text="Summarize" onClick={onAPStyleCheck} />
                 </div>
-                </>
             ) : (
-
                 <div className="flex justify-center mt-4">
-                <button onClick={handleToggleFilters} className="button-container bg-blue-500 font-poppins custon-border border-4 px-4 py-2 bg-brand-red text-white rounded-r shadow-md">
-                Show Filters</button>
+                    <button onClick={handleToggleFilters} className="button-container bg-blue-500 font-poppins custom-border border-4 px-4 py-2 bg-brand-red text-white rounded-r shadow-md">
+                        Show Filters
+                    </button>
                 </div>
             )}
-            
         </div>
     );
 };
